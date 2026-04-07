@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme {
+  /* Typography */
+  --font-display: "Unbounded", "sans-serif";
+  --font-sans: "A2Z", "sans-serif";
+
+  /* Colors - Reference Tailwind default colors instead of hex codes */
+  --color-oska: var(--color-violet-500);
+  --color-oska-light: var(--color-violet-100);
+  --color-oska-dark: var(--color-violet-700);
+  
+  --color-neutral-base: var(--color-slate-900);
+  --color-neutral-muted: var(--color-slate-500);
+  --color-neutral-surface: var(--color-slate-100);
+
+  /* Font Sizes - Reference Tailwind default sizing tokens where applicable */
+  --font-size-h1: var(--font-size-4xl);      /* 36px */
+  --font-size-h2: 1.75rem;                   /* 28px */
+  --font-size-h3: var(--font-size-xl);       /* 20px */
+  --font-size-body: var(--font-size-base);   /* 16px */
+  --font-size-caption: var(--font-size-xs);  /* 12px */
+}
+
+@font-face {
+  font-family: 'Unbounded';
+  src: url('/fonts/Unbounded-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'A2Z';
+  src: url('/fonts/A2Z-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
