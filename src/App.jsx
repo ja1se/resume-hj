@@ -5,43 +5,14 @@ import About from './components/About'
 import ProjectHeader from './components/ProjectHeader'
 import ProjectSection from './components/ProjectSection'
 import Contact from './components/Contact'
-import ArchiveCard from './components/ArchiveCard'
+import ArchiveSection from './components/ArchiveSection'
 import { PROJECTS } from './constants/projects'
-
-// Archive images (using existing assets)
-import ele1 from './assets/images/ele1.png'
-import ele2 from './assets/images/ele2.png'
-import ele4 from './assets/images/ele4.png'
-
-const ARCHIVE_PROJECTS = [
-  {
-    id: 1,
-    title: "Deloitte Project",
-    description: "Precision and details focused web development project.",
-    image: ele1,
-    href: "#"
-  },
-  {
-    id: 2,
-    title: "Branding Identity",
-    description: "Creative branding and visual identity for a startup.",
-    image: ele2,
-    href: "#"
-  },
-  {
-    id: 3,
-    title: "UI Design System",
-    description: "Scalable design system for multi-platform applications.",
-    image: ele4,
-    href: "#"
-  }
-];
 
 const App = () => {
   const [activeLink, setActiveLink] = useState("#home");
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
+    <div className="min-h-screen bg-white font-sans text-slate-900">
       <Nav activeLink={activeLink} onLinkClick={setActiveLink} />
 
       <main className="pt-0">
@@ -63,28 +34,8 @@ const App = () => {
           ))}
         </div>
 
-        <div className="max-w-[1280px] mx-auto px-6 py-32 space-y-40">
-          {/* Archive Section */}
-          <section id="archive" className="scroll-mt-32">
-            <div className="flex flex-col gap-12">
-              <div className="space-y-4">
-                <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight">Archive</h2>
-                <p className="text-lg text-slate-500 max-w-2xl">다양한 실험적 프로젝트와 소규모 작업물들을 모아둔 공간입니다.</p>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {ARCHIVE_PROJECTS.map((item) => (
-                  <ArchiveCard 
-                    key={item.id}
-                    title={item.title}
-                    description={item.description}
-                    image={item.image}
-                    href={item.href}
-                  />
-                ))}
-              </div>
-            </div>
-          </section>
-        </div>
+        {/* Archive Section (GSAP Horizontal Scroll) */}
+        <ArchiveSection id="archive" />
       </main>
 
       <footer id="contact" className="bg-slate-900 py-24 px-6">

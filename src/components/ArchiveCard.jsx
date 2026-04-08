@@ -1,12 +1,20 @@
 import React from 'react';
 import { cn } from '../utils/cn';
 
+/**
+ * ArchiveCard Component (based on ArcCon Figma design)
+ * @param {string} title - 프로젝트 제목
+ * @param {string} description - 프로젝트 설명
+ * @param {string} image - 이미지 경로
+ * @param {string} href - 링크
+ * @param {string} className - 추가 클래스
+ */
 const ArchiveCard = ({ title, description, image, href, className }) => {
   return (
-    <div className={cn("group relative w-full", className)}>
-      <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden p-0.5 transition-all hover:shadow-xl hover:-translate-y-1">
-        {/* Image Area */}
-        <div className="aspect-[4/3] relative rounded-xl overflow-hidden bg-slate-100">
+    <div className={cn("flex flex-col items-start w-full max-w-[410px]", className)}>
+      <div className="bg-white border-[1px] border-[#d1d5db] flex flex-col items-center overflow-hidden pt-[20px] px-[1px] pb-[1px] relative rounded-[15px] shrink-0 w-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+        {/* Image Area (arc-img) */}
+        <div className="w-[calc(100%-40px)] aspect-[369/358] relative rounded-[10px] overflow-hidden bg-slate-100 shrink-0">
           {image ? (
             <img 
               src={image} 
@@ -20,26 +28,29 @@ const ArchiveCard = ({ title, description, image, href, className }) => {
           )}
         </div>
 
-        {/* Info Area */}
-        <div className="p-5 flex items-start justify-between gap-3">
-          <div className="flex flex-col gap-1 flex-1">
-            <h3 className="text-xl font-light text-slate-900 leading-tight">
+        {/* Info Area (arc-box) */}
+        <div className="w-full p-[20px] flex items-start justify-between gap-[12px]">
+          <div className="flex flex-col gap-[4px] flex-1">
+            {/* arc-title */}
+            <h3 className="text-[19.9px] font-light text-[#1f2937] leading-[1.5] whitespace-nowrap overflow-hidden text-ellipsis">
               {title}
             </h3>
-            <p className="text-sm font-light text-slate-500 leading-relaxed line-clamp-2">
+            {/* arc-desc */}
+            <p className="text-[15.9px] font-light text-[#1f2937] leading-[1.75] line-clamp-2">
               {description}
             </p>
           </div>
           
+          {/* arc-icon (Button) */}
           <a 
             href={href || "#"} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="shrink-0 size-12 rounded-full border border-slate-200 flex items-center justify-center transition-colors hover:bg-slate-50 hover:border-slate-400"
+            className="shrink-0 size-[51.7px] rounded-full border-[1px] border-[#d1d5db] flex items-center justify-center transition-all duration-200 hover:border-[#a78bfa] hover:text-[#a78bfa]"
           >
             <svg 
-              width="20" 
-              height="20" 
+              width="24" 
+              height="24" 
               viewBox="0 0 24 24" 
               fill="none" 
               stroke="currentColor" 

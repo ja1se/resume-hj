@@ -37,3 +37,22 @@
   font-style: normal;
   font-display: swap;
 }
+
+/* Swiper Pagination Styles */
+.archive-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #ddd6fe;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.archive-dot-active {
+  width: 20px;
+  background-color: #a78bfa;
+}
+
+.archive-swiper {
+  padding-bottom: 20px;
+}
