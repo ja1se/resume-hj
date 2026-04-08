@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import About from './components/About'
+import ProjectHeader from './components/ProjectHeader'
 import ProjectSection from './components/ProjectSection'
 import Contact from './components/Contact'
 import ArchiveCard from './components/ArchiveCard'
@@ -52,6 +53,7 @@ const App = () => {
 
         {/* Projects Section */}
         <div id="projects">
+          <ProjectHeader />
           {PROJECTS.map((project, index) => (
             <ProjectSection 
               key={project.id} 

@@ -2,43 +2,67 @@
 
 export const PROJECTS = [
   {
-    id: "muji",
-    title: "무인양품",
-    tags: ["UX Research", "Redesign"],
-    description: "무인양품 앱의 html,css,js 리디자인 프로젝트. 사용자 여정 분석을 통해 핵심 불편사항을 도출하고 개선된 정보 구조를 제안함.",
-    image: "/src/assets/images/muji-scroll.webp",      // 세로로 긴 스크린샷 경로
-    imageHeight: "200%",                    // 프레임 대비 이미지 높이 비율
-    color: "#F5F0EB",                       // 섹션 배경색
-    translateYOutput: ["0%", "-40%"],       // useTransform output 범위
-  },
-  {
     id: "nyansvene",
+    number: "1",
+    subtitle: "TV 광고 리디자인",
     title: "냥스베네",
-    tags: ["Brand Identity", "UI Design"],
-    description: "커피스틱 브랜드 '냥스베네' 영상 프로젝트.",
+    techStack: "클링AI, 프리미어프로, 에펙",
+    media: "desktop, mobile",
+    duration: "1주",
+    contribution: "100%",
+    troubleShooting: "광고의 메인 캐릭터인 거대한 고양이의 일관성 유지에 어려움이 있었으나 공통적인 키워드 도출을 위한 메인 키워드를 잡아 프롬포트를 최종 작성하였습니다.",
     image: "/src/assets/images/nyansvene-scroll.webp",
     imageHeight: "210%",
     color: "#FFF8F0",
     translateYOutput: ["0%", "-42%"],
+    frameType: "desktop"
   },
   {
     id: "soulblend",
-    title: "소울blend",
-    tags: ["App Design", "Interaction"],
-    description: "사주 앱 '소울블렌드'의 인터랙션 디자인 및 프로토타이핑 프로젝트.",
+    number: "2",
+    subtitle: "사주앱 UX 리디자인",
+    title: "소울블렌드",
+    techStack: "피그마, 일러스트레이터",
+    media: "mobile",
+    duration: "3주",
+    contribution: "100%",
+    troubleShooting: "프로젝트 초기 명확한 가이드 없이 작업하여 반복적인 수정 작업이 발생하였으나 피그마 styler 등 플러그인, 컴포넌트를 통한 디자인 시스템 자동화, 토근화 작업을 도입하여 작업 효율을 향상시켰습니다.",
     image: "/src/assets/images/soulblend-scroll.webp",
     imageHeight: "220%",
     color: "#F0F0F5",
     translateYOutput: ["0%", "-45%"],
+    frameType: "mobile"
+  },
+  {
+    id: "muji",
+    number: "3",
+    subtitle: "홈페이지 리디자인",
+    title: "무인양품",
+    techStack: "HTML, CSS, JS",
+    media: "desktop",
+    duration: "1주",
+    contribution: "100%",
+    troubleShooting: "초기 작업 시 .nav 영역의 반응형 대응에서 레이아웃이 깨지는 문제가 있었으나, position 속성을 재정비하고 미디어 쿼리를 세분화하여 해결하였습니다.",
+    image: "/src/assets/images/muji-scroll.webp",
+    imageHeight: "200%",
+    color: "#F5F0EB",
+    translateYOutput: ["0%", "-40%"],
+    frameType: "desktop"
   },
   {
     id: "wakuwaku",
+    number: "4",
+    subtitle: "풀사이클 생성형 AI OTT 미디어 서비스 제작",
     title: "와쿠와쿠",
-    tags: ["Service Design", "UX"],
-    description: "일본 드라마 OTT 앱 '와쿠와쿠'의 서비스 디자인 및 UX 개선 프로젝트.",
+    techStack: "피그마, 스티치, 리액트, 파이썬, 클링AI",
+    media: "desktop, mobile",
+    duration: "1주",
+    contribution: "100%",
+    troubleShooting: "Stitch를 활용해 유연한 설계의 바이브 코딩 구조 위에, 하드코딩의 정밀함을 더해 완성한 프로젝트. 디자인과 개발이 하나의 언어로 소통할 수 있도록 디자인 시스템의 구성 요소들이 프론트엔드에 그대로 녹아들 수 있게 세밀한 마크다운 문서를 작성하였습니다.",
     image: "/src/assets/images/wakuwaku-scroll.webp",
     imageHeight: "200%",
     color: "#F5F5F0",
     translateYOutput: ["0%", "-40%"],
+    frameType: "desktop"
   },
 ];
