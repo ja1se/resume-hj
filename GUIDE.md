@@ -5,7 +5,7 @@
 ## 1. 프로젝트 개요
 
 - **목표**: 무인양품, 냥스베네, 소울블렌드, 와쿠와쿠 4개 프로젝트의 'Sticky Frame & Inner Scroll' 인터랙션 구현
-- **기술 스택**: React, Tailwind CSS, Framer Motion (스크롤 애니메이션 권장), Lucide/FontAwesome, React Hooks, Swiper.js, Framer Motion
+- **기술 스택**: React, Tailwind CSS, GSAP (ScrollTrigger), Lucide/FontAwesome, React Hooks, Swiper.js
 
 ---
 
@@ -18,6 +18,27 @@
   1. 사용자가 섹션에 진입하면 우측 혹은 좌측의 **이미지 프레임(Frame)**은 화면 상단에 고정(`sticky`)됨.
   2. 스크롤이 진행되는 동안, 프레임 내부에 있는 **세로로 긴 프로젝트 스크린샷 이미지**가 아래에서 위로 부드럽게 이동함.
   3. 좌측의 설명글 스크롤이 끝나면 우측 프레임의 고정도 해제되어 다음 섹션으로 넘어감.
+
+---
+
+## 2-1. GSAP 기반 풀페이지 스크롤 전략
+
+프로젝트의 성격에 따라 Framer Motion 대신 또는 함께 사용할 수 있는 GSAP ScrollTrigger 전략입니다.
+
+### 전략 A: 섹션 레이어드 스냅 (Layered Pinning)
+- **효과**: 이전 프로젝트 섹션이 화면에 고정(Pin)된 상태에서, 다음 프로젝트가 아래에서 위로 슬라이드되며 이전 화면을 덮는 방식.
+- **Framer Motion 조합**: 배경 전환과 고정 로직은 GSAP ScrollTrigger가 담당하고, 내부의 세부 요소(텍스트 페이드인 등)는 Framer Motion의 `whileInView`로 처리.
+- **추천**: 무인양품, 와쿠와쿠처럼 비주얼이 강조되어야 하는 프로젝트.
+
+### 전략 B: 가로 슬라이드 전환 (Horizontal Scroller)
+- **효과**: 세로로 스크롤을 내리지만, 특정 프로젝트 섹션(예: 아카이브)에서는 화면이 가로로 이동하며 여러 작업을 나열.
+- **Framer Motion 조합**: `useScroll`로 가로 이동을 구현하기보다 GSAP의 `scrub` 기능을 사용하는 것이 성능 면에서 훨씬 부드러움.
+- **추천**: 아카이브(Archive) 섹션의 여러 카드 노출용.
+
+### 전략 C: 텍스트 하이라이트 & 줌 (Text Reveal & Zoom)
+- **효과**: 스크롤에 따라 프로젝트 제목이 화면 전체로 커지거나(Zoom), 회색 글자가 흰색으로 서서히 채워지는 효과.
+- **Framer Motion 조합**: 단순 줌은 Framer Motion이 쉽지만, 정밀한 텍스트 색상 채우기는 GSAP의 `clip-path` 애니메이션이 더 정교함.
+- **추천**: 프로젝트 진입 전 인트로(Intro) 문구 강조용.
 
 ---
 
@@ -213,34 +234,45 @@ import { LazyMotion, domAnimation, m } from "framer-motion";
 
 ---
 
+## 8-1. GSAP + Framer Motion 하이브리드 구현 명령
+
+> "GSAP과 Framer Motion을 조합하여 프로젝트 섹션의 몰입감을 높여줘:
+> 1. **GSAP ScrollTrigger**: 각 `ProjectSection`이 화면 상단에 도달할 때 `pin: true`를 적용해 섹션을 고정할 것.
+> 2. **Framer Motion 연동**: 섹션이 고정된 동안 내부의 프로젝트 설명(`ProjectCard`)과 이미지(`ProjectImage`)는 `useTransform`을 통해 스크롤 속도에 반응하도록 설정할 것.
+> 3. **GSAP Snap**: 사용자가 스크롤을 멈췄을 때 항상 특정 프로젝트 섹션의 정중앙에 위치하도록 보정할 것.
+> 4. **성능 및 안전성**: GSAP 애니메이션에도 `will-change: transform`을 활용하고, React의 `useLayoutEffect` 내에서 안전하게 생성/소멸(cleanup)되도록 작성할 것."
+
+---
+
 ## 9. 최종 디렉토리 구조
 
 ```
 src/
 ├── components/
-│   ├── ui/                         # 범용 UI 컴포넌트 (Props 커스터마이징)
-│   │   ├── Nav.jsx                 # 테마/포지션/링크 Props 제어
-│   │   ├── Card.jsx                # variant/size/radius/shadow Props 제어
-│   │   └── Button.jsx              # variant/size/icon/loading Props 제어
-│   ├── ProjectSection.jsx          # 개별 프로젝트 섹션 (sticky + scroll 로직 포함)
-│   ├── ProjectImage.jsx            # 내부 스크롤 이미지 컴포넌트 (useTransform 적용)
-│   └── ProjectInfo.jsx             # 좌측 텍스트/설명 영역 컴포넌트
+│   └── ui/                         # 모든 UI 컴포넌트 관리
+│       ├── Nav.jsx                 # 네비게이션 바 (테마/링크 제어)
+│       ├── Card.jsx                # 공통 카드 컨테이너 (variant/shadow)
+│       ├── Button.jsx              # 공통 버튼 (variant/size)
+│       ├── ProjectSection.jsx      # Sticky + Scroll 로직이 포함된 메인 섹션
+│       ├── ProjectImage.jsx        # 프레임 내부 스크롤 이미지 (useTransform)
+│       ├── ProjectCard.jsx         # 프로젝트 상세 설명 카드
+│       ├── ResumeCard.jsx          # Experience 섹션용 경력 카드
+│       ├── ArchiveCard.jsx         # Archive 섹션용 프로젝트 카드
+│       └── Contact.jsx             # 연락처 정보 및 푸터 컴포넌트
 ├── constants/
-│   └── projects.js                 # 4개 프로젝트 데이터 (id, title, image, color 등)
+│   └── projects.js                 # 프로젝트 메타데이터 (ID, 이미지, 컬러 등)
 ├── hooks/
 │   └── useIsMobile.js              # 반응형 분기용 커스텀 훅
+├── utils/
+│   └── cn.js                       # Tailwind 클래스 병합 유틸리티
 ├── assets/
-│   └── images/                     # WebP 변환된 프로젝트 스크린샷
-│       ├── muji-scroll.webp
-│       ├── nyansvene-scroll.webp
-│       ├── soulblend-scroll.webp
-│       └── wakuwaku-scroll.webp
-├── App.jsx                         # 라우팅 및 전체 레이아웃
-└── main.jsx                        # 엔트리포인트
+│   └── images/                     # 프로젝트 및 UI용 이미지 에셋
+│       ├── ele1~5.png              # 아카이브/요소용 이미지
+│       ├── muji-scroll.webp        # 프로젝트별 세로형 스크린샷 (예시)
+│       └── ...
+├── App.jsx                         # 전체 레이아웃 구성 및 섹션 조립
+└── main.jsx                        # React 엔트리포인트
 ```
-
-> **삭제 대상 파일** (CRA/Vite 기본 생성 파일):
-> `App.css`, `logo.svg`, `index.css` (전역 스타일을 Tailwind로 대체한 경우)
 
 ---
 
@@ -653,4 +685,4 @@ export const useIsMobile = (breakpoint = 1024) => {
 > 2. `useTransform` 적용 시 반드시 `{ clamp: true }` 옵션을 포함하여 애니메이션 범위를 제한할 것.
 > 3. 첫 번째 프로젝트인 '무인양품' 섹션 이미지에는 `loading="eager"`를, 나머지는 `lazy`를 적용할 것.
 > 4. `useIsMobile` 훅을 사용하여 모바일 환경(1024px 미만)에서는 `translateY` 애니메이션과 `sticky` 속성이 완전히 비활성화되도록 조건부 스타일링을 적용할 것.
-> 5. `framer-motion`의 `m` 컴포넌트와 `LazyMotion`을 사용하여 번들 사이즈를 최적화할 것."
+> 5. `framer-motion`의 `m` 컴포넌트와 `LazyMotion`을 사용하여 번들 사이즈를 최적화할 것."�� 사이즈를 최적화할 것."��스를 적절히 cleanup할 것."�� 사이즈를 최적화할 것."

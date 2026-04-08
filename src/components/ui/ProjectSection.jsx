@@ -48,7 +48,7 @@ const ProjectSection = ({ project, reverse = false, className }) => {
               <p className="whitespace-pre-wrap">{description}</p>
               <div className="grid grid-cols-[130px_1fr] gap-y-3 pt-4 border-t border-slate-200/50">
                 <span className="font-medium text-slate-800">기술 스택 |</span>
-                <span className="font-light">React, Tailwind CSS, Framer Motion</span>
+                <span className="font-light">React, Tailwind CSS, GSAP</span>
                 <span className="font-medium text-slate-800">작업 기간 |</span>
                 <span className="font-light">4주</span>
               </div>
