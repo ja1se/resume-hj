@@ -1,10 +1,11 @@
 import { useState } from 'react'
-import Nav from './components/ui/Nav'
-import { Card, CardHeader, CardTitle, CardContent } from './components/ui/Card'
-import ResumeCard from './components/ui/ResumeCard'
-import ProjectSection from './components/ui/ProjectSection'
-import Contact from './components/ui/Contact'
-import ArchiveCard from './components/ui/ArchiveCard'
+import Nav from './components/Nav'
+import Hero from './components/Hero'
+import { Card, CardHeader, CardTitle, CardContent } from './components/Card'
+import ResumeCard from './components/ResumeCard'
+import ProjectSection from './components/ProjectSection'
+import Contact from './components/Contact'
+import ArchiveCard from './components/ArchiveCard'
 import { PROJECTS } from './constants/projects'
 
 // Archive images (using existing assets)
@@ -44,20 +45,11 @@ const App = () => {
       <Nav activeLink={activeLink} onLinkClick={setActiveLink} />
 
       <main className="pt-0">
-        {/* Hero / Projects Section */}
-        <div id="home" className="pt-0" />
-        <div id="projects">
-          {PROJECTS.map((project, index) => (
-            <ProjectSection 
-              key={project.id} 
-              project={project} 
-              reverse={index % 2 !== 0}
-            />
-          ))}
-        </div>
+        {/* Hero Section */}
+        <Hero />
 
         <div className="max-w-[1280px] mx-auto px-6 py-32 space-y-40">
-          {/* Experience Section */}
+          {/* Experience Section (Introduction) */}
           <section id="about" className="scroll-mt-32">
             <div className="flex flex-col gap-12">
               <div className="space-y-4">
@@ -84,7 +76,20 @@ const App = () => {
               </div>
             </div>
           </section>
+        </div>
 
+        {/* Projects Section */}
+        <div id="projects">
+          {PROJECTS.map((project, index) => (
+            <ProjectSection 
+              key={project.id} 
+              project={project} 
+              reverse={index % 2 !== 0}
+            />
+          ))}
+        </div>
+
+        <div className="max-w-[1280px] mx-auto px-6 py-32 space-y-40">
           {/* Archive Section */}
           <section id="archive" className="scroll-mt-32">
             <div className="flex flex-col gap-12">
@@ -102,42 +107,6 @@ const App = () => {
                     href={item.href}
                   />
                 ))}
-              </div>
-            </div>
-          </section>
-
-          {/* UI Components Showcase */}
-          <section className="scroll-mt-32">
-            <div className="flex flex-col gap-12">
-              <div className="space-y-4">
-                <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight">UI Components</h2>
-                <p className="text-lg text-slate-500 max-w-2xl">프로젝트에 사용된 공통 UI 컴포넌트들입니다.</p>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <Card className="hover:border-violet-200 transition-colors">
-                  <CardHeader>
-                    <CardTitle>Default Card</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-slate-600 leading-relaxed">기본적인 카드 스타일입니다. 부드러운 그림자와 얇은 테두리가 조화를 이룹니다.</p>
-                  </CardContent>
-                </Card>
-                <Card variant="outline" className="hover:bg-slate-50 transition-colors">
-                  <CardHeader>
-                    <CardTitle>Outline Card</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-slate-600 leading-relaxed">테두리만 있는 깔끔한 스타일로, 배경색이 있는 곳에서 사용하기 좋습니다.</p>
-                  </CardContent>
-                </Card>
-                <Card variant="glass" className="bg-violet-50/30 border-violet-100">
-                  <CardHeader>
-                    <CardTitle>Glass Card</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-slate-600 leading-relaxed">은은한 보라빛 배경과 블러 효과가 적용된 세련된 스타일입니다.</p>
-                  </CardContent>
-                </Card>
               </div>
             </div>
           </section>

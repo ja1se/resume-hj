@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from '../../utils/cn';
+import { cn } from '../utils/cn';
 
 const ContactItem = ({ label, value, iconGradient }) => (
   <div className="border-slate-200 border-b last:border-b-0 py-5 px-7 flex items-center gap-4">

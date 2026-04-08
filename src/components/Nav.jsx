@@ -1,9 +1,9 @@
 import React from "react";
-import { cn } from "../../utils/cn";
+import { cn } from "../utils/cn";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faTiktok } from "@fortawesome/free-brands-svg-icons";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
-import logo from "../../assets/images/logo.svg";
+import logo from "../assets/images/logo.svg";
 
 /**
  * Navigation Component Props

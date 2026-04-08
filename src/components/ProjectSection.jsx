@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
-import { cn } from "../../utils/cn";
+import { cn } from "../utils/cn";
 import ProjectImage from "./ProjectImage";
 import Button from "./Button";
-import { useIsMobile } from "../../hooks/useIsMobile";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 /**
  * ProjectSection Component

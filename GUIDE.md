@@ -6,6 +6,7 @@
 
 - **목표**: 무인양품, 냥스베네, 소울블렌드, 와쿠와쿠 4개 프로젝트의 'Sticky Frame & Inner Scroll' 인터랙션 구현
 - **기술 스택**: React, Tailwind CSS, GSAP (ScrollTrigger), Lucide/FontAwesome, React Hooks, Swiper.js
+- **페이지 구조**: 히어로 → 소개 → 프로젝트 → 아카이브 → 컨택트 섹션으로 이어지는 싱글 페이지 구성.
 
 ---
 
@@ -248,17 +249,16 @@ import { LazyMotion, domAnimation, m } from "framer-motion";
 
 ```
 src/
-├── components/
-│   └── ui/                         # 모든 UI 컴포넌트 관리
-│       ├── Nav.jsx                 # 네비게이션 바 (테마/링크 제어)
-│       ├── Card.jsx                # 공통 카드 컨테이너 (variant/shadow)
-│       ├── Button.jsx              # 공통 버튼 (variant/size)
-│       ├── ProjectSection.jsx      # Sticky + Scroll 로직이 포함된 메인 섹션
-│       ├── ProjectImage.jsx        # 프레임 내부 스크롤 이미지 (useTransform)
-│       ├── ProjectCard.jsx         # 프로젝트 상세 설명 카드
-│       ├── ResumeCard.jsx          # Experience 섹션용 경력 카드
-│       ├── ArchiveCard.jsx         # Archive 섹션용 프로젝트 카드
-│       └── Contact.jsx             # 연락처 정보 및 푸터 컴포넌트
+├── components/                     # 모든 UI 컴포넌트 관리
+│   ├── Nav.jsx                     # 네비게이션 바 (테마/링크 제어)
+│   ├── Card.jsx                    # 공통 카드 컨테이너 (variant/shadow)
+│   ├── Button.jsx                  # 공통 버튼 (variant/size)
+│   ├── ProjectSection.jsx          # Sticky + Scroll 로직이 포함된 메인 섹션
+│   ├── ProjectImage.jsx            # 프레임 내부 스크롤 이미지 (GSAP 적용 예정)
+│   ├── ProjectCard.jsx             # 프로젝트 상세 설명 카드
+│   ├── ResumeCard.jsx              # Experience 섹션용 경력 카드
+│   ├── ArchiveCard.jsx             # Archive 섹션용 프로젝트 카드
+│   └── Contact.jsx                 # 연락처 정보 및 푸터 컴포넌트
 ├── constants/
 │   └── projects.js                 # 프로젝트 메타데이터 (ID, 이미지, 컬러 등)
 ├── hooks/
@@ -272,6 +272,7 @@ src/
 │       └── ...
 ├── App.jsx                         # 전체 레이아웃 구성 및 섹션 조립
 └── main.jsx                        # React 엔트리포인트
+└── index.css                       # css
 ```
 
 ---
@@ -685,4 +686,4 @@ export const useIsMobile = (breakpoint = 1024) => {
 > 2. `useTransform` 적용 시 반드시 `{ clamp: true }` 옵션을 포함하여 애니메이션 범위를 제한할 것.
 > 3. 첫 번째 프로젝트인 '무인양품' 섹션 이미지에는 `loading="eager"`를, 나머지는 `lazy`를 적용할 것.
 > 4. `useIsMobile` 훅을 사용하여 모바일 환경(1024px 미만)에서는 `translateY` 애니메이션과 `sticky` 속성이 완전히 비활성화되도록 조건부 스타일링을 적용할 것.
-> 5. `framer-motion`의 `m` 컴포넌트와 `LazyMotion`을 사용하여 번들 사이즈를 최적화할 것."�� 사이즈를 최적화할 것."��스를 적절히 cleanup할 것."�� 사이즈를 최적화할 것."
+> 5. `framer-motion`의 `m` 컴포넌트와 `LazyMotion`을 사용하여 번들 사이즈를 최적화할 것."�� 사이즈를 최적화할 것."��스를 적절히 cleanup할 것."�� 사이즈를 최적화할 것."
