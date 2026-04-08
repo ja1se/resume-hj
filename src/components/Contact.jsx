@@ -2,35 +2,38 @@ import React from 'react';
 import { cn } from '../utils/cn';
 
 const ContactItem = ({ label, value, iconGradient }) => (
-  <div className="border-slate-200 border-b last:border-b-0 py-5 px-7 flex items-center gap-4">
+  <div className="border-[#d1d5db] border-b last:border-b-0 py-5 px-7 flex items-center gap-[18px]">
     <div className={cn(
-      "shrink-0 size-14 rounded-full bg-gradient-to-r",
+      "shrink-0 size-[60px] rounded-full bg-gradient-to-r",
       iconGradient || "from-violet-300 to-violet-600"
     )} />
     <div className="flex flex-col gap-0.5">
-      <span className="text-slate-800 font-medium text-base leading-relaxed">{label}</span>
-      <span className="text-slate-600 font-light text-base leading-relaxed whitespace-pre-line">{value}</span>
+      <span className="text-[#1f2937] font-medium text-base leading-relaxed font-sans">{label}</span>
+      <span className="text-[#1f2937] font-light text-base leading-relaxed whitespace-pre-line font-sans">{value}</span>
     </div>
   </div>
 );
 
 const Contact = ({ className }) => {
   return (
-    <div className={cn(
-      "bg-white border border-slate-200 rounded-xl overflow-hidden w-full max-w-lg",
-      className
-    )}>
+    <div 
+      className={cn(
+        "bg-white border border-[#d1d5db] rounded-[10px] overflow-hidden w-full max-w-[484px] shadow-sm",
+        className
+      )}
+      style={{ backgroundImage: "linear-gradient(168deg, #ffffff 12%, #f5f3ff 116%)" }}
+    >
       <ContactItem 
         label="Phone" 
-        value="+01 123 654 8096" 
+        value="010 8860 2480" 
       />
       <ContactItem 
         label="Email" 
-        value="gerolddesign@mail.com" 
+        value="hiijaise@gmail.com" 
       />
       <ContactItem 
-        label="Address" 
-        value={"Warne Park Street Pine,\nFL 33157, New York"} 
+        label="Socials" 
+        value="Tistory Blog" 
       />
     </div>
   );

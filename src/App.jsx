@@ -38,19 +38,21 @@ const App = () => {
         <ArchiveSection id="archive" />
       </main>
 
-      <footer id="contact" className="bg-slate-900 py-24 px-6">
-        <div className="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          <div className="space-y-8">
-            <h2 className="text-4xl lg:text-5xl font-bold text-white tracking-tight">Let's Work Together</h2>
-            <p className="text-slate-400 text-lg max-w-md">새로운 프로젝트와 기회에 대해 이야기 나누고 싶습니다. 언제든 연락 주세요.</p>
-            <div className="flex gap-6">
-              {/* Social icons could go here */}
+      <footer id="contact" className="relative pt-28 pb-10 px-6 lg:px-[256px] bg-gradient-to-b from-[rgba(196,181,253,0)] via-[#a078f5] via-[67.7%] to-[#7c3aed] to-[97.7%]">
+        <div className="max-w-[1393px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-[95px] items-center">
+          <div className="space-y-4">
+            <h2 className="text-[48px] font-medium text-white/65 font-display leading-[1.11]">Let's Work Together</h2>
+            <div className="text-white/65 text-base font-light leading-relaxed font-sans">
+              <p>사소한 디테일이 모여 큰 감동을 만든다고 믿습니다.</p>
+              <p>컨택은 다음 채널을 통해 노크해 주세요. :D</p>
             </div>
           </div>
-          <Contact />
+          <div className="flex justify-center lg:justify-end">
+            <Contact />
+          </div>
         </div>
-        <div className="max-w-[1280px] mx-auto mt-24 pt-8 border-t border-slate-800 text-center lg:text-left">
-          <p className="text-slate-600 text-sm">© 2026 OSKA. All rights reserved.</p>
+        <div className="max-w-[1393px] mx-auto mt-20 pt-7 border-t border-white/10 text-center">
+          <p className="text-white/45 text-xs font-light font-sans">© 2026 Heejin Cho portfolio All rights reserved.</p>
         </div>
       </footer>
     </div>
