@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
-import { Card, CardHeader, CardTitle, CardContent } from './components/Card'
-import ResumeCard from './components/ResumeCard'
+import About from './components/About'
 import ProjectSection from './components/ProjectSection'
 import Contact from './components/Contact'
 import ArchiveCard from './components/ArchiveCard'
@@ -48,35 +47,8 @@ const App = () => {
         {/* Hero Section */}
         <Hero />
 
-        <div className="max-w-[1280px] mx-auto px-6 py-32 space-y-40">
-          {/* Experience Section (Introduction) */}
-          <section id="about" className="scroll-mt-32">
-            <div className="flex flex-col gap-12">
-              <div className="space-y-4">
-                <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight">Experience</h2>
-                <p className="text-lg text-slate-500 max-w-2xl">교육 과정 및 실무 경험을 통해 쌓아온 역량입니다.</p>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <ResumeCard 
-                  date="2025.10 - 2026 Present"
-                  title={"챗GPT 생성형 AI를 활용한 반응형 웹콘텐츠\n(영상제작&코딩) 개발기획자 양성과정"}
-                  items={[
-                    "MBC아카데미컴퓨터학원",
-                    "UI/UX 디자인 및 프론트엔드 개발 프로젝트 수행"
-                  ]}
-                />
-                <ResumeCard 
-                  date="2024.03 - 2025.02"
-                  title="프리랜서 디자이너"
-                  items={[
-                    "다수의 브랜드 아이덴티티 및 웹사이트 디자인",
-                    "고객사 커뮤니케이션 및 프로젝트 관리"
-                  ]}
-                />
-              </div>
-            </div>
-          </section>
-        </div>
+        {/* About Me Section (Experience/Education) */}
+        <About />
 
         {/* Projects Section */}
         <div id="projects">
