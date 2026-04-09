@@ -20,7 +20,7 @@ const SIZE_STYLES = {
 
 const VARIANT_STYLES = {
   primary: "bg-gradient-to-r from-[#c4b5fd] via-[#a078f5] to-[#7c3aed] text-white shadow-md hover:shadow-lg hover:brightness-110 active:scale-95",
-  outline: "border-2 border-violet-500 text-violet-600 hover:bg-violet-50",
+  outline: "border border-slate-200 text-slate-600 hover:border-[#a078f5] hover:text-[#a078f5] hover:bg-[#fbf6fd] active:scale-95",
   ghost: "text-slate-600 hover:bg-slate-100",
 };
 

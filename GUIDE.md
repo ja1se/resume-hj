@@ -5,6 +5,8 @@
 ## 1. 프로젝트 개요
 
 - **목표**: 무인양품, 냥스베네, 소울블렌드, 와쿠와쿠 4개 프로젝트의 'Sticky Frame & Inner Scroll' 인터랙션 구현
+...
+
 - **기술 스택**: React, Tailwind CSS, GSAP (ScrollTrigger), Lucide/FontAwesome, React Hooks, Swiper.js
 - **페이지 구조**: 히어로 → 소개 → 프로젝트 → 아카이브 → 컨택트 섹션으로 이어지는 싱글 페이지 구성.
 

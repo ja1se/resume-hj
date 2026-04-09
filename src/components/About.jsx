@@ -8,7 +8,7 @@ const About = ({ className }) => {
   return (
     <section 
       id="about" 
-      className={cn("w-full py-32 bg-white relative overflow-hidden", className)}
+      className={cn("w-full pb-32 bg-white relative overflow-hidden", className)}
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12 flex flex-col gap-20">
         

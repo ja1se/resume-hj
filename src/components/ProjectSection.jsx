@@ -17,10 +17,7 @@ const ProjectSection = ({ project, reverse = false, className }) => {
     subtitle, 
     title, 
     techStack, 
-    media, 
     duration, 
-    contribution, 
-    troubleShooting, 
     image, 
     color, 
     translateYOutput,
@@ -44,48 +41,41 @@ const ProjectSection = ({ project, reverse = false, className }) => {
           {/* Text Area */}
           <div 
             className={cn(
-              "flex flex-col items-start gap-8 lg:gap-10",
+              "flex flex-col items-start gap-8 lg:gap-12",
               reverse ? "lg:order-2" : "lg:order-1"
             )}
           >
             {/* Project Header (Subtitle & Title) */}
-            <div className="flex flex-col gap-2 lg:gap-4">
-              <div className="flex items-center gap-2 text-[#a78bfa] font-light text-[20px] lg:text-[24px]">
-                <span>[</span>
-                <span className="text-[#4b5563] text-[18px] lg:text-[20px]">{subtitle}</span>
-                <span>]</span>
-              </div>
-              <h2 className="text-[48px] lg:text-[56px] font-medium text-[#1f2937] leading-[1.2] flex items-baseline gap-4">
-                <span className="font-display">{number}.</span>
-                <span>{title}</span>
+            <div className="flex flex-col gap-3 relative">
+              <span className="absolute -top-10 -left-4 text-[120px] font-display text-slate-900/5 leading-none select-none">
+                0{number}
+              </span>
+              <span className="text-[#a078f5] font-medium text-[16px] lg:text-[18px] tracking-[0.2em] uppercase">
+                {subtitle}
+              </span>
+              <h2 className="text-[48px] lg:text-[64px] font-medium text-[#1f2937] leading-[1.1] font-display">
+                {title}
               </h2>
             </div>
 
-            {/* Project Details List */}
-            <div className="flex flex-col gap-4 text-[#4b5563] text-[18px] lg:text-[20px] leading-relaxed w-full">
-              <div className="grid grid-cols-[140px_1fr] gap-x-4 gap-y-2">
-                <span className="font-medium text-[#1f2937]">기술 스택 |</span>
-                <span className="font-light">{techStack}</span>
-                
-                <span className="font-medium text-[#1f2937]">배포 매체 |</span>
-                <span className="font-light">{media}</span>
-                
-                <span className="font-medium text-[#1f2937]">작업 기간 |</span>
-                <span className="font-light">{duration}</span>
-                
-                <span className="font-medium text-[#1f2937]">본인 기여도 |</span>
-                <span className="font-light">{contribution}</span>
-                
-                <span className="font-medium text-[#1f2937]">트러블 슈팅 |</span>
-                <span className="font-light text-[16px] lg:text-[18px]">{troubleShooting}</span>
+            {/* Project Details List - Simplified */}
+            <div className="flex flex-col gap-5 text-[#64748b] text-[16px] lg:text-[18px] leading-relaxed max-w-[480px]">
+              <div className="flex flex-col gap-1">
+                <span className="font-medium text-[#1f2937] text-[14px] uppercase tracking-wider">Technical Stack</span>
+                <p className="font-light">{techStack}</p>
+              </div>
+              
+              <div className="flex flex-col gap-1">
+                <span className="font-medium text-[#1f2937] text-[14px] uppercase tracking-wider">Duration</span>
+                <p className="font-light">{duration}</p>
               </div>
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex flex-wrap gap-4 pt-4">
-              <Button size="sm" variant="primary">기획서 보기</Button>
-              <Button size="sm" variant="primary">깃허브 보기</Button>
-              <Button size="sm" variant="primary">페이지 보기</Button>
+            {/* Action Buttons - Outline Style */}
+            <div className="flex flex-wrap gap-3 pt-2">
+              <Button size="sm" variant="outline" className="rounded-full">기획서</Button>
+              <Button size="sm" variant="outline" className="rounded-full">GitHub</Button>
+              <Button size="sm" variant="outline" className="rounded-full">Live View</Button>
             </div>
           </div>
 
