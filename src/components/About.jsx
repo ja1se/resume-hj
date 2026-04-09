@@ -79,7 +79,7 @@ const About = ({ className }) => {
         </div>
 
         {/* Profile Section */}
-        <div className="about-profile flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12 py-10">
+        <div className="about-profile flex flex-col pb-12 lg:flex-row items-center justify-center gap-8">
           <div className="w-[180px] h-[180px] rounded-full overflow-hidden border-4 border-violet-50 shrink-0 shadow-lg">
             <img src={newMe} alt="heejincho" className="w-full h-full object-cover" />
           </div>

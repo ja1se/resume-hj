@@ -42,7 +42,7 @@ const Nav = ({
         className
       )}
     >
-      <div className="max-w-[1280px] mx-auto h-[72px] lg:h-[88px] flex items-center justify-between px-6 lg:px-12">
+      <div className="flex mx-36 h-[72px] flex items-center justify-between px-6 px-12">
         {/* Logo Section */}
         <div className="flex items-center min-w-[172px]">
           <a 
@@ -53,12 +53,12 @@ const Nav = ({
               onLinkClick?.("#home");
             }}
           >
-            <img src={logo} alt="OSKA Logo" className="h-[47px] w-auto" />
+            <img src={logo} alt="OSKA Logo" className="flex h-[47px] w-auto" />
           </a>
         </div>
 
         {/* Navigation Links */}
-        <ul className="flex items-center gap-2 lg:gap-4">
+        <ul className="flex items-center gap-1">
           {links.map(({ label, href }) => (
             <li key={href}>
               <button
@@ -78,20 +78,13 @@ const Nav = ({
         </ul>
 
         {/* Social Actions */}
-        <div className="hidden lg:flex items-center justify-end gap-4 min-w-[172px]">
+        <div className="hidden lg:flex items-center justify-end min-w-[172px]">
           <a 
             href="https://github.com" 
             target="_blank" 
             className="p-2 hover:bg-slate-100 rounded-full transition-colors"
           >
             <FontAwesomeIcon icon={faGithub} className="text-slate-700 text-xl" />
-          </a>
-          <a 
-            href="https://tiktok.com" 
-            target="_blank" 
-            className="p-2 hover:bg-slate-100 rounded-full transition-colors"
-          >
-            <FontAwesomeIcon icon={faTiktok} className="text-slate-700 text-xl" />
           </a>
           <a 
             href="https://blog.naver.com" 

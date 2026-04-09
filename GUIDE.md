@@ -252,30 +252,40 @@ import { LazyMotion, domAnimation, m } from "framer-motion";
 ```
 src/
 ├── components/                     # 모든 UI 컴포넌트 관리
-│   ├── Nav.jsx                     # 네비게이션 바 (테마/링크 제어)
-│   ├── Card.jsx                    # 공통 카드 컨테이너 (variant/shadow)
-│   ├── Button.jsx                  # 공통 버튼 (variant/size)
-│   ├── ProjectSection.jsx          # Sticky + Scroll 로직이 포함된 메인 섹션
-│   ├── ProjectImage.jsx            # 프레임 내부 스크롤 이미지 (GSAP 적용 예정)
-│   ├── ProjectCard.jsx             # 프로젝트 상세 설명 카드
-│   ├── ResumeCard.jsx              # Experience 섹션용 경력 카드
-│   ├── ArchiveCard.jsx             # Archive 섹션용 프로젝트 카드
-│   └── Contact.jsx                 # 연락처 정보 및 푸터 컴포넌트
+│   ├── Nav.jsx                     # 네비게이션 바
+│   ├── SectionHeader.jsx           # 모든 섹션의 공통 헤더 (64px 타이틀)
+│   ├── Button.jsx                  # 공통 버튼 (outline 중심)
+│   ├── ProjectSection.jsx          # GSAP Snap + Sticky 가 적용된 메인 섹션
+│   ├── ProjectImage.jsx            # 프레임 내부 스크롤 이미지
+│   ├── ProjectCard.jsx             # 프로젝트 상세 설명
+│   ├── ResumeCard.jsx              # About 섹션용 카드
+│   ├── ArchiveSection.jsx          # 가로 스크롤 아카이브
+│   ├── ArchiveCard.jsx             # 아카이브용 개별 카드
+│   └── Footer.jsx                  # 통합된 컨택트 및 푸터
 ├── constants/
-│   └── projects.js                 # 프로젝트 메타데이터 (ID, 이미지, 컬러 등)
+│   └── projects.js                 # 프로젝트 메타데이터
 ├── hooks/
-│   └── useIsMobile.js              # 반응형 분기용 커스텀 훅
+│   └── useIsMobile.js              # 반응형 분기 훅
 ├── utils/
-│   └── cn.js                       # Tailwind 클래스 병합 유틸리티
+│   └── cn.js                       # 클래스 병합 유틸리티
 ├── assets/
-│   └── images/                     # 프로젝트 및 UI용 이미지 에셋
-│       ├── ele1~5.png              # 아카이브/요소용 이미지
-│       ├── muji-scroll.webp        # 프로젝트별 세로형 스크린샷 (예시)
-│       └── ...
-├── App.jsx                         # 전체 레이아웃 구성 및 섹션 조립
-└── main.jsx                        # React 엔트리포인트
-└── index.css                       # css
+│   └── images/                     # 이미지 에셋
+├── App.jsx                         # 전체 조립
+└── main.jsx                        # 엔트리포인트
 ```
+
+---
+
+## 10. GSAP 스크롤 전략 심화
+
+### 10-1. 섹션별 스냅 (Snap)
+- **적용**: `ProjectSection`
+- **목표**: 사용자가 스크롤할 때 각 프로젝트 섹션의 시작점에 화면이 딱 맞게 고정되도록 구현.
+- **코드**: `ScrollTrigger`의 `snap: { snapTo: [0, 1], ... }` 설정을 통해 부드러운 전환 제공.
+
+### 10-2. 가로 스크롤 (Horizontal Scroll)
+- **적용**: `ArchiveSection`
+- **목표**: 수직 스크롤을 유지하면서 카드 리스트가 가로로 밀리는 연출. `pin: true`와 `scrub`을 활용.
 
 ---
 

@@ -36,21 +36,23 @@
 
 ## 3. UI Typography Hierarchy
 
-PDF에 명시된 상세 위계를 준수하여 구현합니다.
+모든 섹션 헤더는 `SectionHeader` 공통 컴포넌트를 사용하여 일관성을 유지합니다.
 
-*   **H1 (Display):** `text-4xl` (36px) / `font-bold` / `font-display` / `text-slate-900`
-    *   *Usage:* 히어로 섹션 타이틀
-*   **H2 (Section Title):** `text-[28px]` / `font-semibold` / `font-sans` / `text-slate-900`
-    *   *Usage:* 주요 섹션 제목 (`resume-typo/h2`)
-*   **H3/H4 (Sub-headline):** `text-xl` (20px) / `font-bold` / `font-sans` / `text-slate-900`
-    *   *Usage:* 카드 제목, 소제목 (`resume-typo/h3-h4`)
-*   **Body (Main):** `text-base` (16px) / `font-normal` / `font-sans` / `text-slate-700`
-    *   *Usage:* 일반 본문 텍스트 (`resume-typo/body`)
-*   **Caption:** `text-xs` (12px) / `font-medium` / `font-sans` / `text-slate-500`
-    *   *Usage:* 데이터 정보, 작은 설명 (`resume-typo/caption`)
+*   **H1 (Display):** `text-4xl` (36px) / `font-bold` / `font-display` / `text-[#333]`
+    *   *Usage:* 히어로 섹션 메인 타이틀
+*   **H2 (Section Title):** `text-[64px]` / `font-semibold` / `font-display` / `text-[#a78bfa]`
+    *   *Usage:* 각 섹션의 헤더 제목 (About, Projects, Archive)
+*   **H3/H4 (Sub-headline):** `text-xl` (20px) / `font-medium` / `font-sans` / `text-[#333]`
+    *   *Usage:* 카드 제목, 이름 (조희진 | HEEJIN CHO 등)
+*   **Body (Main):** `text-base` (16px) / `font-light` / `font-sans` / `text-[#4b5563]`
+    *   *Usage:* 일반 본문 텍스트
+*   **Caption/Description:** `text-[14px]` / `font-light` / `font-sans` / `text-[#a78bfa]`
+    *   *Usage:* 섹션 헤더 설명 문구, 부연 설명
 
 ---
 
-## 4. Implementation Note
+## 4. Component Standards
 
-위 설정은 `tailwind.config.js`의 `theme.extend` 섹션에 추가하여 디자인 시스템을 동기화합니다.
+*   **SectionHeader**: 모든 섹션의 시작점에 위치하며, 좌측 정렬(`items-start`)을 기본으로 합니다.
+*   **Button**: `outline` 스타일을 기본으로 하며, `rounded-full`과 영문 텍스트(GitHub, Resume)를 사용합니다.
+*   **Footer**: 기존 Contact 섹션을 통합하여 하단에 고정 배치합니다.

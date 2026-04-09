@@ -87,12 +87,12 @@ const ArchiveSection = ({ className }) => {
   return (
     <div ref={sectionRef} className={cn("overflow-hidden", className)}>
       <div ref={triggerRef} className="relative h-screen bg-white flex flex-col justify-center">
-        <div className="flex flex-col gap-12">
+        <div className="flex flex-col gap-12 w-full">
           {/* Header remains visible but cards scroll */}
           <SectionHeader 
             title="Archive"
             description="어제보다 조금 더 성장한 오늘의 기록들이 차곡차곡 모였습니다."
-            className="pb-0 about-header-item mb-8" 
+            className="pb-0 about-header-item w-full" 
           />
           
           <div className="flex gap-10 px-6 lg:px-12 w-fit">
