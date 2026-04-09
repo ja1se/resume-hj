@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import About from './components/About'
-import ProjectHeader from './components/ProjectHeader'
+import SectionHeader from './components/SectionHeader'
 import ProjectSection from './components/ProjectSection'
 import Contact from './components/Contact'
 import ArchiveSection from './components/ArchiveSection'
@@ -24,7 +24,10 @@ const App = () => {
 
         {/* Projects Section */}
         <div id="projects">
-          <ProjectHeader />
+          <SectionHeader 
+            title="ProJects" 
+            description="수많은 고민과 시도의 흔적들이 이 프로젝트 안에 고스란히 담겨 있습니다." 
+          />
           {PROJECTS.map((project, index) => (
             <ProjectSection 
               key={project.id} 
@@ -39,7 +42,8 @@ const App = () => {
       </main>
 
       <footer id="contact" className="relative pt-28 pb-10 px-6 lg:px-[256px] bg-gradient-to-b from-[rgba(196,181,253,0)] via-[#a078f5] via-[67.7%] to-[#7c3aed] to-[97.7%]">
-        <div className="max-w-[1393px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-[95px] items-center">
+...
+
           <div className="space-y-4">
             <h2 className="text-[48px] font-medium text-white/65 font-display leading-[1.11]">Let's Work Together</h2>
             <div className="text-white/65 text-base font-light leading-relaxed font-sans">

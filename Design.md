@@ -38,15 +38,15 @@
 
 PDF에 명시된 상세 위계를 준수하여 구현합니다.
 
-*   **H1 (Display):** `36px` / `Bold` / `Unbounded` / `slate-900`
+*   **H1 (Display):** `text-4xl` (36px) / `font-bold` / `font-display` / `text-slate-900`
     *   *Usage:* 히어로 섹션 타이틀
-*   **H2 (Section Title):** `28px` / `SemiBold` / `A2Z Font` / `slate-900`
+*   **H2 (Section Title):** `text-[28px]` / `font-semibold` / `font-sans` / `text-slate-900`
     *   *Usage:* 주요 섹션 제목 (`resume-typo/h2`)
-*   **H3/H4 (Sub-headline):** `20px` / `Bold` / `A2Z Font` / `slate-900`
+*   **H3/H4 (Sub-headline):** `text-xl` (20px) / `font-bold` / `font-sans` / `text-slate-900`
     *   *Usage:* 카드 제목, 소제목 (`resume-typo/h3-h4`)
-*   **Body (Main):** `16px` / `Normal` / `A2Z Font` / `slate-700`
+*   **Body (Main):** `text-base` (16px) / `font-normal` / `font-sans` / `text-slate-700`
     *   *Usage:* 일반 본문 텍스트 (`resume-typo/body`)
-*   **Caption:** `12px` / `Medium` / `A2Z Font` / `slate-500`
+*   **Caption:** `text-xs` (12px) / `font-medium` / `font-sans` / `text-slate-500`
     *   *Usage:* 데이터 정보, 작은 설명 (`resume-typo/caption`)
 
 ---

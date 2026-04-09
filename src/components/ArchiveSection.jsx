@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import ArchiveHeader from "./ArchiveHeader";
+import SectionHeader from "./SectionHeader";
 import ArchiveCard from "./ArchiveCard";
 import { cn } from "../utils/cn";
 
@@ -89,7 +89,11 @@ const ArchiveSection = ({ className }) => {
       <div ref={triggerRef} className="relative h-screen bg-white flex flex-col justify-center">
         <div className="flex flex-col gap-12">
           {/* Header remains visible but cards scroll */}
-          <ArchiveHeader className="py-0 mb-8" />
+          <SectionHeader 
+            title="Archive"
+            description="어제보다 조금 더 성장한 오늘의 기록들이 차곡차곡 모였습니다."
+            className="pb-0 about-header-item mb-8" 
+          />
           
           <div className="flex gap-10 px-6 lg:px-12 w-fit">
             {ARCHIVE_PROJECTS.map((item) => (

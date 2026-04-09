@@ -37,6 +37,13 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: 'A2Z';
+  src: url('/fonts/A2Z-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* Swiper Pagination Styles */
 .archive-dot {

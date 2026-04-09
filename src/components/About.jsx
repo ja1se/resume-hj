@@ -1,37 +1,85 @@
-import React from "react";
+import React, { useLayoutEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "../utils/cn";
+import SectionHeader from "./SectionHeader";
 import ResumeCard from "./ResumeCard";
 import newMe from "../assets/images/new-me-ani.png";
 import ele1 from "../assets/images/ele1.png";
 
+gsap.registerPlugin(ScrollTrigger);
+
 const About = ({ className }) => {
+  const sectionRef = useRef(null);
+
+  useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+      // Header Animation
+      gsap.from(".about-header-item", {
+        scrollTrigger: {
+          trigger: ".about-header",
+          start: "top 80%",
+        },
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.2,
+        ease: "power3.out"
+      });
+
+      // Profile Section Animation
+      gsap.from(".about-profile", {
+        scrollTrigger: {
+          trigger: ".about-profile",
+          start: "top 85%",
+        },
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+      });
+
+      // Resume Grid Animation
+      gsap.from(".about-resume-col", {
+        scrollTrigger: {
+          trigger: ".about-resume-grid",
+          start: "top 80%",
+        },
+        y: 60,
+        opacity: 0,
+        duration: 1.2,
+        stagger: 0.3,
+        ease: "power3.out"
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section 
       id="about" 
+      ref={sectionRef}
       className={cn("w-full pb-32 bg-white relative overflow-hidden", className)}
     >
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-12 flex flex-col gap-20">
+      <div className="max-w-[1400px] mx-auto flex flex-col gap-20">
         
         {/* Header Section */}
-        <div className="flex flex-col items-center lg:items-start relative">
-          <h2 className="font-display font-semibold text-[#a78bfa] text-[64px] lg:text-[96px] leading-[1.2] lg:leading-[1.5] text-center lg:text-left">
-            About Me
-          </h2>
-          <div className="mt-4 max-w-2xl text-center lg:text-left">
-            <p className="text-[#a78bfa] text-[14px] lg:text-[16px] font-light leading-relaxed">
-              어떤 상황에도 넓은 시야를 확보하는 부엉이처럼 객관적인 거리를 유지하며 <br className="hidden lg:block" />
-              문제를 바라보는 정확한 원인을 찾아내는 유연한 분석가입니다.
-            </p>
-          </div>
+        <div className="about-header relative">
+          <SectionHeader 
+            title="About Me"
+            description={<>어떤 상황에도 넓은 시야를 확보하는 부엉이처럼 객관적인 거리를 유지하며 <br className="hidden lg:block" />문제를 바라보는 정확한 원인을 찾아내는 유연한 분석가입니다. </>}
+            className="pb-0 about-header-item"
+          />
 
           {/* Decorative Image */}
-          <div className="absolute right-0 top-0 w-48 lg:w-72 opacity-60 hidden lg:block">
+          <div className="absolute right-0 top-12 w-48 lg:w-72 opacity-60 hidden lg:block">
             <img src={ele1} alt="" className="w-full h-auto object-contain" />
           </div>
         </div>
 
         {/* Profile Section */}
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12 py-10">
+        <div className="about-profile flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12 py-10">
           <div className="w-[180px] h-[180px] rounded-full overflow-hidden border-4 border-violet-50 shrink-0 shadow-lg">
             <img src={newMe} alt="heejincho" className="w-full h-full object-cover" />
           </div>
@@ -51,10 +99,10 @@ const About = ({ className }) => {
         </div>
 
         {/* Resume Grid Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+        <div className="about-resume-grid grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
           
           {/* Education Column */}
-          <div className="flex flex-col gap-10">
+          <div className="about-resume-col flex flex-col gap-10">
             <div className="flex flex-col items-center gap-4">
               <div className="text-4xl">🎓</div>
               <h2 className="font-display font-medium text-[#a78bfa] text-[36px] lg:text-[48px]">Education</h2>
@@ -81,7 +129,7 @@ const About = ({ className }) => {
           </div>
 
           {/* Experience Column */}
-          <div className="flex flex-col gap-10">
+          <div className="about-resume-col flex flex-col gap-10">
             <div className="flex flex-col items-center gap-4">
               <div className="text-4xl">💡</div>
               <h2 className="font-display font-medium text-[#a78bfa] text-[36px] lg:text-[48px]">Experience</h2>

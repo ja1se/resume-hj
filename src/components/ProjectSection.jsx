@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useLayoutEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "../utils/cn";
 import ProjectImage from "./ProjectImage";
 import Button from "./Button";
 import { useIsMobile } from "../hooks/useIsMobile";
+
+gsap.registerPlugin(ScrollTrigger);
 
 /**
  * ProjectSection Component
@@ -25,10 +29,30 @@ const ProjectSection = ({ project, reverse = false, className }) => {
   } = project;
   
   const isMobile = useIsMobile();
+  const sectionRef = useRef(null);
+
+  useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "top center",
+        end: "bottom center",
+        snap: {
+          snapTo: [0, 1], // 섹션의 시작(0) 또는 끝(1)으로 스냅
+          duration: { min: 0.2, max: 0.8 },
+          delay: 0.1,
+          ease: "power1.inOut"
+        }
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section 
       id={id}
+      ref={sectionRef}
       className={cn(
         "relative w-full min-h-[150vh] lg:min-h-[250vh] flex flex-col items-center",
         className
