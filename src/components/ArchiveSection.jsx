@@ -1,4 +1,3 @@
-import React from "react";
 import SectionHeader from "./SectionHeader";
 import ArchiveCard from "./ArchiveCard";
 import { cn } from "../utils/cn";
@@ -57,11 +56,15 @@ const ArchiveSection = ({ id, className }) => {
   return (
     <section 
       id={id} 
-      className={cn("relative bg-white w-full py-32", className)}
+      className={cn(
+        "relative bg-white w-full",
+        "py-20 lg:py-32 flex flex-col items-center",
+        className
+      )}
     >
-      <div className="max-w-[1400px] mx-auto">
+      <div className="w-full flex flex-col items-center">
         {/* 1. Header Area */}
-        <div className="mb-20">
+        <div className="mb-12 lg:mb-20 w-full">
           <SectionHeader 
             title="Archive"
             description="어제보다 조금 더 성장한 오늘의 기록들이 차곡차곡 모였습니다."
@@ -70,9 +73,12 @@ const ArchiveSection = ({ id, className }) => {
         </div>
         
         {/* 2. Responsive Grid Layout */}
-        <div className="px-6 lg:px-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className={cn(
+          "archive-grid w-full px-6 lg:px-20",
+          "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10"
+        )}>
           {ARCHIVE_PROJECTS.map((item) => (
-            <div key={item.id} className="flex justify-center">
+            <div key={item.id} className="archive-card-wrapper flex justify-center">
               <ArchiveCard 
                 title={item.title}
                 description={item.description}

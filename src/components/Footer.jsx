@@ -1,4 +1,3 @@
-import React from 'react';
 import { cn } from '../utils/cn';
 
 const ContactItem = ({ label, value }) => (
@@ -20,7 +19,7 @@ const Footer = ({ className }) => {
         className
       )}
     >
-      <div className="max-w-[1200px] mx-auto flex flex-col gap-12 items-center">
+      <div className="w-full flex flex-col gap-12 items-center px-6 lg:px-20">
         <div className="flex flex-col gap-8 items-center text-center">
           <div className="space-y-4">
             <h2 className="text-[48px] font-medium text-white/65 font-display leading-[1.11]">
