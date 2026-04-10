@@ -4,7 +4,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "../utils/cn";
 import ProjectImage from "./ProjectImage";
 import Button from "./Button";
-import { useIsMobile } from "../hooks/useIsMobile";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,27 +22,65 @@ const ProjectSection = ({ project, reverse = false, className }) => {
     techStack, 
     duration, 
     image, 
-    color, 
     translateYOutput,
     frameType 
   } = project;
   
-  const isMobile = useIsMobile();
   const sectionRef = useRef(null);
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
+      // 1. Snapping logic
       ScrollTrigger.create({
         trigger: sectionRef.current,
-        start: "top center",
+        start: "top bottom", 
         end: "bottom center",
         snap: {
-          snapTo: [0, 1], // 섹션의 시작(0) 또는 끝(1)으로 스냅
+          snapTo: [0, 1],
           duration: { min: 0.2, max: 0.8 },
           delay: 0.1,
           ease: "power1.inOut"
         }
       });
+
+      // 2. Content Fade-in Animation - Set to trigger as soon as it peeks from bottom
+      gsap.fromTo(".project-text-content > *", 
+        {
+          opacity: 0,
+          y: 20
+        },
+        {
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 98%", // 하단에 살짝 걸치자마자 바로 나타나게 함 (준비된 느낌)
+            once: true,
+          },
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.05,
+          ease: "power2.out"
+        }
+      );
+
+      // 3. Image Fade-in Animation
+      gsap.fromTo(".project-image-frame", 
+        {
+          opacity: 0,
+          scale: 0.98
+        },
+        {
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 98%",
+            once: true,
+          },
+          opacity: 1,
+          scale: 1,
+          duration: 0.7,
+          ease: "power2.out"
+        }
+      );
     }, sectionRef);
 
     return () => ctx.revert();
@@ -59,12 +96,12 @@ const ProjectSection = ({ project, reverse = false, className }) => {
       )}
     >
       <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <div className="max-w-[1400px] mx-16 px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           
           {/* Text Area */}
           <div 
             className={cn(
-              "flex flex-col items-start gap-8 lg:gap-12",
+              "project-text-content flex flex-col items-start gap-8 lg:gap-12",
               reverse ? "lg:order-2" : "lg:order-1"
             )}
           >
@@ -105,7 +142,7 @@ const ProjectSection = ({ project, reverse = false, className }) => {
           {/* Device Frame Section */}
           <div 
             className={cn(
-              "w-full flex justify-center",
+              "project-image-frame w-full flex justify-center",
               reverse ? "lg:order-1" : "lg:order-2"
             )}
           >

@@ -14,42 +14,73 @@ const About = ({ className }) => {
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
-      // Header Animation
-      gsap.from(".about-header-item", {
-        scrollTrigger: {
-          trigger: ".about-header",
-          start: "top 80%",
+      // 1. Immediate Header Animation
+      gsap.fromTo(".about-header-item", 
+        {
+          y: 20,
+          opacity: 0
         },
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.2,
-        ease: "power3.out"
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          stagger: 0.05,
+          ease: "power3.out"
+        }
+      );
+
+      // 2. Immediate Profile Section Animation
+      gsap.fromTo(".about-profile", 
+        {
+          y: 20,
+          opacity: 0
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          ease: "power3.out",
+          delay: 0.2
+        }
+      );
+
+      // 3. Immediate Resume List Animation
+      gsap.fromTo(".about-sub-header, .about-resume-list > *", 
+        {
+          opacity: 0,
+          y: 10
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          stagger: 0.05,
+          ease: "power2.out",
+          delay: 0.4
+        }
+      );
+
+      // 4. Main Header Pinning (ScrollTrigger)
+      ScrollTrigger.create({
+        trigger: ".about-header",
+        start: "top 72px",
+        end: "+=400",
+        pin: true,
+        pinSpacing: true,
+        anticipatePin: 1,
       });
 
-      // Profile Section Animation
-      gsap.from(".about-profile", {
-        scrollTrigger: {
-          trigger: ".about-profile",
-          start: "top 85%",
-        },
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out"
-      });
-
-      // Resume Grid Animation
-      gsap.from(".about-resume-col", {
-        scrollTrigger: {
-          trigger: ".about-resume-grid",
-          start: "top 80%",
-        },
-        y: 60,
-        opacity: 0,
-        duration: 1.2,
-        stagger: 0.3,
-        ease: "power3.out"
+      // 5. Sub-Headers Pinning (Education & Experience)
+      const subHeaders = gsap.utils.toArray(".about-sub-header");
+      subHeaders.forEach((header) => {
+        ScrollTrigger.create({
+          trigger: header,
+          start: "top 120px", 
+          end: "+=350",
+          pin: true,
+          pinSpacing: true,
+          anticipatePin: 1,
+        });
       });
     }, sectionRef);
 
@@ -60,12 +91,12 @@ const About = ({ className }) => {
     <section 
       id="about" 
       ref={sectionRef}
-      className={cn("w-full pb-32 bg-white relative overflow-hidden", className)}
+      className={cn("w-full pb-32 bg-white relative overflow-visible", className)}
     >
-      <div className="max-w-[1400px] mx-auto flex flex-col gap-20">
-        
+      <div className="max-w-[1400px] mx-20 flex flex-col gap-20">
+
         {/* Header Section */}
-        <div className="about-header relative">
+        <div className="about-header relative bg-white z-20 w-full">
           <SectionHeader 
             title="About Me"
             description={<>어떤 상황에도 넓은 시야를 확보하는 부엉이처럼 객관적인 거리를 유지하며 <br className="hidden lg:block" />문제를 바라보는 정확한 원인을 찾아내는 유연한 분석가입니다. </>}
@@ -103,12 +134,12 @@ const About = ({ className }) => {
           
           {/* Education Column */}
           <div className="about-resume-col flex flex-col gap-10">
-            <div className="flex flex-col items-center gap-4">
+            <div className="about-sub-header flex flex-col items-center gap-4">
               <div className="text-4xl">🎓</div>
               <h2 className="font-display font-medium text-[#a78bfa] text-[36px] lg:text-[48px]">Education</h2>
             </div>
             
-            <div className="flex flex-col gap-6">
+            <div className="about-resume-list flex flex-col gap-6">
               <ResumeCard 
                 date="2025.10 - 2026 Present"
                 title={"챗GPT 생성형 AI를 활용한 반응형 웹콘텐츠\n(영상제작&코딩) 개발기획자 양성과정"}
@@ -130,12 +161,12 @@ const About = ({ className }) => {
 
           {/* Experience Column */}
           <div className="about-resume-col flex flex-col gap-10">
-            <div className="flex flex-col items-center gap-4">
+            <div className="about-sub-header flex flex-col items-center gap-4">
               <div className="text-4xl">💡</div>
               <h2 className="font-display font-medium text-[#a78bfa] text-[36px] lg:text-[48px]">Experience</h2>
             </div>
             
-            <div className="flex flex-col gap-6">
+            <div className="about-resume-list flex flex-col gap-6">
               <ResumeCard 
                 date="2025.01 - 2026 Present"
                 title="서울시 블로그메이트 활동"

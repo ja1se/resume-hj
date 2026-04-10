@@ -286,6 +286,7 @@ src/
 ### 10-2. 가로 스크롤 (Horizontal Scroll)
 - **적용**: `ArchiveSection`
 - **목표**: 수직 스크롤을 유지하면서 카드 리스트가 가로로 밀리는 연출. `pin: true`와 `scrub`을 활용.
+- **카드 규격**: 개별 카드를 감싸는 `archive-card-wrapper`는 `w-[350px]` 고정 너비를 사용하여 리스트의 일관성을 유지함.
 
 ---
 

@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { m, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { cn } from "../utils/cn";
 import { useIsMobile } from "../hooks/useIsMobile";
 
@@ -13,6 +13,7 @@ import { useIsMobile } from "../hooks/useIsMobile";
 const ProjectImage = ({ src, alt, translateYOutput = ["0%", "-40%"], className }) => {
   const containerRef = useRef(null);
   const isMobile = useIsMobile();
+  const MotionImg = motion.img;
 
   // 스크롤 진행도 감지 (섹션 기준)
   const { scrollYProgress } = useScroll({
@@ -37,7 +38,7 @@ const ProjectImage = ({ src, alt, translateYOutput = ["0%", "-40%"], className }
       )}
     >
       {src ? (
-        <m.img
+        <MotionImg
           src={src}
           alt={alt}
           style={{ y: isMobile ? 0 : y }}

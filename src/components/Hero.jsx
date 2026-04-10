@@ -39,14 +39,6 @@ const Hero = ({ className }) => {
         ease: "power2.out"
       }, "-=0.8");
 
-      // Detail icon floating animation
-      gsap.to(".hero-icon", {
-        y: 15,
-        repeat: -1,
-        yoyo: true,
-        duration: 2,
-        ease: "sine.inOut"
-      });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -75,7 +67,7 @@ const Hero = ({ className }) => {
         <div className="relative w-[350px] items-start text-left pl-6">
           {/* Detail Icon */}
           <div className="hero-icon absolute w-[70px] top-1 left-36 w-24 h-auto opacity-80 pointer-events-none">
-            <img src={eleMask} alt="" className="w-full h-full object-contain" />
+            <img src={eleMask} alt="" className="w-full h-full object-contain rounded-[12px]" />
           </div>
           
           <div className="hero-text-item">

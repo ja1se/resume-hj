@@ -1,6 +1,4 @@
-import React, { useLayoutEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React from "react";
 import SectionHeader from "./SectionHeader";
 import ArchiveCard from "./ArchiveCard";
 import { cn } from "../utils/cn";
@@ -55,61 +53,38 @@ const ARCHIVE_PROJECTS = [
   }
 ];
 
-gsap.registerPlugin(ScrollTrigger);
-
-const ArchiveSection = ({ className }) => {
-  const sectionRef = useRef(null);
-  const triggerRef = useRef(null);
-
-  useLayoutEffect(() => {
-    let ctx = gsap.context(() => {
-      const pinItems = gsap.utils.toArray(".archive-card-wrapper");
-      
-      const totalWidth = pinItems.length * (410 + 40); // card width + gap
-      
-      gsap.to(pinItems, {
-        x: () => -(totalWidth - window.innerWidth + 100),
-        ease: "none",
-        scrollTrigger: {
-          trigger: triggerRef.current,
-          pin: true,
-          scrub: 1,
-          start: "top top",
-          end: () => `+=${totalWidth}`,
-          invalidateOnRefresh: true,
-        },
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
+const ArchiveSection = ({ id, className }) => {
   return (
-    <div ref={sectionRef} className={cn("overflow-hidden", className)}>
-      <div ref={triggerRef} className="relative h-screen bg-white flex flex-col justify-center">
-        <div className="flex flex-col gap-12 w-full">
-          {/* Header remains visible but cards scroll */}
+    <section 
+      id={id} 
+      className={cn("relative bg-white w-full py-32", className)}
+    >
+      <div className="max-w-[1400px] mx-auto">
+        {/* 1. Header Area */}
+        <div className="mb-20">
           <SectionHeader 
             title="Archive"
             description="어제보다 조금 더 성장한 오늘의 기록들이 차곡차곡 모였습니다."
-            className="pb-0 about-header-item w-full" 
+            className="pb-0 w-full" 
           />
-          
-          <div className="flex gap-10 px-6 lg:px-12 w-fit">
-            {ARCHIVE_PROJECTS.map((item) => (
-              <div key={item.id} className="archive-card-wrapper shrink-0 w-[410px]">
-                <ArchiveCard 
-                  title={item.title}
-                  description={item.description}
-                  image={item.image}
-                  href={item.href}
-                />
-              </div>
-            ))}
-          </div>
+        </div>
+        
+        {/* 2. Responsive Grid Layout */}
+        <div className="px-6 lg:px-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {ARCHIVE_PROJECTS.map((item) => (
+            <div key={item.id} className="flex justify-center">
+              <ArchiveCard 
+                title={item.title}
+                description={item.description}
+                image={item.image}
+                href={item.href}
+                className="w-full"
+              />
+            </div>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

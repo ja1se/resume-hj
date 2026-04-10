@@ -9,9 +9,9 @@ import { cn } from '../utils/cn';
  * @param {string} href - 링크
  * @param {string} className - 추가 클래스
  */
-const ArchiveCard = ({ title, description, image, href, className }) => {
+const ArchiveCard = ({ title, image, href, className }) => {
   return (
-    <div className={cn("flex flex-col items-start w-full max-w-[410px]", className)}>
+    <div className={cn("flex flex-col items-start w-[350px]", className)}>
       <div className="bg-white border-[1px] border-[#d1d5db] flex flex-col items-center overflow-hidden pt-[20px] px-[1px] pb-[1px] relative rounded-[15px] shrink-0 w-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
         {/* Image Area (arc-img) */}
         <div className="w-[calc(100%-40px)] aspect-[369/358] relative rounded-[10px] overflow-hidden bg-slate-100 shrink-0">
@@ -35,10 +35,6 @@ const ArchiveCard = ({ title, description, image, href, className }) => {
             <h3 className="text-[19.9px] font-light text-[#1f2937] leading-[1.5] whitespace-nowrap overflow-hidden text-ellipsis">
               {title}
             </h3>
-            {/* arc-desc */}
-            <p className="text-[15.9px] font-light text-[#1f2937] leading-[1.75] line-clamp-2">
-              {description}
-            </p>
           </div>
           
           {/* arc-icon (Button) */}
