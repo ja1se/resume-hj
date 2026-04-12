@@ -110,6 +110,7 @@ const ProjectSection = ({ project, reverse = false, className }) => {
 
           {/* Buttons */}
           <div className={cn("animate-text flex flex-wrap gap-3 pt-2", isRightAlign && "justify-end")}>
+            {!["nyansvene", "soulblend"].includes(id) && (
             <Button 
               size="sm" 
               variant="outline" 
@@ -118,6 +119,7 @@ const ProjectSection = ({ project, reverse = false, className }) => {
             >
               GitHub
             </Button>
+            )}
             <Button 
               size="sm" 
               variant="outline" 
@@ -125,6 +127,14 @@ const ProjectSection = ({ project, reverse = false, className }) => {
               onClick={() => window.open(SITE_LINKS.projects[id]?.plan || "#", "_blank")}
             >
               기획서 보기
+            </Button>
+            <Button 
+              size="sm" 
+              variant="outline" 
+              className="rounded-full"
+              onClick={() => window.open(SITE_LINKS.projects[id]?.result || "#", "_blank")}
+            >
+              결과물 보기
             </Button>
           </div>
         </div>

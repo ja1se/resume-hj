@@ -19,9 +19,9 @@ const SIZE_STYLES = {
 };
 
 const VARIANT_STYLES = {
-  primary: "border border-slate-500 text-slate-500 hover:border-violet-500 hover:text-violet-500 hover:bg-violet-50",
-  outline: "border border-slate-200 text-slate-600 hover:border-violet-500 hover:text-violet-500 hover:bg-violet-50",
-  ghost: "text-slate-600 hover:bg-slate-100",
+  primary: "cursor-pointer border border-slate-500 text-slate-500 hover:border-violet-500 hover:text-violet-500 hover:bg-violet-50",
+  outline: "cursor-pointer border border-slate-200 text-slate-600 hover:border-violet-500 hover:text-violet-500 hover:bg-violet-50",
+  ghost: "cursor-pointer text-slate-600 hover:bg-slate-100",
 };
 
 const Button = ({

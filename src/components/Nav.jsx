@@ -93,7 +93,7 @@ const Nav = ({
                   className={cn(
                     "px-2 lg:px-4 py-2 rounded-full",
                     "text-[13px] lg:text-[16px] font-light transition-all duration-200",
-                    "hover:bg-slate-100/50 hover:text-violet-600",
+                    "hover:cursor-pointer hover:text-violet-600",
                     activeLink === href 
                       ? "text-violet-600 font-medium" 
                       : isScrolled ? "text-slate-800" : "text-slate-900"
@@ -115,17 +115,17 @@ const Nav = ({
               href={SITE_LINKS.common.github} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="p-2 hover:bg-slate-100 rounded-full transition-colors"
+              className="p-2 group"
             >
-              <FontAwesomeIcon icon={faGithub} className="text-slate-700 text-xl" />
+              <FontAwesomeIcon icon={faGithub} className="text-slate-700 text-xl transition-colors duration-300 hover:text-violet-500" />
             </a>
             <a 
               href={SITE_LINKS.common.blog} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="p-2 hover:bg-slate-100 rounded-full transition-colors"
+              className="p-2 group"
             >
-              <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="text-slate-700 text-lg" />
+              <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="text-slate-700 text-lg transition-colors duration-300 hover:text-violet-500" />
             </a>
           </div>
         </div>

@@ -5,10 +5,10 @@ import Hero from './components/Hero'
 import Marquee from './components/Marquee'
 import About from './components/About'
 import SectionHeader from './components/SectionHeader'
-import ProjectSection from './components/ProjectSection'
 import Footer from './components/Footer'
 import ArchiveSection from './components/ArchiveSection'
 import ScrollToTop from './components/ScrollToTop'
+import ProjectSection from './components/ProjectSection'
 import { PROJECTS } from './constants/projects'
 
 const App = () => {
@@ -60,7 +60,7 @@ const App = () => {
 
         {/* Projects Section */}
         <div id="projects">
-          <SectionHeader 
+          <SectionHeader
             title="ProJects" 
             description="수많은 고민과 시도의 흔적들이 이 프로젝트 안에 고스란히 담겨 있습니다." 
           />
