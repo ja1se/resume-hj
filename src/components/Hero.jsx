@@ -1,5 +1,6 @@
 import { cn } from '../utils/cn';
 import Button from './Button';
+import { SITE_LINKS } from '../constants/links';
 
 // Assets
 import newMe from '../assets/images/new-me.png';
@@ -11,20 +12,20 @@ const Hero = ({ className }) => {
       id="home"
       className={cn(
         "relative w-full h-[600px] pt-20 flex items-center justify-center overflow-hidden",
-        "bg-[#FDFCFE]", // 기본 배경 (매우 연한 바이올렛 틴트)
+        "bg-violet-50/30", // 기본 배경 (매우 연한 바이올렛 틴트)
         className
       )}
     >
       {/* 몽환적인 그라데이션 배경 레이어 (Rule 2 준수) */}
       <div className="absolute inset-0 z-0">
         {/* 우측 상단 메인 바이올렛 포인트 */}
-        <div className="absolute top-[-10%] right-[-5%] w-[50vw] h-[50vw] bg-[#EDE9FE] rounded-full blur-[120px] opacity-60" />
+        <div className="absolute top-[-10%] right-[-5%] w-[50vw] h-[50vw] bg-violet-100 rounded-full blur-[120px] opacity-60" />
         
         {/* 좌측 하단 은은한 그라데이션 */}
-        <div className="absolute bottom-[-10%] left-[-5%] w-[40vw] h-[40vw] bg-[#F5F3FF] rounded-full blur-[100px] opacity-40" />
+        <div className="absolute bottom-[-10%] left-[-5%] w-[40vw] h-[40vw] bg-violet-50 rounded-full blur-[100px] opacity-40" />
         
         {/* 전체적인 인디고-바이올렛 흐름 */}
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-[#FDFCFE] to-[#EDE9FE]/30" />
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-violet-50/30 to-violet-100/30" />
       </div>
 
       {/* Main Content Wrapper (z-10) */}
@@ -61,7 +62,7 @@ const Hero = ({ className }) => {
           </div>
 
           <div className="hero-text-item">
-            <p className="text-slate-500 text-sm lg:text-base font-light leading-[1.75] mb-8 max-w-xs lg:max-w-md">
+            <p className="text-slate-500 text-base lg:text-lg font-light leading-[1.8] mb-10 max-w-xs lg:max-w-md">
               부엉이의 부리부리한 눈처럼 날카로운 통찰력으로 문제의 핵심을 꿰뚫다!
             </p>
           </div>
@@ -71,7 +72,7 @@ const Hero = ({ className }) => {
               size="sm"
               variant="outline"
               className="rounded-full"
-              onClick={() => window.open('https://github.com', '_blank')}
+              onClick={() => window.open(SITE_LINKS.common.github, '_blank')}
             >
               GitHub
             </Button>
@@ -79,7 +80,7 @@ const Hero = ({ className }) => {
               size="sm"
               variant="outline"
               className="rounded-full"
-              onClick={() => window.open('#', '_blank')}
+              onClick={() => window.open(SITE_LINKS.common.resume, '_blank')}
             >
               Resume
             </Button>

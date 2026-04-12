@@ -1,4 +1,4 @@
-# 🎨 Design System Guide (v1.1)
+# 🎨 Design System Guide
 
 이 문서는 포트폴리오의 일관된 브랜드 정체성을 유지하기 위한 디자인 시스템을 정의합니다.
 
@@ -6,53 +6,58 @@
 
 ## 1. Typography System (Fonts)
 
-디자인 스타일에 따라 두 가지 폰트 시스템을 사용합니다.
+포트폴리오의 성격에 맞춰 '직관적이고 정갈한' 인상을 주기 위해 두 가지 메인 폰트를 사용합니다.
 
-| 스타일 구분 | 적용 폰트 | Tailwind Class | 비고 |
-| :--- | :--- | :--- | :--- |
-| **Display** | Unbounded | `font-display` | 메인 슬로건, 히어로 섹션 (`resume-typo/display`) |
-| **Standard** | A2Z Font | `font-sans` | 본문, 인터페이스, 일반 텍스트 (`resume-typo/body`) |
+- **Display Font: Unbounded**
+  - **용도**: 섹션 대제목(H1, H2), 장식용 텍스트, 브랜드 키워드.
+  - **특징**: SemiBold(600)를 기본으로 사용하며, 현대적이고 기하학적인 인상을 줍니다.
+- **Sans Font: A2Z**
+  - **용도**: 본문 텍스트, 설명 문구, 리스트 아이템.
+  - **특징**: Light(300)와 Regular(400)를 교차 사용하여 가독성과 우아한 분위기를 동시에 확보합니다.
 
 ---
 
 ## 2. Color System & Tailwind Mapping
 
-창의적인 바이올렛(Oska)과 신뢰감 있는 슬레이트(Neutral) 계열을 조합합니다.
+감성적인 바이올렛 톤을 메인으로, 안정적인 슬레이트 계열을 보조로 사용합니다.
 
-### 🟣 Primary Palette (Oska)
-메인 브랜드 컬러로 창의성과 개성을 강조합니다.
-- **Primary (Main):** `#8B5CF6` (`violet-500`) - 브랜드 핵심 컬러
-- **Primary Light:** `#EDE9FE` (`violet-100`) - 태그 배경, 보조 강조
-- **Primary Dark:** `#6D28D9` (`violet-700`) - 버튼 Hover, 텍스트 포인트
-- **Gradation:** 디자인 가이드의 `Color/Gradation` 적용 (바이올렛-인디고 계열)
+### Primary Palette (Oska - Violet)
+- **`violet-500` (`oska.DEFAULT`)**: 메인 포인트 컬러, 주요 버튼 배경.
+- **`violet-100` (`oska.light`)**: 배경 강조용 틴트, 부드러운 그라데이션.
+- **`violet-700` (`oska.dark`)**: 깊이감 있는 텍스트 강조, 호버 상태.
+- **`violet-400` (`accent`)**: 섹션 헤더 타이틀, 활성화된 페이지네이션 도트.
 
-### ⚪ Neutral & Semantic
-가독성과 구조적 안정성을 담당하는 무채색 계열입니다.
-- **Base Text:** `#111827` (`slate-900`) - 주요 헤드라인 및 본문 텍스트
-- **Muted Text:** `#6B7280` (`slate-500`) - 부연 설명, 캡션
-- **Surface:** `#F3F4F6` (`slate-100`) - 섹션 구분선, 카드 테두리, 배경
+### Neutral Palette (Neutral - Slate)
+- **`slate-900` (`neutral.base`)**: 기본 텍스트, 높은 가독성 확보.
+- **`slate-500` (`neutral.muted`)**: 부연 설명, 메타 데이터.
+- **`slate-100` (`neutral.surface`)**: 보조 배경색, 카드 테두리 구분.
 
 ---
 
 ## 3. UI Typography Hierarchy
 
-모든 섹션 헤더는 `SectionHeader` 공통 컴포넌트를 사용하여 일관성을 유지합니다.
+Tailwind 설정을 기반으로 한 일관된 폰트 계층 구조입니다.
 
-*   **H1 (Display):** `text-4xl` (36px) / `font-bold` / `font-display` / `text-[#333]`
-    *   *Usage:* 히어로 섹션 메인 타이틀
-*   **H2 (Section Title):** `text-[64px]` / `font-semibold` / `font-display` / `text-[#a78bfa]`
-    *   *Usage:* 각 섹션의 헤더 제목 (About, Projects, Archive)
-*   **H3/H4 (Sub-headline):** `text-xl` (20px) / `font-medium` / `font-sans` / `text-[#333]`
-    *   *Usage:* 카드 제목, 이름 (조희진 | HEEJIN CHO 등)
-*   **Body (Main):** `text-base` (16px) / `font-light` / `font-sans` / `text-[#4b5563]`
-    *   *Usage:* 일반 본문 텍스트
-*   **Caption/Description:** `text-[14px]` / `font-light` / `font-sans` / `text-[#a78bfa]`
-    *   *Usage:* 섹션 헤더 설명 문구, 부연 설명
+- **Level 1 (Hero/Section Title)**: `text-h1` / `text-4xl` ~ `text-6xl` / Unbounded
+- **Level 2 (Sub-section/Module Title)**: `text-h2` / `text-2xl` ~ `text-3xl` / Unbounded or A2Z
+- **Level 3 (Card/Info Title)**: `text-h3` / `text-xl` / A2Z Medium
+- **Body (Standard Content)**: `text-body` / `text-base` / A2Z Light
+- **Caption (Label/Metadata)**: `text-caption` / `text-xs` / A2Z Regular / `tracking-widest`
 
 ---
 
 ## 4. Component Standards
 
-*   **SectionHeader**: 모든 섹션의 시작점에 위치하며, 좌측 정렬(`items-start`)을 기본으로 합니다.
-*   **Button**: `outline` 스타일을 기본으로 하며, `rounded-full`과 영문 텍스트(GitHub, Resume)를 사용합니다.
-*   **Footer**: 기존 Contact 섹션을 통합하여 하단에 고정 배치합니다.
+모든 UI 컴포넌트는 다음의 시각적 원칙을 따릅니다.
+
+- **Corner Radius**: 
+  - 카드 및 이미지 프레임: `rounded-[15px]` ~ `rounded-[24px]`
+  - 버튼 및 태그: `rounded-full`
+- **Shadow & Depth**:
+  - 기본 상태에서는 얇은 테두리(`border border-slate-200`)로 평면성을 유지.
+  - 호버 시 `shadow-lg` 또는 `shadow-xl`과 함께 `hover:-translate-y-1` 애니메이션을 적용하여 입체감 부여.
+- **Micro-Interactions**:
+  - `GSAP back.out(1.7)` 효과를 표준으로 사용하여, 모든 요소가 정지된 상태에서 살아있는 듯한 리드미컬한 반응을 보이도록 설정.
+  - Swiper 등 슬라이드 요소는 `overflow: visible`을 유지하여 호버 효과가 잘리지 않도록 설계.
+
+

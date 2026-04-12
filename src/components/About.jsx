@@ -14,64 +14,53 @@ const About = ({ className }) => {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // 헤더 섹션 애니메이션
-      gsap.to(".header-title", {
-        clipPath: "inset(0% 0 0 0)",
-        duration: 1.5,
-        ease: "power2.inOut",
-        scrollTrigger: {
-          trigger: ".about-header-wrapper",
-          start: "top 70%",
-          once: true,
-        },
-      });
-
-      gsap.from(".header-desc", {
-        y: 20,
+      // 1. 헤더 데코 이미지 전용 애니메이션
+      gsap.from(".about-header-wrapper img", {
         opacity: 0,
-        duration: 1,
-        delay: 0.2,
+        scale: 0.9,
+        duration: 1.5,
+        delay: 0.3,
         ease: "power2.out",
         scrollTrigger: {
           trigger: ".about-header-wrapper",
           start: "top 80%",
-          once: true,
+          toggleActions: "play none none reverse",
         },
       });
 
-      // 2. Profile Section: 이미지와 텍스트가 순차적으로 등장 (Line-by-Line)
-      gsap.from(".about-profile > div", {
+      // 2. Profile Section: 이미지와 텍스트 순차 등장 (Repeatable)
+      gsap.from(".about-profile .reveal-item", {
         y: 30,
         opacity: 0,
         duration: 1,
-        stagger: 0.5, // 0.2초 간격으로 순차 노출
+        stagger: 0.2,
         ease: "power3.out",
         scrollTrigger: {
           trigger: ".about-profile",
           start: "top 85%",
-          once: true,
+          toggleActions: "play none none reverse",
         },
       });
 
-      // Resume Grid
+      // 3. Resume Cards: 랜덤 입체 등장 (Repeatable)
       gsap.from(".resume-card-wrapper", {
-        y: 60,
-        scale: 0.8,
+        y: 50,
+        scale: 0.9,
         opacity: 0,
-        duration: 1.2,
-        ease: "back.out(2)",
+        duration: 1,
+        ease: "back.out(1.5)",
         stagger: {
-          each: 0.2,
-          from: "random", // 나타나는 순서를 무작위로 설정
+          each: 0.15,
+          from: "random",
         },
         scrollTrigger: {
           trigger: ".about-resume-grid",
-          start: "top 75%",
-          once: true,
+          start: "top 70%",
+          toggleActions: "play none none reverse",
         },
       });
 
-      // 서브 헤더(Education, Experience) 별도 페이드 효과
+      // 4. 서브 헤더 (Education, Experience)
       gsap.from(".about-sub-header", {
         y: 20,
         opacity: 0,
@@ -80,21 +69,7 @@ const About = ({ className }) => {
         scrollTrigger: {
           trigger: ".about-resume-grid",
           start: "top 85%",
-          once: true,
-        },
-      });
-
-      // 4. 데코 이미지 은은한 등장
-      gsap.from(".about-header-wrapper img", {
-        opacity: 0,
-        scale: 0.9,
-        duration: 1.5,
-        delay: 0.8,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".about-header-wrapper",
-          start: "top 80%",
-          once: true,
+          toggleActions: "play none none reverse",
         },
       });
     }, sectionRef);
@@ -149,7 +124,7 @@ const About = ({ className }) => {
         >
           <div
             className={cn(
-              "w-32 h-32 lg:w-[180px] lg:h-[180px] shrink-0",
+              "reveal-item w-32 h-32 lg:w-[180px] lg:h-[180px] shrink-0",
               "rounded-full overflow-hidden border-4 border-violet-50 shadow-lg",
             )}
           >
@@ -162,12 +137,12 @@ const About = ({ className }) => {
 
           <div className="flex flex-col gap-6 text-center lg:text-left">
             <div className="reveal-item">
-              <h3 className="text-[#333] font-medium text-[20px] lg:text-[22px]">
+              <h3 className="text-slate-800 font-medium text-[20px] lg:text-[22px]">
                 조희진 | HEEJIN CHO
               </h3>
             </div>
 
-            <div className="grid grid-cols-1 gap-2 text-[#404040] text-[16px] font-light reveal-item">
+            <div className="grid grid-cols-1 gap-2 text-slate-600 text-[16px] font-light reveal-item">
               <div className="px-4 py-1 bg-violet-50 rounded-full inline-block self-center lg:self-start">
                 1993.12.
               </div>
@@ -186,7 +161,7 @@ const About = ({ className }) => {
           <div className="about-resume-col flex flex-col gap-10">
             <div className="about-sub-header flex flex-col items-center gap-4 bg-white/90 backdrop-blur-sm lg:backdrop-blur-none z-10">
               <div className="text-3xl lg:text-4xl">🎓</div>
-              <h2 className="font-display font-medium text-[#a78bfa] text-[32px] lg:text-[48px]">
+              <h2 className="font-display font-medium text-violet-400 text-[32px] lg:text-[48px]">
                 Education
               </h2>
             </div>
@@ -221,7 +196,7 @@ const About = ({ className }) => {
           <div className="about-resume-col flex flex-col gap-10">
             <div className="about-sub-header flex flex-col items-center gap-4 bg-white/90 backdrop-blur-sm lg:backdrop-blur-none z-10">
               <div className="text-3xl lg:text-4xl">💡</div>
-              <h2 className="font-display font-medium text-[#a78bfa] text-[32px] lg:text-[48px]">
+              <h2 className="font-display font-medium text-violet-400 text-[32px] lg:text-[48px]">
                 Experience
               </h2>
             </div>

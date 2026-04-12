@@ -115,8 +115,7 @@ const MarqueeRow = ({ items, direction = 'left', variant = 'light' }) => {
     >
       <div 
         ref={trackRef}
-        className="flex items-center w-max"
-        style={{ gap: '3rem' }} // gap-12 = 3rem
+        className="flex items-center w-max gap-12"
       >
         {duplicatedItems.map((item, idx) => (
           <div key={idx} className="flex items-center gap-4 shrink-0">

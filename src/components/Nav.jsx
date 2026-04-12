@@ -3,6 +3,7 @@ import { cn } from "../utils/cn";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { SITE_LINKS } from "../constants/links";
 import logo from "../assets/images/logo.svg";
 
 /**
@@ -111,15 +112,17 @@ const Nav = ({
             )}
           >
             <a 
-              href="https://github.com" 
+              href={SITE_LINKS.common.github} 
               target="_blank" 
+              rel="noopener noreferrer"
               className="p-2 hover:bg-slate-100 rounded-full transition-colors"
             >
               <FontAwesomeIcon icon={faGithub} className="text-slate-700 text-xl" />
             </a>
             <a 
-              href="https://blog.naver.com" 
+              href={SITE_LINKS.common.blog} 
               target="_blank" 
+              rel="noopener noreferrer"
               className="p-2 hover:bg-slate-100 rounded-full transition-colors"
             >
               <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="text-slate-700 text-lg" />

@@ -1,12 +1,16 @@
-import React, { useRef, useState } from "react";
-import emailjs from "@emailjs/browser"; // EmailJS 라이브러리
+import React, { useLayoutEffect, useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "../utils/cn";
 import Button from "./Button";
 
-const ContactItem = ({ label, value }) => (
-  <div className="py-6 px-8 flex items-center justify-center md:justify-start gap-[18px] w-full bg-transparent">
-    {/* 아이콘 영역: 크기를 살짝 줄여 더 미니멀하게 조정 */}
-    <div className="shrink-0 size-[44px] rounded-full bg-gradient-to-br from-violet-200 to-violet-500 shadow-sm" />
+gsap.registerPlugin(ScrollTrigger);
+
+const ContactItem = ({ label, value, className }) => (
+  <div className={cn("footer-contact-item py-6 px-8 flex items-center justify-center md:justify-start gap-[18px] w-full bg-transparent", className)}>
+    {/* 아이콘 영역 */}
+    <div className="contact-icon shrink-0 size-[44px] rounded-full bg-gradient-to-br from-violet-200 to-violet-500 shadow-sm" />
     <div className="flex flex-col gap-0.5 min-w-0">
       <span className="text-[10px] uppercase tracking-[0.2em] text-violet-400 font-semibold">
         {label}
@@ -19,10 +23,82 @@ const ContactItem = ({ label, value }) => (
 );
 
 const Footer = ({ className }) => {
+  const footerRef = useRef(null);
   const formRef = useRef();
   const [isSending, setIsSending] = useState(false);
 
-  // EmailJS 전송 핸들러 (환경 변수 활용)
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      // 1. Header & Description
+      gsap.from(".footer-header > *", {
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".footer-header",
+          start: "top 85%",
+        }
+      });
+
+      // 2. Contact Form
+      gsap.from(".footer-form", {
+        y: 60,
+        opacity: 0,
+        scale: 0.98,
+        duration: 1.2,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".footer-form",
+          start: "top 80%",
+        }
+      });
+
+      // 3. Contact Card & Items
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".footer-card",
+          start: "top 80%",
+        }
+      });
+
+      tl.from(".footer-card", {
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+      })
+      .from(".footer-contact-item", {
+        x: -20,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "back.out(1.7)"
+      }, "-=0.6")
+      .from(".contact-icon", {
+        scale: 0,
+        rotation: -45,
+        duration: 0.6,
+        stagger: 0.2,
+        ease: "back.out(2)"
+      }, "-=1");
+
+      // 4. Bottom Copyright
+      gsap.from(".footer-bottom", {
+        opacity: 0,
+        duration: 1,
+        delay: 0.5,
+        scrollTrigger: {
+          trigger: ".footer-bottom",
+          start: "top 95%",
+        }
+      });
+    }, footerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSending(true);
@@ -32,20 +108,13 @@ const Footer = ({ className }) => {
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
     emailjs
-      .sendForm(
-        serviceId,
-        templateId,
-        formRef.current,
-        publicKey,
-      )
+      .sendForm(serviceId, templateId, formRef.current, publicKey)
       .then(() => {
         alert("문의가 성공적으로 전송되었습니다. 소중한 메시지 감사합니다! 😁");
         formRef.current.reset();
       })
       .catch((error) => {
-        alert(
-          "전송에 실패했습니다. 다시 시도해 주세요: " + JSON.stringify(error),
-        );
+        alert("전송에 실패했습니다. 다시 시도해 주세요: " + JSON.stringify(error));
       })
       .finally(() => {
         setIsSending(false);
@@ -55,18 +124,19 @@ const Footer = ({ className }) => {
   return (
     <footer
       id="contact"
+      ref={footerRef}
       className={cn(
-        "relative pt-28 pb-10 px-6 bg-gradient-to-b from-white via-[#F5F3FF] to-[#EDE9FE]",
+        "relative pt-28 pb-10 px-6 bg-gradient-to-b from-white via-violet-50 to-violet-100",
         className,
       )}
     >
       <div className="w-full max-w-[1200px] mx-auto flex flex-col gap-16 items-center">
         {/* Header Section */}
-        <div className="text-center space-y-4">
+        <div className="footer-header text-center space-y-4">
           <h2 className="text-[42px] lg:text-[56px] font-medium text-slate-800 font-display leading-tight">
             Let's <span className="text-violet-400 italic">Work</span> Together
           </h2>
-          <div className="header-desc text-[#a78bfa] font-medium uppercase tracking-wider mt-2 text-[12px] lg:text-[14px] lg:leading-relaxed">
+          <div className="header-desc text-violet-400 font-light uppercase tracking-wider mt-2 text-[12px] lg:text-[14px] lg:leading-relaxed">
             <p>사소한 디테일이 모여 큰 감동을 만든다고 믿습니다.</p>
             <p>컨택은 다음 채널을 통해 노크해 주세요. :D</p>
           </div>
@@ -74,11 +144,10 @@ const Footer = ({ className }) => {
 
         {/* 2. Main Content: Form (위) + Card (아래) */}
         <div className="w-full flex flex-col items-center gap-20">
-          {/* EmailJS Form: 상단 배치 및 중앙 정렬 최적화 */}
           <form
             ref={formRef}
             onSubmit={handleSubmit}
-            className="w-full flex flex-col gap-10 bg-white/40 p-8 lg:p-12 rounded-[32px] border border-white/60 backdrop-blur-sm shadow-sm"
+            className="footer-form w-full flex flex-col gap-10 bg-white/40 p-8 lg:p-12 rounded-[32px] border border-white/60 backdrop-blur-sm shadow-sm"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="flex flex-col gap-2">
@@ -130,15 +199,9 @@ const Footer = ({ className }) => {
             </div>
           </form>
 
-          {/* Contact Card: 가로 길이 균등 배분 버전 */}
           <div
-            className="w-full max-w-[900px] bg-white border border-slate-200 rounded-[24px] overflow-hidden shadow-xl shadow-violet-100/30"
-            style={{
-              backgroundImage:
-                "linear-gradient(168deg, #ffffff 12%, #f5f3ff 116%)",
-            }}
+            className="footer-card w-full max-w-[900px] bg-white border border-slate-200 rounded-[24px] overflow-hidden shadow-xl shadow-violet-100/30 bg-[linear-gradient(168deg,_#ffffff_12%,_#f5f3ff_116%)]"
           >
-            {/* md:grid-cols-3를 사용하여 가로 길이를 1:1:1로 강제 고정합니다. */}
             <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-100">
               <ContactItem label="Phone" value={import.meta.env.VITE_CONTACT_PHONE || "010 8860 2480"} />
               <ContactItem label="Email" value={import.meta.env.VITE_CONTACT_EMAIL || "hiijaise@gmail.com"} />
@@ -146,8 +209,8 @@ const Footer = ({ className }) => {
             </div>
           </div>
         </div>
-        {/* Bottom Copyright */}
-        <div className="w-full pt-12 border-t border-slate-100 text-center">
+
+        <div className="footer-bottom w-full pt-12 border-t border-slate-100 text-center">
           <p className="text-slate-400 text-xs font-light tracking-widest">
             © 2026 HEEJIN CHO PORTFOLIO. ALL RIGHTS RESERVED.
           </p>

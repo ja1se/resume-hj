@@ -7,6 +7,7 @@ import SectionHeader from './components/SectionHeader'
 import ProjectSection from './components/ProjectSection'
 import Footer from './components/Footer'
 import ArchiveSection from './components/ArchiveSection'
+import ScrollToTop from './components/ScrollToTop'
 import { PROJECTS } from './constants/projects'
 
 const App = () => {
@@ -46,6 +47,9 @@ const App = () => {
       </main>
 
       <Footer />
+      
+      {/* Scroll to Top Button */}
+      <ScrollToTop />
     </div>
   );
 };
