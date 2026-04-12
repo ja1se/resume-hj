@@ -19,8 +19,8 @@ const SIZE_STYLES = {
 };
 
 const VARIANT_STYLES = {
-  primary: "bg-gradient-to-r from-[#c4b5fd] via-[#a078f5] to-[#7c3aed] text-white shadow-md hover:shadow-lg hover:brightness-110",
-  outline: "border border-slate-200 text-slate-600 hover:border-[#a078f5] hover:text-[#a078f5] hover:bg-[#fbf6fd]",
+  primary: "border border-slate-500 text-slate-500 hover:border-violet-500 hover:text-violet-500 hover:bg-violet-50",
+  outline: "border border-slate-200 text-slate-600 hover:border-violet-500 hover:text-violet-500 hover:bg-violet-50",
   ghost: "text-slate-600 hover:bg-slate-100",
 };
 
