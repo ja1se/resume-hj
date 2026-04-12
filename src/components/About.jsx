@@ -55,15 +55,18 @@ const About = ({ className }) => {
 
       // Resume Grid
       gsap.from(".resume-card-wrapper", {
-        y: 50,
-        scale: 0.9,
+        y: 60,
+        scale: 0.8,
         opacity: 0,
         duration: 1.2,
-        stagger: 0.40,   // 0.40초 간격으로 퐁당퐁당 등장
-        ease: "back.out(1.7)",
+        ease: "back.out(2)",
+        stagger: {
+          each: 0.2,
+          from: "random", // 나타나는 순서를 무작위로 설정
+        },
         scrollTrigger: {
           trigger: ".about-resume-grid",
-          start: "top 70%",
+          start: "top 75%",
           once: true,
         },
       });

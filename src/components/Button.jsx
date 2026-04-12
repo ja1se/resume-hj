@@ -19,14 +19,14 @@ const SIZE_STYLES = {
 };
 
 const VARIANT_STYLES = {
-  primary: "bg-gradient-to-r from-[#c4b5fd] via-[#a078f5] to-[#7c3aed] text-white shadow-md hover:shadow-lg hover:brightness-110 active:scale-95",
-  outline: "border border-slate-200 text-slate-600 hover:border-[#a078f5] hover:text-[#a078f5] hover:bg-[#fbf6fd] active:scale-95",
+  primary: "bg-gradient-to-r from-[#c4b5fd] via-[#a078f5] to-[#7c3aed] text-white shadow-md hover:shadow-lg hover:brightness-110",
+  outline: "border border-slate-200 text-slate-600 hover:border-[#a078f5] hover:text-[#a078f5] hover:bg-[#fbf6fd]",
   ghost: "text-slate-600 hover:bg-slate-100",
 };
 
 const Button = ({
-  size = "lg",
-  variant = "primary",
+  size = "sm",
+  variant = "outline",
   href,
   target,
   disabled,
@@ -35,10 +35,10 @@ const Button = ({
   ...props
 }) => {
   const baseClasses = cn(
-    "inline-flex items-center justify-center rounded-full font-light transition-all duration-200 whitespace-nowrap",
+    "inline-flex items-center justify-center rounded-full font-light transition-all duration-200 whitespace-nowrap active:scale-95",
     SIZE_STYLES[size],
     VARIANT_STYLES[variant],
-    disabled && "opacity-50 cursor-not-allowed grayscale",
+    disabled && "opacity-50 cursor-not-allowed grayscale active:scale-100",
     className
   );
 

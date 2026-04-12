@@ -21,14 +21,13 @@ const ProjectSection = ({ project, reverse = false, className }) => {
 
   return (
     <section id={id} className={cn("px-56 py-32 flex flex-col items-center justify-center", className)}>
-      <div className="w-full flex items-center justify-center gap-16">
+      <div className="w-full max-w-[1400px] px-6 lg:px-20 flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-24">
         
         {/* Text Area */}
         <div className={cn(
-          "project-text-content w-[400px] flex flex-col justify-center gap-6 lg:gap-12",
-          isRightAlign ? "items-end text-right" : "items-start text-left",
-          title === "소울블렌드" && "-translate-x-8 lg:-translate-x-50",
-          title === "와쿠와쿠" && "-translate-x-8 lg:-translate-x-5",
+          "project-text-content w-full lg:w-[450px] flex flex-col justify-center gap-6 lg:gap-10",
+          "z-20 relative",
+          isRightAlign ? "lg:items-end lg:text-right" : "lg:items-start lg:text-left",
           reverse ? "lg:order-2" : "lg:order-1"
         )}>
           {/* Header */}

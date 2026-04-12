@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { cn } from "../utils/cn";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
@@ -13,15 +14,6 @@ import logo from "../assets/images/logo.svg";
  * @param {function} onLinkClick - 링크 클릭 핸들러
  */
 
-const THEME_STYLES = {
-  light: cn(
-    "bg-white/95 backdrop-blur-md text-slate-900 border-slate-200 shadow-sm"
-  ),
-  dark: cn(
-    "bg-slate-950/95 backdrop-blur-md text-white border-slate-800 shadow-lg"
-  ),
-};
-
 const Nav = ({
   theme = "light",
   position = "fixed",
@@ -36,16 +28,39 @@ const Nav = ({
   onLinkClick,
   className,
 }) => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const THEME_STYLES = {
+    light: cn(
+      isScrolled 
+        ? "bg-white/80 backdrop-blur-md border-slate-200/60 shadow-sm py-0" 
+        : "bg-transparent border-transparent py-2"
+    ),
+    dark: cn(
+      isScrolled 
+        ? "bg-slate-950/80 backdrop-blur-md border-slate-800 shadow-lg py-0" 
+        : "bg-transparent border-transparent py-2"
+    ),
+  };
+
   return (
     <nav
       className={cn(
-        "top-0 left-0 w-full z-50 border-b transition-all duration-300",
+        "top-0 left-0 w-full z-50 border-b transition-all duration-500",
         position,
         THEME_STYLES[theme],
         className
       )}
     >
-      <div className="w-full flex justify-center h-[72px] px-6 lg:px-20">
+      <div className="w-full flex justify-center h-[72px] px-6 lg:px-20 transition-all duration-500">
         <div className="w-full flex items-center justify-between">
           {/* Logo Section */}
           <div className="flex items-center min-w-[120px] lg:min-w-[172px]">
@@ -60,7 +75,10 @@ const Nav = ({
               <img 
                 src={logo} 
                 alt="OSKA Logo" 
-                className="flex h-8 lg:h-[47px] w-auto" 
+                className={cn(
+                  "flex w-auto transition-all duration-500",
+                  isScrolled ? "h-7 lg:h-[38px]" : "h-8 lg:h-[47px]"
+                )} 
               />
             </a>
           </div>
@@ -77,7 +95,7 @@ const Nav = ({
                     "hover:bg-slate-100/50 hover:text-violet-600",
                     activeLink === href 
                       ? "text-violet-600 font-medium" 
-                      : "text-slate-800"
+                      : isScrolled ? "text-slate-800" : "text-slate-900"
                   )}
                 >
                   {label}
