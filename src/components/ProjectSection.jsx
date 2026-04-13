@@ -143,7 +143,7 @@ const ProjectSection = ({ project, reverse = false, className }) => {
         <div className={cn("animate-frame project-image-frame w-full max-w-[600px] relative flex", isRightAlign ? "justify-center" : "justify-start", reverse ? "lg:order-1" : "lg:order-2")}>
           <div className={cn(
             isMobile 
-              ? "relative w-[300px] aspect-[1/2.03] bg-zinc-900 rounded-[50px] border-[8px] border-zinc-800 shadow-2xl overflow-hidden" 
+              ? "relative w-[300px] aspect-[1/2.03] bg-zinc-900 rounded-[50px] border-[8px] border-violet-50 shadow-2xl overflow-hidden" 
               : "w-full max-w-[620px] relative aspect-[4/3.2] rounded-[16px] overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.15)] border border-slate-200 bg-white"
           )}>
             {!isMobile && (

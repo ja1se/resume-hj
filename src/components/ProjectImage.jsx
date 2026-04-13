@@ -24,12 +24,14 @@ const ProjectImage = ({ src, alt, onClick, className }) => {
     >
       {/* 1. Main Image */}
       {src ? (
-        <img
-          src={src}
-          alt={alt}
-          className="w-full h-auto min-h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-          loading="lazy"
-        />
+        <div className="relative w-full h-full overflow-hidden bg-white cursor-pointer group flex items-center justify-center">
+          <img
+            src={src}
+            alt={alt}
+            className="w-full h-auto min-h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+            loading="lazy"
+          />
+        </div>
       ) : (
         <div className="w-full h-full flex items-center justify-center text-slate-300">
           No Image

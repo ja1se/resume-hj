@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef, useCallback } from "react";
 import gsap from "gsap";
 import { cn } from "../utils/cn";
 import Button from "./Button";
@@ -14,22 +14,61 @@ const Hero = ({ className }) => {
   const imageRef = useRef(null);
   const isInteractive = useRef(false);
 
+  const startWaveEffect = useCallback(() => {
+    const keywords = gsap.utils.toArray(".hero-keyword");
+
+    keywords.forEach((word) => {
+      const text = word.textContent;
+      word.innerHTML = "";
+      [...text].forEach((char) => {
+        const span = document.createElement("span");
+        span.innerText = char === " " ? "\u00A0" : char;
+        span.style.display = "inline-block";
+        span.className = "char opacity-100"; // 불투명도 100% 고정
+        word.appendChild(span);
+      });
+    });
+
+    const loopTl = gsap.timeline({ repeat: -1 });
+
+    keywords.forEach((word) => {
+      const chars = word.querySelectorAll(".char");
+
+      loopTl
+        // 강조 시작 (오직 웨이브 상하 이동만 적용)
+        .to(chars, {
+          y: -8,
+          duration: 0.5,
+          stagger: 0.05,
+          ease: "back.out(2)",
+        })
+        // 원복
+        .to(chars, {
+          y: 0,
+          duration: 0.6,
+          stagger: 0.08,
+          ease: "power2.in",
+          delay: 0.5,
+        });
+    });
+
+    return loopTl;
+  }, []);
+
   useLayoutEffect(() => {
     const hero = heroRef.current;
     const image = imageRef.current;
 
     if (!hero || !image) return;
 
-    const ctx = gsap.context(() => {
-      // 1. Performance Optimization: quickSetter
-      const xSetter = gsap.quickSetter(image, "x", "px");
-      const ySetter = gsap.quickSetter(image, "y", "px");
+    let loopTl;
 
-      // 2. Entry Animation Timeline
+    const ctx = gsap.context(() => {
+      // 1. Entry Animation Timeline
       const tl = gsap.timeline({
         onComplete: () => {
           isInteractive.current = true;
-          startWaveEffect(); // 메인 애니메이션 완료 후 웨이브 효과 시작
+          loopTl = startWaveEffect(); // 메인 애니메이션 완료 후 웨이브 효과 시작
         },
       });
 
@@ -76,24 +115,24 @@ const Hero = ({ className }) => {
           "-=0.5",
         );
 
-      // 3. Infinite Floating Animation (Character)
+      // 2. Infinite Floating Animation (Character)
       gsap.to(image, {
         y: "-=15",
         duration: 2.5,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut",
-        delay: tl.duration()
+        delay: tl.duration(),
       });
 
-      // 4. Background Gradient Movement (Rich Organic Effect)
+      // 3. Background Gradient Movement (Rich Organic Effect)
       gsap.to(".hero-bg-gradient-1", {
         x: "3%",
         y: "5%",
         duration: 8,
         repeat: -1,
         yoyo: true,
-        ease: "sine.inOut"
+        ease: "sine.inOut",
       });
 
       gsap.to(".hero-bg-gradient-2", {
@@ -102,79 +141,15 @@ const Hero = ({ className }) => {
         duration: 10,
         repeat: -1,
         yoyo: true,
-        ease: "sine.inOut"
+        ease: "sine.inOut",
       });
+    });
 
-      // 5. Wave Text Effect (Keyword Loop)
-      const startWaveEffect = () => {
-        const keywords = gsap.utils.toArray(".hero-keyword");
-        
-        keywords.forEach(word => {
-          const text = word.textContent;
-          word.innerHTML = "";
-          [...text].forEach(char => {
-            const span = document.createElement("span");
-            span.innerText = char === " " ? "\u00A0" : char;
-            span.style.display = "inline-block";
-            span.className = "char opacity-100"; // 불투명도 100% 고정
-            word.appendChild(span);
-          });
-        });
-
-        const loopTl = gsap.timeline({ repeat: -1 });
-
-        keywords.forEach((word) => {
-          const chars = word.querySelectorAll(".char");
-          
-          loopTl
-            // 강조 시작 (오직 웨이브 상하 이동만 적용)
-            .to(chars, {
-              y: -8,
-              duration: 0.5,
-              stagger: 0.05,
-              ease: "back.out(2)",
-            })
-            // 원복
-            .to(chars, {
-              y: 0,
-              duration: 0.6,
-              stagger: 0.08,
-              ease: "power2.in",
-              delay: 0.5
-            });
-        });
-      };
-
-      // 6. Mouse Event Handlers
-      const handleMouseMove = (e) => {
-        if (!isInteractive.current) return;
-
-        const { clientX, clientY } = e;
-        const { width, height, left, top } = hero.getBoundingClientRect();
-
-        const xPos = (clientX - (left + width / 2)) / (width / 2);
-        const yPos = (clientY - (top + height / 2)) / (height / 2);
-
-        xSetter(xPos * -25);
-        ySetter(yPos * -25);
-      };
-
-      const handleMouseLeave = () => {
-        if (!isInteractive.current) return;
-        gsap.to(image, {
-          x: 0,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-        });
-      };
-
-      hero.addEventListener("mousemove", handleMouseMove);
-      hero.addEventListener("mouseleave", handleMouseLeave);
-    }, heroRef);
-
-    return () => ctx.revert();
-  }, []);
+    return () => {
+      ctx.revert();
+      loopTl?.kill();
+    };
+  }, [startWaveEffect]);
 
   return (
     <section
@@ -198,8 +173,8 @@ const Hero = ({ className }) => {
         </div>
 
         {/* 몽환적인 그라데이션*/}
-        <div className="hero-bg-layer hero-bg-gradient-1 absolute top-[-10%] right-[-5%] w-[50vw] h-[50vw] bg-violet-100 rounded-full blur-[250px]" />
-        <div className="hero-bg-layer hero-bg-gradient-2 absolute bottom-[-10%] left-[-5%] w-[40vw] h-[40vw] bg-violet-200 rounded-full blur-[300px]" />
+        <div className="hero-bg-layer hero-bg-gradient-1 absolute top-[-10%] right-[-5%] w-[50vw] h-[50vw] bg-white/10 rounded-full blur-[250px]" />
+        <div className="hero-bg-layer hero-bg-gradient-2 absolute bottom-[-10%] left-[-5%] w-[40vw] h-[40vw] bg-white/10 rounded-full blur-[300px]" />
 
         {/* 전체적인 오버레이 틴트 */}
         <div className="hero-bg-layer absolute inset-0" />
@@ -208,15 +183,15 @@ const Hero = ({ className }) => {
       <div
         className={cn(
           "relative z-10 w-full px-6 lg:px-20",
-          "flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-6",
+          "flex flex-col lg:flex-row items-center justify-center",
         )}
       >
         {/* Text Container */}
-        <div className="relative w-full max-w-[350px] lg:w-[350px] flex flex-col items-center lg:items-start text-center lg:text-left lg:pl-6">
+        <div className="relative w-[450px] flex flex-col items-center lg:items-start text-center lg:text-left lg:pl-6">
           <div
             className={cn(
               "hero-text-item absolute w-16 lg:w-24 h-auto opacity-80 pointer-events-none",
-              "-top-8 lg:top-1 left-1/2 -translate-x-1/2 lg:left-36 lg:translate-x-0",
+              "-top-8 lg:top-2 left-1/2 -translate-x-1/2 lg:left-39 lg:translate-x-0",
             )}
           >
             <img
@@ -229,7 +204,7 @@ const Hero = ({ className }) => {
           <div className="hero-text-item">
             <h2
               className={cn(
-                "text-slate-900 text-[28px] lg:text-[32px] font-medium leading-[1.4] lg:leading-[1.5]",
+                "text-slate-900 text-[28px] lg:text-[36px] font-medium leading-[1.4] lg:leading-[1.5]",
                 "tracking-tight mb-6",
               )}
             >
@@ -238,9 +213,14 @@ const Hero = ({ className }) => {
                 숨은 결
               </span>
               을<br />
-              찾아내는 <span className="hero-keyword text-violet-500">시각적 통역사</span>,
+              찾아내는{" "}
+              <span className="hero-keyword text-violet-500">
+                시각적 통역사
+              </span>
+              ,
               <br />
-              <span className="hero-keyword text-violet-500">조희진</span> 입니다.
+              <span className="hero-keyword text-violet-500">조희진</span>{" "}
+              입니다.
             </h2>
           </div>
 
@@ -274,7 +254,11 @@ const Hero = ({ className }) => {
         {/* Image Container */}
         <div
           ref={imageRef}
-          className="hero-image relative w-full max-w-[280px] lg:w-[300px] lg:shrink-0 will-change-transform"
+          className={cn(
+            "hero-image relative -m-10 z-20",
+            "w-[300px] lg:w-[380px]",
+            "lg:shrink-0 will-change-transform",
+          )}
         >
           <img
             src={newMe}

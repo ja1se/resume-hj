@@ -12,26 +12,28 @@ import { gsap } from "gsap";
 const ProjectPopup = ({ isOpen, onClose, project, mousePos }) => {
   const popupRef = useRef(null);
   const contentRef = useRef(null);
+  const displayImage = project.detailImage || project.image;
 
   useLayoutEffect(() => {
     if (isOpen && popupRef.current) {
       // 1. 확장 애니메이션 (Expansion)
       const tl = gsap.timeline();
-      
+
       tl.set(popupRef.current, {
         clipPath: `circle(0% at ${mousePos.x}px ${mousePos.y}px)`,
-        visibility: "visible"
+        visibility: "visible",
       })
-      .to(popupRef.current, {
-        clipPath: `circle(150% at ${mousePos.x}px ${mousePos.y}px)`,
-        duration: 0.8,
-        ease: "power3.inOut"
-      })
-      .fromTo(contentRef.current, 
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
-        "-=0.3"
-      );
+        .to(popupRef.current, {
+          clipPath: `circle(150% at ${mousePos.x}px ${mousePos.y}px)`,
+          duration: 0.8,
+          ease: "power3.inOut",
+        })
+        .fromTo(
+          contentRef.current,
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
+          "-=0.3",
+        );
 
       // 스크롤 잠금 (Rule 5-3)
       document.body.style.overflow = "hidden";
@@ -44,31 +46,30 @@ const ProjectPopup = ({ isOpen, onClose, project, mousePos }) => {
 
   const handleClose = () => {
     const tl = gsap.timeline({
-      onComplete: onClose
+      onComplete: onClose,
     });
 
     tl.to(contentRef.current, {
       y: 20,
       opacity: 0,
       duration: 0.4,
-      ease: "power2.in"
-    })
-    .to(popupRef.current, {
+      ease: "power2.in",
+    }).to(popupRef.current, {
       clipPath: `circle(0% at ${mousePos.x}px ${mousePos.y}px)`,
       duration: 0.6,
-      ease: "power3.inOut"
+      ease: "power3.inOut",
     });
   };
 
   if (!isOpen) return null;
 
   return createPortal(
-    <div 
+    <div
       ref={popupRef}
       className="fixed inset-0 z-[100] bg-white/95 backdrop-blur-md overflow-y-auto invisible"
     >
       {/* Close Button */}
-      <button 
+      <button
         onClick={handleClose}
         className="fixed top-8 right-8 lg:top-12 lg:right-12 z-[110] p-4 hover:rotate-90 transition-transform duration-300 group"
       >
@@ -79,12 +80,11 @@ const ProjectPopup = ({ isOpen, onClose, project, mousePos }) => {
       </button>
 
       {/* Popup Content */}
-      <div 
+      <div
         ref={contentRef}
         className="relative w-full min-h-screen px-6 py-24 lg:px-20 lg:py-36 flex flex-col items-center"
       >
         <div className="max-w-5xl w-full flex flex-col gap-16 lg:gap-24">
-          
           {/* Header Section */}
           <div className="flex flex-col gap-6 items-center text-center">
             <span className="text-violet-500 font-medium tracking-[0.2em] uppercase text-sm lg:text-base">
@@ -100,7 +100,9 @@ const ProjectPopup = ({ isOpen, onClose, project, mousePos }) => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
             <div className="flex flex-col gap-10">
               <div className="flex flex-col gap-4">
-                <h3 className="text-xl lg:text-2xl font-medium text-slate-900 font-display">Trouble Shooting</h3>
+                <h3 className="text-xl lg:text-2xl font-medium text-slate-900 font-display">
+                  Trouble Shooting
+                </h3>
                 <p className="text-slate-600 leading-relaxed font-light text-lg">
                   {project.troubleShooting}
                 </p>
@@ -108,20 +110,33 @@ const ProjectPopup = ({ isOpen, onClose, project, mousePos }) => {
 
               <div className="grid grid-cols-2 gap-8">
                 <div className="flex flex-col gap-2">
-                  <span className="text-xs uppercase tracking-widest text-slate-400 font-medium">Duration</span>
-                  <span className="text-slate-700 font-medium">{project.duration}</span>
+                  <span className="text-xs uppercase tracking-widest text-slate-400 font-medium">
+                    Duration
+                  </span>
+                  <span className="text-slate-700 font-medium">
+                    {project.duration}
+                  </span>
                 </div>
                 <div className="flex flex-col gap-2">
-                  <span className="text-xs uppercase tracking-widest text-slate-400 font-medium">Contribution</span>
-                  <span className="text-slate-700 font-medium">{project.contribution}</span>
+                  <span className="text-xs uppercase tracking-widest text-slate-400 font-medium">
+                    Contribution
+                  </span>
+                  <span className="text-slate-700 font-medium">
+                    {project.contribution}
+                  </span>
                 </div>
               </div>
 
               <div className="flex flex-col gap-4">
-                <span className="text-xs uppercase tracking-widest text-slate-400 font-medium">Technology Stack</span>
+                <span className="text-xs uppercase tracking-widest text-slate-400 font-medium">
+                  Technology Stack
+                </span>
                 <div className="flex flex-wrap gap-2">
-                  {project.techStack.split(',').map((tech, i) => (
-                    <span key={i} className="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-sm font-light">
+                  {project.techStack.split(",").map((tech, i) => (
+                    <span
+                      key={i}
+                      className="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-sm font-light"
+                    >
                       {tech.trim()}
                     </span>
                   ))}
@@ -129,10 +144,27 @@ const ProjectPopup = ({ isOpen, onClose, project, mousePos }) => {
               </div>
             </div>
 
-            <div className="flex flex-col gap-8">
-              <div className="rounded-[24px] overflow-hidden shadow-2xl border border-slate-100">
-                <img src={project.image} alt={project.title} className="w-full h-auto" />
-              </div>
+            <div className="flex items-center justify-center w-full min-h-[500px] lg:min-h-full">
+              {project.figmaEmbed ? (
+                /* 1. 피그마 임베드가 있는 경우 */
+                <iframe
+                  style={{ border: "1px solid rgba(0, 0, 0, 0.1)" }}
+                  width="100%"
+                  height="450"
+                  src={project.figmaEmbed}
+                  allowFullScreen
+                  title="Figma Prototype"
+                ></iframe>
+              ) : (
+                /* 2. 일반 이미지만 있는 경우 (기존 로직) */
+                <div className="rounded-[24px] overflow-hidden shadow-lg w-full">
+                  <img
+                    src={project.detailImage || project.image}
+                    alt={project.title}
+                    className="w-full h-auto object-contain"
+                  />
+                </div>
+              )}
             </div>
           </div>
 
@@ -142,11 +174,10 @@ const ProjectPopup = ({ isOpen, onClose, project, mousePos }) => {
             <span>© 2026 Heejin Cho. All rights reserved.</span>
             <span>You will never know until you try.</span>
           </div>
-
         </div>
       </div>
     </div>,
-    document.body
+    document.body,
   );
 };
 

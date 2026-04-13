@@ -6,6 +6,8 @@ import SectionHeader from "./SectionHeader";
 import ResumeCard from "./ResumeCard";
 import newMe from "../assets/images/new-me-ani.png";
 import ele1 from "../assets/images/ele1.png";
+import GraduateIcon from "../assets/images/graduate.png";
+import LampIcon from "../assets/images/lamp.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -159,8 +161,8 @@ const About = ({ className }) => {
         <div className="about-resume-grid w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20">
           {/* Education Column */}
           <div className="about-resume-col flex flex-col gap-10">
-            <div className="about-sub-header flex flex-col items-center gap-4 bg-white/90 backdrop-blur-sm lg:backdrop-blur-none z-10">
-              <div className="text-3xl lg:text-4xl">🎓</div>
+            <div className="about-sub-header flex flex-col items-center bg-white/90 backdrop-blur-sm lg:backdrop-blur-none z-10">
+              <div className="w-[70px] h-[70px] text-3xl lg:text-4xl"><img src={GraduateIcon} alt="Graduate" /></div>
               <h2 className="font-display font-medium text-violet-400 text-[32px] lg:text-[48px]">
                 Education
               </h2>
@@ -194,8 +196,8 @@ const About = ({ className }) => {
 
           {/* Experience Column */}
           <div className="about-resume-col flex flex-col gap-10">
-            <div className="about-sub-header flex flex-col items-center gap-4 bg-white/90 backdrop-blur-sm lg:backdrop-blur-none z-10">
-              <div className="text-3xl lg:text-4xl">💡</div>
+            <div className="about-sub-header flex flex-col items-center bg-white/90 backdrop-blur-sm lg:backdrop-blur-none z-10">
+              <div className="w-[70px] h-[70px] text-3xl lg:text-4xl"><img src={LampIcon} alt="Lamp" /></div>
               <h2 className="font-display font-medium text-violet-400 text-[32px] lg:text-[48px]">
                 Experience
               </h2>
