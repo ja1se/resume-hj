@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "../utils/cn";
 import Button from "./Button";
+import { SITE_LINKS } from '../constants/links';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -203,9 +204,14 @@ const Footer = ({ className }) => {
             className="footer-card w-full max-w-[900px] bg-white border border-slate-200 rounded-[24px] overflow-hidden shadow-xl shadow-violet-100/30 bg-[linear-gradient(168deg,_#ffffff_12%,_#f5f3ff_116%)]"
           >
             <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-100">
-              <ContactItem label="Phone" value={import.meta.env.VITE_CONTACT_PHONE || "010 8860 2480"} />
-              <ContactItem label="Email" value={import.meta.env.VITE_CONTACT_EMAIL || "hiijaise@gmail.com"} />
-              <ContactItem label="Socials" value={import.meta.env.VITE_CONTACT_SOCIAL || "Tistory Blog"} />
+              <ContactItem label="Phone" value={import.meta.env.VITE_CONTACT_PHONE} className="text-slate-900" />
+              <ContactItem label="Email" value={import.meta.env.VITE_CONTACT_EMAIL} className="text-slate-900" />
+              <ContactItem label="Socials" value={<a 
+              href={SITE_LINKS.common.github}
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-slate-900 hover:text-violet-500"
+            >Tistory Blog</a>} />
             </div>
           </div>
         </div>

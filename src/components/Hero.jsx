@@ -156,7 +156,7 @@ const Hero = ({ className }) => {
       id="home"
       ref={heroRef}
       className={cn(
-        "relative w-full h-[600px] pt-20 flex items-center justify-center overflow-hidden",
+        "relative z-10 w-full h-[750px] pt-20 flex items-center justify-center overflow-hidden",
         "bg-violet-50/30",
         className,
       )}

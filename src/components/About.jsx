@@ -1,18 +1,156 @@
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "../utils/cn";
 import SectionHeader from "./SectionHeader";
 import ResumeCard from "./ResumeCard";
-import newMe from "../assets/images/new-me-ani.png";
+import avatarMeAni from "../assets/images/avatar-me-ani.png";
+import avatarVd from "../assets/avatar-video.mp4";
 import ele1 from "../assets/images/ele1.png";
 import GraduateIcon from "../assets/images/graduate.png";
-import LampIcon from "../assets/images/lamp.png";
+import EarthIcon from "../assets/images/earth.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faVolumeHigh, faCircleStop, faPlay } from "@fortawesome/free-solid-svg-icons";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const About = ({ className }) => {
   const sectionRef = useRef(null);
+  const videoRef = useRef(null);
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [currentCharIndex, setCurrentCharIndex] = useState(-1);
+  const [lang, setLang] = useState("ko-KR");
+  const nameKR = import.meta.env.VITE_CONTACT_NAMEKR;
+  const nameEN = import.meta.env.VITE_CONTACT_NAMEEN;
+  const nameJP = import.meta.env.VITE_CONTACT_NAMEJP;
+  const birthDate = import.meta.env.VITE_CONTACT_BIRTH;
+  const addressHere = import.meta.env.VITE_CONTACT_ADDRESS;
+  const phoneNumber = import.meta.env.VITE_CONTACT_PHONE;
+  const emailAddress = import.meta.env.VITE_CONTACT_EMAIL;
+  const bioTexts = {
+    "ko-KR": `안녕하세요! 유연한 분석가, ${nameKR}이라고 합니다.. 잘 부탁해요!`,
+    "ja-JP": `こんにちは！柔軟な分析家、${nameJP}と申します。よろしくお願いします！`,
+  };
+
+  const handleSpeak = (targetLang = "ko-KR") => {
+    if (isSpeaking) {
+      window.speechSynthesis.cancel();
+      setIsSpeaking(false);
+      setCurrentCharIndex(-1);
+      if (videoRef.current) {
+        videoRef.current.pause();
+        videoRef.current.currentTime = 0;
+      }
+      return;
+    }
+
+    setLang(targetLang);
+    const utterance = new SpeechSynthesisUtterance(bioTexts[targetLang]);
+    const voices = window.speechSynthesis.getVoices();
+    const selectedVoice = voices.find((voice) => {
+      if (targetLang === "ja-JP") {
+        // 일본어 여성 목소리
+        return (
+          voice.lang === "ja-JP" &&
+          (voice.name.includes("Google") ||
+            voice.name.includes("Haruka") ||
+            voice.name.includes("Nanami"))
+        );
+      } else {
+        // 한국어 여성 목소리
+        return (
+          voice.lang === "ko-KR" &&
+          (voice.name.includes("Google") ||
+            voice.name.includes("Heami") ||
+            voice.name.includes("SunHi"))
+        );
+      }
+    });
+    if (selectedVoice) {
+      utterance.voice = selectedVoice;
+    }
+
+    utterance.lang = targetLang;
+    utterance.rate = targetLang === "ja-JP" ? 0.9 : 1.0;
+
+    utterance.onstart = () => {
+      setIsSpeaking(true);
+      if (videoRef.current) videoRef.current.play();
+    };
+
+    // 일본어일 때와 한국어일 때 설정 차별화
+    utterance.lang = targetLang;
+    utterance.rate = targetLang === "ja-JP" ? 0.9 : 1.0; // 일본어는 조금 더 천천히
+
+    utterance.onstart = () => {
+      setIsSpeaking(true);
+      if (videoRef.current) videoRef.current.play();
+    };
+
+    utterance.onboundary = (event) => {
+      if (event.name === "word" || event.name === "sentence") {
+        setCurrentCharIndex(event.charIndex);
+      }
+    };
+
+    utterance.onend = () => {
+      setIsSpeaking(false);
+      setCurrentCharIndex(-1);
+      if (videoRef.current) {
+        videoRef.current.pause();
+        videoRef.current.currentTime = 0;
+      }
+    };
+
+    utterance.onerror = () => {
+      setIsSpeaking(false);
+      setCurrentCharIndex(-1);
+      if (videoRef.current) {
+        videoRef.current.pause();
+        videoRef.current.currentTime = 0;
+      }
+    };
+
+    window.speechSynthesis.speak(utterance);
+  };
+
+  // 텍스트 하이라이트 로직 (일본어 대응)
+  const renderHighlightedText = () => {
+    const currentText = bioTexts[lang];
+
+    const words =
+      lang === "ko-KR"
+        ? currentText.split(" ")
+        : currentText.split(/(?<=[はがにをもた、。])/);
+
+    let cumulativeIndex = 0;
+
+    return words.map((word, index) => {
+      const startIndex = cumulativeIndex;
+      const endIndex = startIndex + word.length;
+
+      cumulativeIndex += word.length + (lang === "ko-KR" ? 1 : 0);
+
+      const isCurrentWord =
+        isSpeaking &&
+        currentCharIndex >= startIndex &&
+        currentCharIndex < endIndex;
+
+      return (
+        <span
+          key={`${lang}-${index}`}
+          className={cn(
+            "inline-block mr-1.5 transition-all duration-300",
+            isCurrentWord
+              ? "text-violet-600 font-bold underline decoration-violet-300 transform scale-105"
+              : "text-slate-600",
+          )}
+        >
+          {word}
+        </span>
+      );
+    });
+  };
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -124,36 +262,90 @@ const About = ({ className }) => {
             "about-profile w-full flex flex-col lg:flex-row items-center justify-center gap-8 pb-12",
           )}
         >
-          <div
-            className={cn(
-              "reveal-item w-32 h-32 lg:w-[180px] lg:h-[180px] shrink-0",
-              "rounded-full overflow-hidden border-4 border-violet-50 shadow-lg",
-            )}
-          >
-            <img
-              src={newMe}
-              alt="heejincho"
-              className="w-full h-full object-cover"
-            />
+          {/* Avatar Video/Image */}
+          <div className="relative group reveal-item">
+            <div
+              className={cn(
+                "w-32 h-32 lg:w-[180px] lg:h-[300px] shrink-0 p-1",
+                "rounded-3xl overflow-hidden shadow-lg relative bg-white",
+              )}
+            >
+              <video
+                ref={videoRef}
+                src={avatarVd}
+                className={cn(
+                  "w-full h-full object-cover transition-opacity duration-300",
+                  isSpeaking ? "opacity-100" : "opacity-0 absolute inset-0",
+                )}
+                muted
+                playsInline
+                loop
+              />
+              <img
+                src={avatarMeAni}
+                alt="heejincho"
+                className={cn(
+                  "w-full h-full object-cover transition-opacity duration-300",
+                  isSpeaking ? "opacity-0" : "opacity-100",
+                )}
+              />
+            </div>
+
+            {/* Speak Button Overlay */}
+            <button
+              onClick={handleSpeak}
+              className={cn(
+                "absolute right-2 bottom-18 w-10 h-10 lg:w-8 h-8",
+                "rounded-full flex items-center justify-center",
+                "bg-neutral-100 text-neutral-300 shadow-lg hover:bg-neutral-300 text-neutral-400 transition-all transform",
+                "z-30 cursor-pointer",
+              )}
+              title={isSpeaking ? "Stop Speaking" : "Stop Speaking"}
+            >
+              <FontAwesomeIcon
+                icon={isSpeaking ? faCircleStop : faVolumeHigh}
+              />
+            </button>
+            <div className="flex flex-col mt-2 p-2 gap-4">
+              <div className="flex gap-2">
+                {/* 한국어 버튼 */}
+                <button
+                  onClick={() => handleSpeak("ko-KR")}
+                  className="flex items-center gap-2 px-4 py-2 bg-violet-100 rounded-full text-sm cursor-pointer hover:bg-violet-200 transition-colors focus:bg-violet-300"
+                >
+                  <FontAwesomeIcon icon={faPlay} /> KR
+                </button>
+                {/* 일본어 버튼 추가 */}
+                <button
+                  onClick={() => handleSpeak("ja-JP")}
+                  className="flex items-center gap-2 px-4 py-2 bg-pink-100 rounded-full text-sm cursor-pointer hover:bg-pink-200 transition-colors focus:bg-pink-300"
+                >
+                  <FontAwesomeIcon icon={faPlay} /> JP
+                </button>
+              </div>
+            </div>
           </div>
 
           <div className="flex flex-col gap-6 text-center lg:text-left">
             <div className="reveal-item">
               <h3 className="text-slate-800 font-medium text-[20px] lg:text-[22px]">
-                조희진 | HEEJIN CHO
+                {nameKR} | {nameEN}
               </h3>
             </div>
 
             <div className="grid grid-cols-1 gap-2 text-slate-600 text-[16px] font-light reveal-item">
               <div className="px-4 py-1 bg-violet-50 rounded-full inline-block self-center lg:self-start">
-                1993.12.
+                {birthDate}
               </div>
-              <div className="px-4 py-1">경기도 화성시 동탄구</div>
+              <div className="px-4 py-1">{addressHere}</div>
               <div className="px-4 py-1 bg-violet-50 rounded-full inline-block self-center lg:self-start">
-                010.8860.2480
+                {phoneNumber}
               </div>
-              <div className="px-4 py-1">hiijaise@gmail.com</div>
+              <div className="px-4 py-1">{emailAddress}</div>
             </div>
+            <p className="flex flex-row leading-relaxed text-slate-600 text-[16px] font-light reveal-item">
+              {renderHighlightedText()}
+            </p>
           </div>
         </div>
 
@@ -162,7 +354,9 @@ const About = ({ className }) => {
           {/* Education Column */}
           <div className="about-resume-col flex flex-col gap-10">
             <div className="about-sub-header flex flex-col items-center bg-white/90 backdrop-blur-sm lg:backdrop-blur-none z-10">
-              <div className="w-[70px] h-[70px] text-3xl lg:text-4xl"><img src={GraduateIcon} alt="Graduate" /></div>
+              <div className="w-[70px] h-[70px] text-3xl lg:text-4xl">
+                <img src={GraduateIcon} alt="Graduate" />
+              </div>
               <h2 className="font-display font-medium text-violet-400 text-[32px] lg:text-[48px]">
                 Education
               </h2>
@@ -197,7 +391,9 @@ const About = ({ className }) => {
           {/* Experience Column */}
           <div className="about-resume-col flex flex-col gap-10">
             <div className="about-sub-header flex flex-col items-center bg-white/90 backdrop-blur-sm lg:backdrop-blur-none z-10">
-              <div className="w-[70px] h-[70px] text-3xl lg:text-4xl"><img src={LampIcon} alt="Lamp" /></div>
+              <div className="w-[70px] h-[70px] text-3xl lg:text-4xl">
+                <img src={EarthIcon} alt="Earth" />
+              </div>
               <h2 className="font-display font-medium text-violet-400 text-[32px] lg:text-[48px]">
                 Experience
               </h2>

@@ -112,7 +112,7 @@ const Nav = ({
             )}
           >
             <a 
-              href={SITE_LINKS.common.github} 
+              href={SITE_LINKS.common.github}
               target="_blank" 
               rel="noopener noreferrer"
               className="p-2 group"

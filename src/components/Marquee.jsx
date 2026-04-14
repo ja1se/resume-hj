@@ -49,21 +49,21 @@ const marqueeItems = [
   "Documentation", "Feedback", "Iteration", "Launch", "Evaluation"
 ];
 
-const MarqueeRow = ({ items, direction = 'left', variant = 'light' }) => {
+const MarqueeRow = ({ items, direction = 'left', variant = 'light', className }) => {
   const containerRef = useRef(null);
   const trackRef = useRef(null);
 
   useLayoutEffect(() => {
     const track = trackRef.current;
-    const items = gsap.utils.toArray(track.children);
+    if (!track) return;
+    const children = gsap.utils.toArray(track.children);
     
-    // Calculate total width of one set of items
     let totalWidth = 0;
-    items.forEach(item => {
+    children.forEach(item => {
       totalWidth += item.offsetWidth + parseFloat(window.getComputedStyle(item).marginRight || 0);
     });
 
-    const moveDistance = totalWidth / 2; // We double items for seamlessness
+    const moveDistance = totalWidth / 2;
     
     const tl = gsap.timeline({
       repeat: -1,
@@ -76,7 +76,6 @@ const MarqueeRow = ({ items, direction = 'left', variant = 'light' }) => {
         duration: 30,
       });
     } else {
-      // Start from offset for right direction
       gsap.set(track, { x: -moveDistance });
       tl.to(track, {
         x: `+=${moveDistance}`,
@@ -84,23 +83,24 @@ const MarqueeRow = ({ items, direction = 'left', variant = 'light' }) => {
       });
     }
 
-    // Hover interaction
     const onEnter = () => gsap.to(tl, { timeScale: 0, duration: 0.5 });
     const onLeave = () => gsap.to(tl, { timeScale: 1, duration: 0.5 });
 
-    containerRef.current.addEventListener('mouseenter', onEnter);
-    containerRef.current.addEventListener('mouseleave', onLeave);
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener('mouseenter', onEnter);
+      container.addEventListener('mouseleave', onLeave);
+    }
 
     return () => {
       tl.kill();
-      if (containerRef.current) {
-        containerRef.current.removeEventListener('mouseenter', onEnter);
-        containerRef.current.removeEventListener('mouseleave', onLeave);
+      if (container) {
+        container.removeEventListener('mouseenter', onEnter);
+        container.removeEventListener('mouseleave', onLeave);
       }
     };
   }, [direction]);
 
-  // Double the items for seamless loop
   const duplicatedItems = [...items, ...items];
   
   return (
@@ -110,7 +110,8 @@ const MarqueeRow = ({ items, direction = 'left', variant = 'light' }) => {
         "overflow-hidden whitespace-nowrap py-5 marquee-container border-y relative",
         variant === 'light' 
           ? "bg-white text-violet-400 border-violet-100" 
-          : "bg-gradient-to-r from-violet-300 to-violet-600 text-white border-transparent"
+          : "bg-gradient-to-r from-violet-300 to-violet-600 text-white border-transparent",
+        className
       )}
     >
       <div 
@@ -135,9 +136,19 @@ const MarqueeRow = ({ items, direction = 'left', variant = 'light' }) => {
 
 const Marquee = ({ className }) => {
   return (
-    <div className={cn("w-full flex flex-col -space-y-px overflow-hidden", className)}>
-      <MarqueeRow items={marqueeItems} direction="left" variant="light" />
-      <MarqueeRow items={marqueeItems} direction="right" variant="dark" />
+    <div className={cn("relative z-[100] w-full h-[230px] flex items-center justify-center overflow-hidden -mt-25", className)}>
+      <MarqueeRow 
+        items={marqueeItems} 
+        direction="left" 
+        variant="light" 
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vw] rotate-3 z-[110]"
+      />
+      <MarqueeRow 
+        items={marqueeItems} 
+        direction="right" 
+        variant="dark" 
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vw] -rotate-7 z-[105]"
+      />
     </div>
   );
 };
