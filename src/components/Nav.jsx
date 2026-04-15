@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { cn } from "../utils/cn";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { faBlog } from "@fortawesome/free-solid-svg-icons";
 import { SITE_LINKS } from "../constants/links";
 import logo from "../assets/images/logo.svg";
 
@@ -55,7 +55,7 @@ const Nav = ({
   return (
     <nav
       className={cn(
-        "top-0 left-0 w-full z-50 border-b transition-all duration-500",
+        "top-0 left-0 w-full z-[106] border-b transition-all duration-500",
         position,
         THEME_STYLES[theme],
         className
@@ -125,7 +125,7 @@ const Nav = ({
               rel="noopener noreferrer"
               className="p-2 group"
             >
-              <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="text-slate-700 text-lg transition-colors duration-300 hover:text-violet-500" />
+              <FontAwesomeIcon icon={faBlog} className="mb-1 text-slate-700 text-lg transition-colors duration-300 hover:text-violet-500" />
             </a>
           </div>
         </div>

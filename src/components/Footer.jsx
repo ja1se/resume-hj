@@ -6,12 +6,17 @@ import { cn } from "../utils/cn";
 import Button from "./Button";
 import { SITE_LINKS } from '../constants/links';
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPhone, faEnvelope, faBlog } from "@fortawesome/free-solid-svg-icons";
+
 gsap.registerPlugin(ScrollTrigger);
 
-const ContactItem = ({ label, value, className }) => (
-  <div className={cn("footer-contact-item py-6 px-8 flex items-center justify-center md:justify-start gap-[18px] w-full bg-transparent", className)}>
+const ContactItem = ({ label, value, icon, className }) => (
+  <div className={cn("footer-contact-item py-6 px-8 flex items-center justify-center md:justify-start gap-[18px] w-full bg-violet-50/50", className)}>
     {/* 아이콘 영역 */}
-    <div className="contact-icon shrink-0 size-[44px] rounded-full bg-gradient-to-br from-violet-200 to-violet-500 shadow-sm" />
+    <div className="contact-icon shrink-0 size-[44px] rounded-full bg-gradient-to-br from-violet-200 to-violet-500 shadow-sm flex items-center justify-center text-white">
+      <FontAwesomeIcon icon={icon} className="text-lg" />
+    </div>
     <div className="flex flex-col gap-0.5 min-w-0">
       <span className="text-[10px] uppercase tracking-[0.2em] text-violet-400 font-semibold">
         {label}
@@ -148,7 +153,7 @@ const Footer = ({ className }) => {
           <form
             ref={formRef}
             onSubmit={handleSubmit}
-            className="footer-form w-full flex flex-col gap-10 bg-white/40 p-8 lg:p-12 rounded-[32px] border border-white/60 backdrop-blur-sm shadow-sm"
+            className="footer-form w-full flex flex-col gap-10 bg-white/80 p-8 lg:p-12 rounded-[32px] border border-white/60 backdrop-blur-sm shadow-sm"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="flex flex-col gap-2">
@@ -183,7 +188,7 @@ const Footer = ({ className }) => {
               <textarea
                 name="message"
                 required
-                placeholder="전하고 싶은 메시지를 남겨주세요"
+                placeholder="전하고 싶은 메시지를 남겨주세요 ◡̎"
                 className="w-full bg-transparent border-b border-slate-200 px-1 focus:border-violet-400 outline-none transition-all placeholder:text-slate-300 font-light"
               />
             </div>
@@ -204,14 +209,32 @@ const Footer = ({ className }) => {
             className="footer-card w-full max-w-[900px] bg-white border border-slate-200 rounded-[24px] overflow-hidden shadow-xl shadow-violet-100/30 bg-[linear-gradient(168deg,_#ffffff_12%,_#f5f3ff_116%)]"
           >
             <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-100">
-              <ContactItem label="Phone" value={import.meta.env.VITE_CONTACT_PHONE} className="text-slate-900" />
-              <ContactItem label="Email" value={import.meta.env.VITE_CONTACT_EMAIL} className="text-slate-900" />
-              <ContactItem label="Socials" value={<a 
-              href={SITE_LINKS.common.github}
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-slate-900 hover:text-violet-500"
-            >Tistory Blog</a>} />
+              <ContactItem 
+                label="Phone" 
+                value={import.meta.env.VITE_CONTACT_PHONE} 
+                icon={faPhone} 
+                className="text-slate-900" 
+              />
+              <ContactItem 
+                label="Email" 
+                value={import.meta.env.VITE_CONTACT_EMAIL} 
+                icon={faEnvelope} 
+                className="text-slate-900" 
+              />
+              <ContactItem 
+                label="Socials" 
+                icon={faBlog}
+                value={
+                  <a 
+                    href={SITE_LINKS.common.blog}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-slate-900 hover:text-violet-500 transition-colors"
+                  >
+                    Tistory Blog
+                  </a>
+                } 
+              />
             </div>
           </div>
         </div>

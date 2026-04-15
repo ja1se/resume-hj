@@ -25,5 +25,10 @@ export const SITE_LINKS = {
       plan: "https://www.figma.com/deck/f1bQEoFzHtqiELt34cOxw6/%ED%94%84%EB%A0%88%EC%A0%A0%ED%85%8C%EC%9D%B4%EC%85%98?node-id=101-205&t=UpIjAT4FQU5zmzxq-1",
       result: "https://wakuwaku-frontend.onrender.com/",
     },
-  }
+  },
+  archive: {
+    rupa: {
+      link: "https://drive.google.com/file/d/1rwLQrtRpO1OXVIEfBqLlpRybHz82IoBj/view?usp=sharing"
+    }
+  },
 };

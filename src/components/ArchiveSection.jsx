@@ -4,69 +4,53 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SectionHeader from "./SectionHeader";
 import ArchiveCard from "./ArchiveCard";
 import { cn } from "../utils/cn";
+import { SITE_LINKS } from "../constants/links";
 
 // Swiper imports
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Autoplay } from 'swiper/modules';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay } from "swiper/modules";
 
 // Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
+import "swiper/css";
+import "swiper/css/pagination";
 
 // Archive images
-import ele1 from '../assets/images/ele1.png'
-import ele2 from '../assets/images/ele2.png'
-import ele4 from '../assets/images/ele4.png'
+import archiveRupa from "../assets/images/archive-rupa.png";
+import ele1 from "../assets/images/ele1.png";
+import ele2 from "../assets/images/ele2.png";
+import ele4 from "../assets/images/ele4.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ARCHIVE_PROJECTS = [
-  {
-    id: 1,
-    title: "Deloitte",
-    description: "Project was about precision and detail oriented web development.",
-    image: ele1,
-    href: "#"
-  },
-  {
-    id: 2,
-    title: "Branding Identity",
-    description: "Creative branding and visual identity for a startup.",
-    image: ele2,
-    href: "#"
-  },
-  {
-    id: 3,
-    title: "UI Design System",
-    description: "Scalable design system for multi-platform applications.",
-    image: ele4,
-    href: "#"
-  },
-  {
-    id: 4,
-    title: "Web Accessibility",
-    description: "Improving user experience for diverse accessibility needs.",
-    image: ele1,
-    href: "#"
-  },
-  {
-    id: 5,
-    title: "AI OTT Platform",
-    description: "Future of media streaming with personalized AI curation.",
-    image: ele2,
-    href: "#"
-  },
-  {
-    id: 6,
-    title: "Design Tokens",
-    description: "Building a consistent design language across platforms.",
-    image: ele4,
-    href: "#"
-  }
-];
-
 const ArchiveSection = ({ id, className }) => {
   const sectionRef = useRef(null);
+
+  const ARCHIVE_PROJECTS = [
+    {
+      id: 1,
+      title: "RUPA from SoulBlend",
+      image: archiveRupa,
+      href: SITE_LINKS.archive.rupa?.link,
+    },
+    {
+      id: 2,
+      title: "Branding Identity",
+      image: ele2,
+      href: "#",
+    },
+    {
+      id: 3,
+      title: "UI Design System",
+      image: ele4,
+      href: "#",
+    },
+    {
+      id: 4,
+      title: "Web Accessibility",
+      image: ele1,
+      href: "#",
+    },
+  ];
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -93,25 +77,25 @@ const ArchiveSection = ({ id, className }) => {
   }, []);
 
   return (
-    <section 
-      id={id} 
+    <section
+      id={id}
       ref={sectionRef}
       className={cn(
         "relative bg-white w-full overflow-hidden",
-        "py-20 lg:py-32 flex flex-col items-center",
-        className
+        "lg:py-32 flex flex-col items-center",
+        className,
       )}
     >
       <div className="w-full flex flex-col items-center">
         {/* 1. Header Area */}
         <div className="mb-12 lg:mb-12 w-full">
-          <SectionHeader 
+          <SectionHeader
             title="Archive"
             description="어제보다 조금 더 성장한 오늘의 기록들이 차곡차곡 모였습니다."
-            className="pb-0 w-full" 
+            className="pb-0 w-full"
           />
         </div>
-        
+
         {/* 2. Swiper Carousel */}
         <div className="archive-swiper-container w-full px-6 lg:px-20">
           <Swiper
@@ -128,9 +112,8 @@ const ArchiveSection = ({ id, className }) => {
           >
             {ARCHIVE_PROJECTS.map((item) => (
               <SwiperSlide key={item.id} className="archive-card-wrapper">
-                <ArchiveCard 
+                <ArchiveCard
                   title={item.title}
-                  description={item.description}
                   image={item.image}
                   href={item.href}
                   className="w-full"

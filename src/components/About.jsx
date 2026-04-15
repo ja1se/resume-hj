@@ -222,7 +222,7 @@ const About = ({ className }) => {
       id="about"
       ref={sectionRef}
       className={cn(
-        "w-full pb-20 lg:pb-32 bg-white relative overflow-visible",
+        "w-full pb-32 bg-white relative overflow-visible",
         "flex flex-col items-center",
         className,
       )}
@@ -230,11 +230,11 @@ const About = ({ className }) => {
       <div
         className={cn(
           "w-full px-6 lg:px-20",
-          "flex flex-col items-center gap-12 lg:gap-20",
+          "flex flex-col items-center",
         )}
       >
         {/* Header Section */}
-        <div className="about-header-wrapper pt-20 relative w-full">
+        <div className="about-header-wrapper relative w-full">
           <SectionHeader
             title="About Me"
             description={
@@ -259,14 +259,14 @@ const About = ({ className }) => {
         {/* Profile Section */}
         <div
           className={cn(
-            "about-profile w-full flex flex-col lg:flex-row items-center justify-center gap-8 pb-12",
+            "about-profile w-full flex flex-col gap-20 pt-16 lg:flex-row items-center justify-center gap-8 pb-32",
           )}
         >
           {/* Avatar Video/Image */}
           <div className="relative group reveal-item">
             <div
               className={cn(
-                "w-32 h-32 lg:w-[180px] lg:h-[300px] shrink-0 p-1",
+                "w-[180px] lg:h-[300px] shrink-0 p-1",
                 "rounded-3xl overflow-hidden shadow-lg relative bg-white",
               )}
             >
@@ -295,7 +295,7 @@ const About = ({ className }) => {
             <button
               onClick={handleSpeak}
               className={cn(
-                "absolute right-2 bottom-18 w-10 h-10 lg:w-8 h-8",
+                "absolute right-2 bottom-18 w-8 h-8",
                 "rounded-full flex items-center justify-center",
                 "bg-neutral-100 text-neutral-300 shadow-lg hover:bg-neutral-300 text-neutral-400 transition-all transform",
                 "z-30 cursor-pointer",
@@ -306,7 +306,7 @@ const About = ({ className }) => {
                 icon={isSpeaking ? faCircleStop : faVolumeHigh}
               />
             </button>
-            <div className="flex flex-col mt-2 p-2 gap-4">
+            <div className="flex flex-col mt-4 p-2 gap-4">
               <div className="flex gap-2">
                 {/* 한국어 버튼 */}
                 <button
@@ -350,14 +350,14 @@ const About = ({ className }) => {
         </div>
 
         {/* Resume Grid Section */}
-        <div className="about-resume-grid w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20">
+        <div className="about-resume-grid w-full grid grid-cols-1 lg:grid-cols-2 gap-32">
           {/* Education Column */}
           <div className="about-resume-col flex flex-col gap-10">
             <div className="about-sub-header flex flex-col items-center bg-white/90 backdrop-blur-sm lg:backdrop-blur-none z-10">
               <div className="w-[70px] h-[70px] text-3xl lg:text-4xl">
                 <img src={GraduateIcon} alt="Graduate" />
               </div>
-              <h2 className="font-display font-medium text-violet-400 text-[32px] lg:text-[48px]">
+              <h2 className="font-display font-medium text-violet-400 text-[42px] lg:text-[48px]">
                 Education
               </h2>
             </div>
@@ -394,7 +394,7 @@ const About = ({ className }) => {
               <div className="w-[70px] h-[70px] text-3xl lg:text-4xl">
                 <img src={EarthIcon} alt="Earth" />
               </div>
-              <h2 className="font-display font-medium text-violet-400 text-[32px] lg:text-[48px]">
+              <h2 className="font-display font-medium text-violet-400 text-[42px] lg:text-[48px]">
                 Experience
               </h2>
             </div>
