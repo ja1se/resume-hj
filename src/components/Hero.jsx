@@ -170,7 +170,7 @@ const Hero = ({ className }) => {
           <div
             className={cn(
               "hero-text-item absolute w-16 lg:w-24 h-auto opacity-80 pointer-events-none",
-              "top-1 lg:top-2 left-1/2 -translate-x-1/2 lg:left-52 lg:translate-x-0",
+              "top-1 left-48 lg:top-2 -translate-x-1/2 lg:left-40 lg:translate-x-0",
             )}
           >
             <img
