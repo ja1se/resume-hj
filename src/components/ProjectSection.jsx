@@ -84,7 +84,7 @@ const ProjectSection = ({ project, reverse = false, className }) => {
       id={id}
       ref={sectionRef}
       className={cn(
-        "py-32 lg:px-56 flex flex-col items-center justify-center overflow-hidden",
+        "py-32 px-6 lg:px-56 flex flex-col items-center justify-center overflow-hidden",
         className,
       )}
     >

@@ -39,7 +39,7 @@ const SectionHeader = ({ title, description, className }) => {
     { 
       opacity: 0, 
       y: 10, 
-      letterSpacing: "0.2em",
+      letterSpacing: "0.1em",
     },
     {
       opacity: 1,
@@ -48,7 +48,7 @@ const SectionHeader = ({ title, description, className }) => {
       filter: "blur(0px)",
       duration: 1.5,
       stagger: {
-        each: 0.05,
+        each: 0.07,
         from: "random",
       },
       ease: "power2.out",

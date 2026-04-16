@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "../utils/cn";
+import Button from "./Button";
 import SectionHeader from "./SectionHeader";
 import ResumeCard from "./ResumeCard";
 import avatarMeAni from "../assets/images/avatar-me-ani.png";
@@ -218,29 +219,15 @@ const About = ({ className }) => {
   }, []);
 
   return (
-    <section
-      id="about"
-      ref={sectionRef}
-      className={cn(
-        "w-full pb-32 bg-white relative overflow-visible",
-        "flex flex-col items-center",
-        className,
-      )}
-    >
-      <div
-        className={cn(
-          "w-full px-6 lg:px-20",
-          "flex flex-col items-center",
-        )}
-      >
+    <section id="about" ref={sectionRef} className={cn("w-full pb-32 bg-white relative overflow-visible", "flex flex-col items-center", className)}>
+      <div className={cn("w-full px-6 lg:px-20", "flex flex-col items-center")}>
         {/* Header Section */}
         <div className="about-header-wrapper relative w-full">
           <SectionHeader
             title="About Me"
             description={
               <>
-                어떤 상황에도 넓은 시야를 확보하는 부엉이처럼 객관적인 거리를
-                유지하며 <br className="hidden lg:block" />
+                어떤 상황에도 넓은 시야를 확보하는 부엉이처럼 객관적인 거리를 유지하며 <br className="hidden lg:block" />
                 문제를 바라보는 정확한 원인을 찾아내는 유연한 분석가입니다.{" "}
               </>
             }
@@ -248,47 +235,17 @@ const About = ({ className }) => {
           />
 
           <div className="absolute right-0 top-12 w-48 lg:w-72 opacity-60 hidden lg:block pointer-events-none">
-            <img
-              src={ele1}
-              alt=""
-              className="w-full h-auto object-contain rounded-[12px]"
-            />
+            <img src={ele1} alt="" className="w-full h-auto object-contain rounded-[12px]" />
           </div>
         </div>
 
         {/* Profile Section */}
-        <div
-          className={cn(
-            "about-profile w-full flex flex-col gap-20 pt-16 lg:flex-row items-center justify-center gap-8 pb-32",
-          )}
-        >
+        <div className={cn("about-profile w-full flex flex-col gap-20 pt-16 lg:flex-row items-center justify-center gap-8 pb-32")}>
           {/* Avatar Video/Image */}
           <div className="relative group reveal-item">
-            <div
-              className={cn(
-                "w-[180px] lg:h-[300px] shrink-0 p-1",
-                "rounded-3xl overflow-hidden shadow-lg relative bg-white",
-              )}
-            >
-              <video
-                ref={videoRef}
-                src={avatarVd}
-                className={cn(
-                  "w-full h-full object-cover transition-opacity duration-300",
-                  isSpeaking ? "opacity-100" : "opacity-0 absolute inset-0",
-                )}
-                muted
-                playsInline
-                loop
-              />
-              <img
-                src={avatarMeAni}
-                alt="heejincho"
-                className={cn(
-                  "w-full h-full object-cover transition-opacity duration-300",
-                  isSpeaking ? "opacity-0" : "opacity-100",
-                )}
-              />
+            <div className={cn("w-[180px] lg:h-[300px] shrink-0 p-1", "rounded-3xl overflow-hidden shadow-lg relative bg-white")}>
+              <video ref={videoRef} src={avatarVd} className={cn("w-full h-full object-cover transition-opacity duration-300", isSpeaking ? "opacity-100" : "opacity-0 absolute inset-0")} muted playsInline loop />
+              <img src={avatarMeAni} alt="heejincho" className={cn("w-full h-full object-cover transition-opacity duration-300", isSpeaking ? "opacity-0" : "opacity-100")} />
             </div>
 
             {/* Speak Button Overlay */}
@@ -309,19 +266,13 @@ const About = ({ className }) => {
             <div className="flex flex-col mt-4 p-2 gap-4">
               <div className="flex gap-2">
                 {/* 한국어 버튼 */}
-                <button
-                  onClick={() => handleSpeak("ko-KR")}
-                  className="flex items-center gap-2 px-4 py-2 bg-violet-100 rounded-full text-sm cursor-pointer hover:bg-violet-200 transition-colors focus:bg-violet-300"
-                >
+                <Button variant="ghost" onClick={() => handleSpeak("ko-KR")} className="flex items-center gap-2 px-4 py-2 bg-violet-100 rounded-full text-sm hover:bg-violet-200 transition-colors focus:bg-violet-300 min-h-0">
                   <FontAwesomeIcon icon={faPlay} /> KR
-                </button>
+                </Button>
                 {/* 일본어 버튼 추가 */}
-                <button
-                  onClick={() => handleSpeak("ja-JP")}
-                  className="flex items-center gap-2 px-4 py-2 bg-pink-100 rounded-full text-sm cursor-pointer hover:bg-pink-200 transition-colors focus:bg-pink-300"
-                >
+                <Button variant="ghost" onClick={() => handleSpeak("ja-JP")} className="flex items-center gap-2 px-4 py-2 bg-pink-100 rounded-full text-sm hover:bg-pink-200 transition-colors focus:bg-pink-300 min-h-0">
                   <FontAwesomeIcon icon={faPlay} /> JP
-                </button>
+                </Button>
               </div>
             </div>
           </div>
@@ -334,18 +285,12 @@ const About = ({ className }) => {
             </div>
 
             <div className="grid grid-cols-1 gap-2 text-slate-600 text-[16px] font-light reveal-item">
-              <div className="px-4 py-1 bg-violet-50 rounded-full inline-block self-center lg:self-start">
-                {birthDate}
-              </div>
+              <div className="px-4 py-1 bg-violet-50 rounded-full inline-block self-center lg:self-start">{birthDate}</div>
               <div className="px-4 py-1">{addressHere}</div>
-              <div className="px-4 py-1 bg-violet-50 rounded-full inline-block self-center lg:self-start">
-                {phoneNumber}
-              </div>
+              <div className="px-4 py-1 bg-violet-50 rounded-full inline-block self-center lg:self-start">{phoneNumber}</div>
               <div className="px-4 py-1">{emailAddress}</div>
             </div>
-            <p className="flex flex-row leading-relaxed text-slate-600 text-[16px] font-light reveal-item">
-              {renderHighlightedText()}
-            </p>
+            <p className="flex flex-row leading-relaxed text-slate-600 text-[16px] font-light reveal-item">{renderHighlightedText()}</p>
           </div>
         </div>
 
@@ -357,33 +302,15 @@ const About = ({ className }) => {
               <div className="w-[70px] h-[70px] text-3xl lg:text-4xl">
                 <img src={GraduateIcon} alt="Graduate" />
               </div>
-              <h2 className="font-display font-medium text-violet-400 text-[42px] lg:text-[48px]">
-                Education
-              </h2>
+              <h2 className="font-display font-medium text-violet-400 text-[42px] lg:text-[48px]">Education</h2>
             </div>
 
             <div className="about-resume-list flex flex-col gap-6">
               <div className="resume-card-wrapper">
-                <ResumeCard
-                  date="2025.10 - 2026 Present"
-                  title={
-                    "챗GPT 생성형 AI를 활용한 반응형 웹콘텐츠\n(영상제작&코딩) 개발기획자 양성과정"
-                  }
-                  items={[
-                    "MBC아카데미컴퓨터학원",
-                    "기획, 디자인, 개발 과정에서 디자인, 영상, 코딩 툴 숙달",
-                  ]}
-                />
+                <ResumeCard date="2025.10 - 2026 Present" title={"챗GPT 생성형 AI를 활용한 반응형 웹콘텐츠\n(영상제작&코딩) 개발기획자 양성과정"} items={["MBC아카데미컴퓨터학원", "기획, 디자인, 개발 과정에서 디자인, 영상, 코딩 툴 숙달"]} />
               </div>
               <div className="resume-card-wrapper">
-                <ResumeCard
-                  date="2012.03 - 2016.06"
-                  title="한양 여자 대학교 일본어통번역학과 졸업"
-                  items={[
-                    "2012.06~07 도쿄 올림픽 기념 청소년센터 일본어학연수과정 수료",
-                    "2016 우등상 수상",
-                  ]}
-                />
+                <ResumeCard date="2012.03 - 2016.06" title="한양 여자 대학교 일본어통번역학과 졸업" items={["2012.06~07 도쿄 올림픽 기념 청소년센터 일본어학연수과정 수료", "2016 우등상 수상"]} />
               </div>
             </div>
           </div>
@@ -394,32 +321,18 @@ const About = ({ className }) => {
               <div className="w-[70px] h-[70px] text-3xl lg:text-4xl">
                 <img src={EarthIcon} alt="Earth" />
               </div>
-              <h2 className="font-display font-medium text-violet-400 text-[42px] lg:text-[48px]">
-                Experience
-              </h2>
+              <h2 className="font-display font-medium text-violet-400 text-[42px] lg:text-[48px]">Experience</h2>
             </div>
 
             <div className="about-resume-list flex flex-col gap-6">
               <div className="resume-card-wrapper">
-                <ResumeCard
-                  date="2025.01 - 2026 Present"
-                  title="서울시 블로그메이트 활동"
-                  items={["한강 드론 축제 등 서울시 홍보 블로그 포스팅 작성"]}
-                />
+                <ResumeCard date="2025.01 - 2026 Present" title="서울시 블로그메이트 활동" items={["한강 드론 축제 등 서울시 홍보 블로그 포스팅 작성"]} />
               </div>
               <div className="resume-card-wrapper">
-                <ResumeCard
-                  date="2016.01 - 2016.02"
-                  title="도쿄 타카다노바바 신와 외국어 아카데미 수료"
-                  items={["일본 현지에서 일본어 어학 기술 습득"]}
-                />
+                <ResumeCard date="2016.01 - 2016.02" title="도쿄 타카다노바바 신와 외국어 아카데미 수료" items={["일본 현지에서 일본어 어학 기술 습득"]} />
               </div>
               <div className="resume-card-wrapper">
-                <ResumeCard
-                  date="2015.09 - 2016.01"
-                  title="일본 호텔 해외취업 연수과정"
-                  items={["한양여자대학교와 한국 한국산업인력공단 주최 연수"]}
-                />
+                <ResumeCard date="2015.09 - 2016.01" title="일본 호텔 해외취업 연수과정" items={["한양여자대학교와 한국 한국산업인력공단 주최 연수"]} />
               </div>
             </div>
           </div>
