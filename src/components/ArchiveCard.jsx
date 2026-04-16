@@ -11,9 +11,9 @@ import { cn } from '../utils/cn';
 const ArchiveCard = ({ title, image, href, className }) => {
   return (
     <div className={cn("flex flex-col items-start w-[350px]", className)}>
-      <div className="bg-white border border-slate-300 flex flex-col items-center overflow-hidden pt-5 px-px pb-px relative rounded-[15px] shrink-0 w-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+      <div className="bg-white border border-slate-300 flex flex-col items-center overflow-hidden pt-5 px-px pb-px relative rounded-[15px] shrink-0 w-full transition-all duration-300 cursor-pointer hover:shadow-lg hover:-translate-y-1">
         {/* Image Area (arc-img) */}
-        <div className="w-[calc(100%-40px)] aspect-[369/358] relative rounded-[10px] overflow-hidden bg-slate-100 shrink-0">
+        <div className="w-[calc(100%-40px)] aspect-[369/358] relative rounded-[10px] overflow-hidden transition-all shrink-0">
           {image ? (
             <img 
               src={image} 
@@ -38,7 +38,7 @@ const ArchiveCard = ({ title, image, href, className }) => {
           
           {/* arc-icon (Button) */}
           <a 
-            href={href || "#"} 
+            href={href}
             target="_blank" 
             rel="noopener noreferrer"
             className="shrink-0 size-[51.7px] rounded-full border border-slate-300 flex items-center justify-center transition-all duration-200 hover:border-violet-400 hover:text-violet-400"

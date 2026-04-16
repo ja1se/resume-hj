@@ -88,7 +88,7 @@ const SectionHeader = ({ title, description, className }) => {
     <div
       ref={containerRef}
       className={cn(
-        "w-full px-6 lg:px-20 z-20 bg-white",
+        "w-full px-6 pt-20 lg:px-20 z-20 bg-white",
         "flex flex-col items-center text-center",
         className,
       )}
@@ -106,7 +106,7 @@ const SectionHeader = ({ title, description, className }) => {
         <h2
           className={cn(
             "header-title font-display font-semibold text-violet-400",
-            "text-[32px] lg:text-[64px] leading-[1.2]",
+            "text-[48px] lg:text-[64px] leading-[1.5]",
           )}
         >
           {title}
@@ -114,11 +114,11 @@ const SectionHeader = ({ title, description, className }) => {
 
         {/* Description */}
         {description && (
-          <div className="desc-wrapper mt-2 max-w-2xl text-center">
+          <div className="desc-wrapper mt-2 max-w-md text-center">
             <p
               className={cn(
                 "header-desc text-violet-400 font-light uppercase tracking-wider",
-                "text-[12px] lg:text-[14px] lg:leading-relaxed",
+                "text-[12px] leading-relaxed lg:text-[14px]",
               )}
             >
               {description}

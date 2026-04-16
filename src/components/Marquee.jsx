@@ -136,7 +136,7 @@ const MarqueeRow = ({ items, direction = 'left', variant = 'light', className })
 
 const Marquee = ({ className }) => {
   return (
-    <div className={cn("relative z-[100] w-full h-[230px] flex items-center justify-center overflow-hidden -mt-25", className)}>
+    <div className={cn("relative z-[100] w-full h-[300px] flex items-center justify-center overflow-hidden -mt-25", className)}>
       <MarqueeRow 
         items={marqueeItems} 
         direction="left" 

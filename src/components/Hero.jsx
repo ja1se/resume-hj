@@ -124,25 +124,6 @@ const Hero = ({ className }) => {
         ease: "sine.inOut",
         delay: tl.duration(),
       });
-
-      // 3. Background Gradient Movement (Rich Organic Effect)
-      gsap.to(".hero-bg-gradient-1", {
-        x: "3%",
-        y: "5%",
-        duration: 8,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
-
-      gsap.to(".hero-bg-gradient-2", {
-        x: "-4%",
-        y: "-6%",
-        duration: 10,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
     });
 
     return () => {
@@ -156,8 +137,8 @@ const Hero = ({ className }) => {
       id="home"
       ref={heroRef}
       className={cn(
-        "relative z-10 w-full h-[750px] pt-20 flex items-center justify-center overflow-hidden",
-        "bg-violet-50/30",
+        "relative z-10 w-full h-[850px] pt-20 flex items-center justify-center overflow-hidden lg:h-[750px]",
+        "bg-violet-50/50",
         className,
       )}
     >
@@ -175,9 +156,7 @@ const Hero = ({ className }) => {
         {/* 몽환적인 그라데이션*/}
         <div className="hero-bg-layer hero-bg-gradient-1 absolute top-[-10%] right-[-5%] w-[50vw] h-[50vw] bg-white/10 rounded-full blur-[250px]" />
         <div className="hero-bg-layer hero-bg-gradient-2 absolute bottom-[-10%] left-[-5%] w-[40vw] h-[40vw] bg-white/10 rounded-full blur-[300px]" />
-
-        {/* 전체적인 오버레이 틴트 */}
-        <div className="hero-bg-layer absolute inset-0" />
+        <div className="absolute inset-x-0 bottom-0 h-70 bg-gradient-to-t from-white via-white/50 to-transparent z-10" />
       </div>
 
       <div
@@ -191,7 +170,7 @@ const Hero = ({ className }) => {
           <div
             className={cn(
               "hero-text-item absolute w-16 lg:w-24 h-auto opacity-80 pointer-events-none",
-              "-top-8 lg:top-2 left-1/2 -translate-x-1/2 lg:left-39 lg:translate-x-0",
+              "top-1 left-48 lg:top-2 -translate-x-1/2 lg:left-40 lg:translate-x-0",
             )}
           >
             <img
@@ -204,13 +183,13 @@ const Hero = ({ className }) => {
           <div className="hero-text-item">
             <h2
               className={cn(
-                "text-slate-900 text-[28px] lg:text-[36px] font-medium leading-[1.4] lg:leading-[1.5]",
-                "tracking-tight mb-6",
+                "text-slate-900 text-[28px] lg:text-[36px] font-medium leading-[1.5]",
+                "tracking-tight mb-5 lg:mb-6",
               )}
             >
               브랜드의
-              <span className="hero-keyword text-violet-500 block lg:inline lg:ml-20">
-                숨은 결
+              <span className="hero-keyword text-violet-500 ml-20 lg:inline">
+               숨은 결
               </span>
               을<br />
               찾아내는{" "}
@@ -225,7 +204,7 @@ const Hero = ({ className }) => {
           </div>
 
           <div className="hero-text-item">
-            <p className="text-slate-500 text-base lg:text-lg font-light leading-[1.8] mb-10 max-w-xs lg:max-w-md">
+            <p className="text-slate-500 text-base lg:text-lg font-light leading-[1.8] mb-7 lg:mb-10 max-w-xs lg:max-w-md">
               부엉이의 부리부리한 눈처럼 날카로운 통찰력으로 문제의 핵심을
               꿰뚫다!
             </p>
@@ -255,9 +234,9 @@ const Hero = ({ className }) => {
         <div
           ref={imageRef}
           className={cn(
-            "hero-image relative -m-10 z-20",
+            "hero-image relative -m-10",
             "w-[300px] lg:w-[380px]",
-            "lg:shrink-0 will-change-transform",
+            "lg:z-20 shrink-0 will-change-transform",
           )}
         >
           <img
