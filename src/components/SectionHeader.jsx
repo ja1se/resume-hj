@@ -32,34 +32,26 @@ const SectionHeader = ({ title, description, className }) => {
         },
       });
 
-      // 2. 설명글 애니메이션
+      // 2. 설명글 애니메이션: 아래에서 위로 부드럽게 올라오는 연출
       if (description) {
-  // .desc-char (글자들)에 애니메이션 적용
-  gsap.fromTo(".header-desc", 
-    { 
-      opacity: 0, 
-      y: 10, 
-      letterSpacing: "0.1em",
-    },
-    {
-      opacity: 1,
-      y: 0,
-      letterSpacing: "0em",
-      filter: "blur(0px)",
-      duration: 1.5,
-      stagger: {
-        each: 0.07,
-        from: "random",
-      },
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: ".header-title",
-        start: "top 85%",
-        toggleActions: "play none none reverse",
-      },
-    }
-  );
-}
+        gsap.fromTo(".header-desc", 
+          { 
+            opacity: 0, 
+            y: 30,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1.2,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: ".header-title",
+              start: "top 85%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      }
 
       // 3. 스파클 아이콘 연출
       gsap.fromTo(
@@ -117,8 +109,8 @@ const SectionHeader = ({ title, description, className }) => {
           <div className="desc-wrapper mt-2 max-w-md text-center">
             <p
               className={cn(
-                "header-desc text-violet-400 font-light uppercase tracking-wider",
-                "text-[12px] leading-relaxed lg:text-[14px]",
+                "header-desc text-violet-400 font-light uppercase tracking-wider lg:whitespace-nowrap",
+                "text-[12px] leading-relaxed lg:text-[14px] leading-relaxed",
               )}
             >
               {description}

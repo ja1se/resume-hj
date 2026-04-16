@@ -3,8 +3,8 @@ import { gsap } from "gsap";
 import { cn } from "../utils/cn";
 
 const SIZE_STYLES = {
-  sm: "px-[27.87px] py-[8.96px] text-[16px] min-h-[46px]",
-  lg: "px-[45.21px] py-[14.53px] text-[28px] min-h-[71px] w-full sm:w-[165px]",
+  sm: "px-[28px] py-[9px] text-[16px] min-h-[46px]",
+  lg: "px-[45px] py-[14px] text-[28px] min-h-[71px] w-full sm:w-[165px]",
 };
 
 const VARIANT_STYLES = {
@@ -93,14 +93,14 @@ const Button = forwardRef(({
         rel={target === "_blank" ? "noopener noreferrer" : undefined}
         {...commonProps}
       >
-        <span className="relative z-10">{children}</span>
+        <span className="relative z-10 flex items-center justify-center gap-[inherit]">{children}</span>
       </a>
     );
   }
 
   return (
     <button disabled={disabled} {...commonProps}>
-      <span className="relative z-10">{children}</span>
+      <span className="relative z-10 flex items-center justify-center gap-[inherit]">{children}</span>
     </button>
   );
 });
