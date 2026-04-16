@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { SITE_LINKS } from "../constants/links";
+import Button from "./Button";
 import logo from "../assets/images/logo.svg";
 
 /**
@@ -88,19 +89,20 @@ const Nav = ({
           <ul className="flex items-center gap-0 lg:gap-1">
             {links.map(({ label, href }) => (
               <li key={href}>
-                <button
+                <Button
+                  variant="ghost"
                   onClick={() => onLinkClick?.(href)}
                   className={cn(
-                    "px-2 lg:px-4 py-2 rounded-full",
+                    "px-2 lg:px-4 py-2 rounded-full min-h-0",
                     "text-[13px] lg:text-[16px] font-light transition-all duration-200",
-                    "hover:cursor-pointer hover:text-violet-600",
+                    "hover:text-violet-600",
                     activeLink === href 
                       ? "text-violet-600 font-medium" 
                       : isScrolled ? "text-slate-800" : "text-slate-900"
                   )}
                 >
                   {label}
-                </button>
+                </Button>
               </li>
             ))}
           </ul>

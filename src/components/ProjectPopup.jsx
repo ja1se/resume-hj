@@ -1,6 +1,7 @@
 import React, { useLayoutEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { gsap } from "gsap";
+import Button from "./Button";
 
 /**
  * ProjectPopup Component - GSAP Clip-path Expansion
@@ -69,15 +70,16 @@ const ProjectPopup = ({ isOpen, onClose, project, mousePos }) => {
       className="fixed inset-0 z-[100] bg-white/95 backdrop-blur-md overflow-y-auto invisible"
     >
       {/* Close Button */}
-      <button
+      <Button
+        variant="ghost"
         onClick={handleClose}
-        className="fixed top-8 right-8 lg:top-12 lg:right-12 z-[110] p-4 hover:rotate-90 transition-transform duration-300 group"
+        className="fixed top-8 right-8 lg:top-12 lg:right-12 z-[110] p-4 hover:rotate-90 transition-transform duration-300 group rounded-full w-16 h-16 min-h-0"
       >
         <div className="relative w-8 h-8">
           <span className="absolute top-1/2 left-0 w-full h-0.5 bg-slate-900 rotate-45 group-hover:bg-violet-600" />
           <span className="absolute top-1/2 left-0 w-full h-0.5 bg-slate-900 -rotate-45 group-hover:bg-violet-600" />
         </div>
-      </button>
+      </Button>
 
       {/* Popup Content */}
       <div

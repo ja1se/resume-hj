@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "../utils/cn";
+import Button from "./Button";
 import SectionHeader from "./SectionHeader";
 import ResumeCard from "./ResumeCard";
 import avatarMeAni from "../assets/images/avatar-me-ani.png";
@@ -292,36 +293,39 @@ const About = ({ className }) => {
             </div>
 
             {/* Speak Button Overlay */}
-            <button
-              onClick={handleSpeak}
+            <Button
+              variant="ghost"
+              onClick={() => handleSpeak()}
               className={cn(
-                "absolute right-2 bottom-18 w-10 h-10 lg:w-8 h-8",
+                "absolute right-2 bottom-18 w-10 h-10 lg:w-8 h-8 min-h-0 p-0",
                 "rounded-full flex items-center justify-center",
                 "bg-neutral-100 text-neutral-300 shadow-lg hover:bg-neutral-300 text-neutral-400 transition-all transform",
-                "z-30 cursor-pointer",
+                "z-30",
               )}
-              title={isSpeaking ? "Stop Speaking" : "Stop Speaking"}
+              title={isSpeaking ? "Stop Speaking" : "Start Speaking"}
             >
               <FontAwesomeIcon
                 icon={isSpeaking ? faCircleStop : faVolumeHigh}
               />
-            </button>
+            </Button>
             <div className="flex flex-col mt-2 p-2 gap-4">
               <div className="flex gap-2">
                 {/* 한국어 버튼 */}
-                <button
+                <Button
+                  variant="ghost"
                   onClick={() => handleSpeak("ko-KR")}
-                  className="flex items-center gap-2 px-4 py-2 bg-violet-100 rounded-full text-sm cursor-pointer hover:bg-violet-200 transition-colors focus:bg-violet-300"
+                  className="flex items-center gap-2 px-4 py-2 bg-violet-100 rounded-full text-sm hover:bg-violet-200 transition-colors focus:bg-violet-300 min-h-0"
                 >
                   <FontAwesomeIcon icon={faPlay} /> KR
-                </button>
+                </Button>
                 {/* 일본어 버튼 추가 */}
-                <button
+                <Button
+                  variant="ghost"
                   onClick={() => handleSpeak("ja-JP")}
-                  className="flex items-center gap-2 px-4 py-2 bg-pink-100 rounded-full text-sm cursor-pointer hover:bg-pink-200 transition-colors focus:bg-pink-300"
+                  className="flex items-center gap-2 px-4 py-2 bg-pink-100 rounded-full text-sm hover:bg-pink-200 transition-colors focus:bg-pink-300 min-h-0"
                 >
                   <FontAwesomeIcon icon={faPlay} /> JP
-                </button>
+                </Button>
               </div>
             </div>
           </div>

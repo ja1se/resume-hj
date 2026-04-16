@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xxd /c/Users/PC/Desktop/resume/.git/HEAD)",
+      "Bash(rm /c/Users/PC/Desktop/resume/.git/index)",
+      "Bash(git reset *)",
+      "Bash(git verify-pack *3)",
+      "Bash(git verify-pack *)",
+      "Bash(git read-tree *)",
+      "Bash(git checkout *)",
+      "Bash(npx vite *)",
+      "Bash(curl -s http://localhost:5173)"
+    ]
+  }
+}
