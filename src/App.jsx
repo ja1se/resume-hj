@@ -9,6 +9,7 @@ import Footer from './components/Footer'
 import ArchiveSection from './components/ArchiveSection'
 import ScrollToTop from './components/ScrollToTop'
 import ProjectSection from './components/ProjectSection'
+import ChatBot from './components/ChatBot'
 import { PROJECTS } from './constants/projects'
 
 const App = () => {
@@ -79,8 +80,9 @@ const App = () => {
 
       <Footer />
       
-      {/* Scroll to Top Button */}
+      {/* Floating Elements */}
       <ScrollToTop />
+      <ChatBot />
     </div>
   );
 };
