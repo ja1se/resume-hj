@@ -29,6 +29,9 @@ export const SITE_LINKS = {
   archive: {
     rupa: {
       link: "https://drive.google.com/file/d/1rwLQrtRpO1OXVIEfBqLlpRybHz82IoBj/view?usp=sharing"
+    },
+    duzzonku: {
+      link: "https://duzzonku.vercel.app/"
     }
   },
 };

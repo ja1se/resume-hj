@@ -16,8 +16,7 @@ import "swiper/css/pagination";
 
 // Archive images
 import archiveRupa from "../assets/images/archive-rupa.png";
-import ele1 from "../assets/images/ele1.png";
-import ele2 from "../assets/images/ele2.png";
+import archiveDuzz from "../assets/images/archive-duzzonku.png";
 import ele4 from "../assets/images/ele4.png";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -34,9 +33,9 @@ const ArchiveSection = ({ id, className }) => {
     },
     {
       id: 2,
-      title: "Branding Identity",
-      image: ele2,
-      href: "#",
+      title: "두쫀쿠 Promotion Webpage",
+      image: archiveDuzz,
+      href: SITE_LINKS.archive.duzzonku?.link,
     },
     {
       id: 3,
@@ -47,7 +46,7 @@ const ArchiveSection = ({ id, className }) => {
     {
       id: 4,
       title: "Web Accessibility",
-      image: ele1,
+      image: ele4,
       href: "#",
     },
   ];
