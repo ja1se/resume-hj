@@ -93,7 +93,6 @@ resume-hj/
 ---
 
 ## 5. 📝 디자인 참조
-- **피그마 디자인:** [포트폴리오 링크](https://www.figma.com/design/gxWM89CYblpV7jVsKUoOze/%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4%F0%9F%92%A1?m=dev)
 - **상세 컴포넌트 사양:** `Components.md` 참조
 - **디자인 시스템 규칙:** `Design.md` 참조
 - **프로젝트 철학:** `SKILLS.md` 참조

@@ -30,7 +30,7 @@ export const PROJECTS = [
     contribution: "33.333%",
     troubleShooting: "프로젝트 초기에는 명확한 가이드 부재로 인해 반복적인 수정이 발생했으나, 이를 해결하고자 디자인 시스템 구축 및 자동화 프로세스를 도입했습니다. Figma Styler와 토큰화 작업을 통해 디자인 시스템을 체계화하여 작업 효율을 획기적으로 개선했으며, 팀 내 UI/UX 디자인과 시스템 설계를 총괄하였습니다.",
     image: imgSoul,
-    figmaEmbed: "https://embed.figma.com/proto/zBIhMtvEKyynUBUjOCcwOV/%EC%86%8C%EC%9A%B8%EB%B8%94%EB%A0%8C%EB%93%9C-%EB%A6%AC%EB%94%94%EC%9E%90%EC%9D%B8?node-id=453-721&viewport=187%2C524%2C0.07&scaling=scale-down&content-scaling=fixed&starting-point-node-id=522%3A3226&page-id=223%3A2021&embed-host=share",
+    figmaEmbed: "https://embed.figma.com/proto/RdadqtBfr4xT4o9ZmdVwOK/%EC%86%8C%EC%9A%B8%EB%B8%94%EB%A0%8C%EB%93%9C-%EB%A6%AC%EB%94%94%EC%9E%90%EC%9D%B8?node-id=453-721&p=f&viewport=273%2C818%2C0.11&scaling=scale-down&content-scaling=fixed&starting-point-node-id=522%3A3226&page-id=223%3A2021&embed-host=share",
     imageHeight: "100%",
     translateYOutput: ["0%", "-45%"]
   },
