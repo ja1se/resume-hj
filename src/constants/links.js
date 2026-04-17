@@ -17,7 +17,7 @@ export const SITE_LINKS = {
     },
     muji: {
       github: "https://github.com/ja1se/projectM",
-      plan: "https://drive.google.com/file/d/1LEpMjGnfsrON0eCmRXwkFjQW_9BwYOKx/view?usp=sharing",
+      plan: "https://www.figma.com/deck/nFGL7UNY4nkiyQm924qYSZ/%EB%AC%B4%EC%9D%B8%EC%96%91%ED%92%88-%EB%A6%AC%EB%94%94%EC%9E%90%EC%9D%B8-%ED%94%84%EB%A0%88%EC%A0%A0%ED%85%8C%EC%9D%B4%EC%85%98?node-id=0-1&t=uEruMF1WAY8Fsjci-1",
       result: "https://ja1se.github.io/projectM/",
     },
     wakuwaku: {
