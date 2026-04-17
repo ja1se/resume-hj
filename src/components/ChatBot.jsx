@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faComments, faTimes, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { faComments, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { CHAT_DATA } from "../constants/chatdata";
 import { cn } from "../utils/cn";
 import avatarImg from "../assets/images/new-me-ani.png";
@@ -76,12 +76,12 @@ const ChatBot = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-4">
+    <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-4 pointer-events-none">
       {/* Chat Window */}
       <div 
         ref={chatWindowRef}
         className={cn(
-          "w-[320px] sm:w-[380px] h-[500px] bg-white/90 backdrop-blur-xl rounded-[24px] shadow-2xl border border-violet-100 flex flex-col overflow-hidden origin-bottom-right opacity-0"
+          "w-[320px] sm:w-[380px] h-[500px] bg-white/90 backdrop-blur-xl rounded-[24px] shadow-2xl border border-violet-100 flex flex-col overflow-hidden origin-bottom-right opacity-0 pointer-events-auto"
         )}
       >
         {/* Header */}
@@ -157,7 +157,7 @@ const ChatBot = () => {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          "relative cursor-pointer w-16 h-16 rounded-full flex items-center justify-center shadow-xl transition-all duration-300 transform active:scale-90",
+          "relative cursor-pointer w-16 h-16 rounded-full flex items-center justify-center shadow-xl transition-all duration-300 transform active:scale-90 pointer-events-auto",
           isOpen 
             ? "bg-slate-800 text-white rotate-90" 
             : "bg-violet-500 text-white hover:scale-103 hover:shadow-violet-200/50"

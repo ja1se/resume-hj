@@ -229,7 +229,7 @@ const Footer = ({ className }) => {
                     href={SITE_LINKS.common.blog}
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-slate-900 hover:text-violet-500 transition-colors"
+                    className="block min-w-[200px] text-slate-900 hover:text-violet-500 transition-colors"
                   >
                     Tistory Blog
                   </a>

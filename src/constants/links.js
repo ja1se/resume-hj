@@ -4,7 +4,7 @@ export const SITE_LINKS = {
   common: {
     github: "https://github.com/ja1se",
     blog: "https://burineedit.tistory.com/",
-    resume: "https://drive.google.com/file/d/1m0QVRzMkWLhzYkngpPciCUvnL0o8pZwQ/view?usp=sharing",
+    resume: "https://drive.google.com/file/d/1RFBVfwzlHnRCKZBwXxKrnyHrYsHSdw9d/view?usp=sharing",
   },
   projects: {
     nyansvene: {
@@ -28,7 +28,7 @@ export const SITE_LINKS = {
   },
   archive: {
     rupa: {
-      link: "https://drive.google.com/file/d/1rwLQrtRpO1OXVIEfBqLlpRybHz82IoBj/view?usp=sharing"
+      link: "https://drive.google.com/file/d/1UdVPZ8cef2bVP4nB2vETZ03kkd1FOf2I/view?usp=sharing"
     },
     duzzonku: {
       link: "https://duzzonku.vercel.app/"
