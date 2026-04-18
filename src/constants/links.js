@@ -32,6 +32,9 @@ export const SITE_LINKS = {
     },
     duzzonku: {
       link: "https://duzzonku.vercel.app/"
-    }
+    },
+    kuku: {
+      link: "https://drive.google.com/file/d/1Zis53VVT-0kmVMItAJzkAxq_6pOo7bpb/view?usp=sharing"
+    },
   },
 };

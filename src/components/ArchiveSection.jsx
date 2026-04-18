@@ -17,7 +17,7 @@ import "swiper/css/pagination";
 // Archive images
 import archiveRupa from "../assets/images/archive-rupa.png";
 import archiveDuzz from "../assets/images/archive-duzzonku.png";
-import ele4 from "../assets/images/ele4.png";
+import archiveKuku from "../assets/images/archive-kuku.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -39,15 +39,15 @@ const ArchiveSection = ({ id, className }) => {
     },
     {
       id: 3,
-      title: "UI Design System",
-      image: ele4,
-      href: "#",
+      title: "KUKU from WAKUWAKU",
+      image: archiveKuku,
+      href: SITE_LINKS.archive.kuku?.link,
     },
     {
       id: 4,
-      title: "Web Accessibility",
-      image: ele4,
-      href: "#",
+      title: "Character",
+      image: archiveKuku,
+      href: SITE_LINKS.archive.kuku?.link,
     },
   ];
 
