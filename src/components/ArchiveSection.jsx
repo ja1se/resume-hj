@@ -81,7 +81,7 @@ const ArchiveSection = ({ id, className }) => {
       id={id}
       ref={sectionRef}
       className={cn(
-        "relative bg-white w-full overflow-hidden",
+        "relative bg-white dark:bg-[#0c0c0c] w-full overflow-hidden transition-colors duration-300",
         "lg:py-32 flex flex-col items-center",
         className,
       )}

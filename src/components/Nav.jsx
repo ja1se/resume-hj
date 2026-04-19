@@ -2,13 +2,14 @@ import { useState, useEffect } from "react";
 import { cn } from "../utils/cn";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { faBlog } from "@fortawesome/free-solid-svg-icons";
+import { faBlog, faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 import { SITE_LINKS } from "../constants/links";
 import logo from "../assets/images/logo.svg";
 
 /**
  * Navigation Component Props
  * @param {string} theme - "light" | "dark"
+ * @param {function} setTheme - 테마 변경 핸들러
  * @param {string} position - "fixed" | "sticky" | "relative"
  * @param {Array} links - { label: string, href: string }[]
  * @param {string} activeLink - 현재 활성화된 링크의 href
@@ -17,6 +18,7 @@ import logo from "../assets/images/logo.svg";
 
 const Nav = ({
   theme = "light",
+  setTheme,
   position = "fixed",
   links = [
     { label: "HOME", href: "#home" },
@@ -47,7 +49,7 @@ const Nav = ({
     ),
     dark: cn(
       isScrolled 
-        ? "bg-slate-950/80 backdrop-blur-md border-slate-800 shadow-lg py-0" 
+        ? "bg-[#0c0c0c]/80 backdrop-blur-md border-slate-800 shadow-lg py-0" 
         : "bg-transparent border-transparent py-2"
     ),
   };
@@ -78,6 +80,7 @@ const Nav = ({
                 alt="OSKA Logo" 
                 className={cn(
                   "flex w-auto transition-all duration-500",
+                  theme === 'dark' ? "invert brightness-200" : "",
                   isScrolled ? "h-7 lg:h-[38px]" : "h-8 lg:h-[47px]"
                 )} 
               />
@@ -93,10 +96,12 @@ const Nav = ({
                   className={cn(
                     "px-2 lg:px-4 py-2 rounded-full",
                     "text-[13px] lg:text-[16px] font-light transition-all duration-200",
-                    "hover:cursor-pointer hover:text-violet-600",
+                    "hover:cursor-pointer hover:text-violet-600 dark:hover:text-violet-400",
                     activeLink === href 
                       ? "text-violet-600 font-medium" 
-                      : isScrolled ? "text-slate-800" : "text-slate-900"
+                      : isScrolled 
+                        ? "text-slate-800 dark:text-slate-200" 
+                        : "text-slate-900 dark:text-slate-100"
                   )}
                 >
                   {label}
@@ -105,28 +110,44 @@ const Nav = ({
             ))}
           </ul>
 
-          {/* Social Actions */}
+          {/* Social Actions & Theme Toggle */}
           <div 
             className={cn(
-              "hidden lg:flex items-center justify-end min-w-[172px]"
+              "flex items-center justify-end min-w-[120px] lg:min-w-[172px]"
             )}
           >
-            <a 
-              href={SITE_LINKS.common.github}
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="p-2 group"
+            <div className="hidden lg:flex items-center">
+              <a 
+                href={SITE_LINKS.common.github}
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-2 group"
+              >
+                <FontAwesomeIcon icon={faGithub} className="text-slate-700 dark:text-slate-400 text-xl transition-colors duration-300 hover:text-violet-500 dark:hover:text-violet-400" />
+              </a>
+              <a 
+                href={SITE_LINKS.common.blog} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-2 group"
+              >
+                <FontAwesomeIcon icon={faBlog} className="mb-1 text-slate-700 dark:text-slate-400 text-lg transition-colors duration-300 hover:text-violet-500 dark:hover:text-violet-400" />
+              </a>
+            </div>
+            
+            <button
+              onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+              className="p-2 ml-1 lg:ml-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-300 group"
+              aria-label="Toggle theme"
             >
-              <FontAwesomeIcon icon={faGithub} className="text-slate-700 text-xl transition-colors duration-300 hover:text-violet-500" />
-            </a>
-            <a 
-              href={SITE_LINKS.common.blog} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="p-2 group"
-            >
-              <FontAwesomeIcon icon={faBlog} className="mb-1 text-slate-700 text-lg transition-colors duration-300 hover:text-violet-500" />
-            </a>
+              <FontAwesomeIcon 
+                icon={theme === 'light' ? faMoon : faSun} 
+                className={cn(
+                  "text-lg transition-all duration-500 transform",
+                  theme === 'light' ? "text-slate-700 group-hover:text-violet-600" : "text-amber-400 group-hover:text-amber-300 rotate-[360deg]"
+                )}
+              />
+            </button>
           </div>
         </div>
       </div>

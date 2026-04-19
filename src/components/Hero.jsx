@@ -138,7 +138,7 @@ const Hero = ({ className }) => {
       ref={heroRef}
       className={cn(
         "relative z-10 w-full h-[850px] pt-20 flex items-center justify-center overflow-hidden lg:h-[750px]",
-        "bg-violet-50/50",
+        "bg-violet-50/50 dark:bg-slate-900/20",
         className,
       )}
     >
@@ -149,14 +149,14 @@ const Hero = ({ className }) => {
           <img
             src={BackgroundImage}
             alt=""
-            className="w-full h-full object-cover opacity-20"
+            className="w-full h-full object-cover opacity-20 dark:opacity-10"
           />
         </div>
 
         {/* 몽환적인 그라데이션*/}
-        <div className="hero-bg-layer hero-bg-gradient-1 absolute top-[-10%] right-[-5%] w-[50vw] h-[50vw] bg-white/10 rounded-full blur-[250px]" />
-        <div className="hero-bg-layer hero-bg-gradient-2 absolute bottom-[-10%] left-[-5%] w-[40vw] h-[40vw] bg-white/10 rounded-full blur-[300px]" />
-        <div className="absolute inset-x-0 bottom-0 h-70 bg-gradient-to-t from-white via-white/50 to-transparent z-10" />
+        <div className="hero-bg-layer hero-bg-gradient-1 absolute top-[-10%] right-[-5%] w-[50vw] h-[50vw] bg-white/10 dark:bg-violet-900/5 rounded-full blur-[250px]" />
+        <div className="hero-bg-layer hero-bg-gradient-2 absolute bottom-[-10%] left-[-5%] w-[40vw] h-[40vw] bg-white/10 dark:bg-violet-900/5 rounded-full blur-[300px]" />
+        <div className="absolute inset-x-0 bottom-0 h-70 bg-gradient-to-t from-white via-white/50 to-transparent dark:from-[#0c0c0c] dark:via-[#0c0c0c]/50 z-10" />
       </div>
 
       <div
@@ -176,35 +176,35 @@ const Hero = ({ className }) => {
             <img
               src={eleMask}
               alt=""
-              className="w-[70px] h-auto object-contain rounded-[12px]"
+              className="w-[70px] h-auto object-contain rounded-[12px] dark:brightness-90"
             />
           </div>
 
           <div className="hero-text-item">
             <h2
               className={cn(
-                "text-slate-900 text-[28px] lg:text-[36px] font-medium leading-[1.5]",
+                "text-slate-900 dark:text-slate-100 text-[28px] lg:text-[36px] font-medium leading-[1.5]",
                 "tracking-tight mb-5 lg:mb-6",
               )}
             >
               브랜드의
-              <span className="hero-keyword text-violet-500 ml-20 lg:inline">
+              <span className="hero-keyword text-violet-500 dark:text-violet-400 ml-20 lg:inline">
                숨은 결
               </span>
               을<br />
               찾아내는{" "}
-              <span className="hero-keyword text-violet-500">
+              <span className="hero-keyword text-violet-500 dark:text-violet-400">
                 시각적 통역사
               </span>
               ,
               <br />
-              <span className="hero-keyword text-violet-500">조희진</span>{" "}
+              <span className="hero-keyword text-violet-500 dark:text-violet-400">조희진</span>{" "}
               입니다.
             </h2>
           </div>
 
           <div className="hero-text-item">
-            <p className="text-slate-500 text-base lg:text-lg font-light leading-[1.8] mb-7 lg:mb-10 max-w-xs lg:max-w-md">
+            <p className="text-slate-500 dark:text-slate-400 text-base lg:text-lg font-light leading-[1.8] mb-7 lg:mb-10 max-w-xs lg:max-w-md">
               부엉이의 부리부리한 눈처럼 날카로운 통찰력으로 문제의 핵심을
               꿰뚫다!
             </p>

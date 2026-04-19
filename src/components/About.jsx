@@ -143,8 +143,8 @@ const About = ({ className }) => {
           className={cn(
             "inline-block mr-1.5 transition-all duration-300",
             isCurrentWord
-              ? "text-violet-600 font-bold underline decoration-violet-300 transform scale-105"
-              : "text-slate-600",
+              ? "text-violet-600 dark:text-violet-400 font-bold underline decoration-violet-300 dark:decoration-violet-700 transform scale-105"
+              : "text-slate-600 dark:text-slate-400",
           )}
         >
           {word}
@@ -219,7 +219,7 @@ const About = ({ className }) => {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className={cn("w-full pb-32 bg-white relative overflow-visible", "flex flex-col items-center", className)}>
+    <section id="about" ref={sectionRef} className={cn("w-full pb-32 bg-white dark:bg-[#0c0c0c] relative overflow-visible transition-colors duration-300", "flex flex-col items-center", className)}>
       <div className={cn("w-full px-6 lg:px-20", "flex flex-col items-center")}>
         {/* Header Section */}
         <div className="about-header-wrapper relative w-full">
@@ -243,7 +243,7 @@ const About = ({ className }) => {
         <div className={cn("about-profile w-full flex flex-col gap-20 pt-16 lg:flex-row items-center justify-center gap-8 pb-32")}>
           {/* Avatar Video/Image */}
           <div className="relative group reveal-item">
-            <div className={cn("w-[180px] lg:h-[300px] shrink-0 p-1", "rounded-3xl overflow-hidden shadow-lg relative bg-white")}>
+            <div className={cn("w-[180px] lg:h-[300px] shrink-0 p-1", "rounded-3xl overflow-hidden shadow-lg relative bg-white dark:bg-slate-800 text-slate-50 transition-colors duration-300")}>
               <video ref={videoRef} src={avatarVd} className={cn("w-full h-full object-cover transition-opacity duration-300", isSpeaking ? "opacity-100" : "opacity-0 absolute inset-0")} muted playsInline loop />
               <img src={avatarMeAni} alt="heejincho" className={cn("w-full h-full object-cover transition-opacity duration-300", isSpeaking ? "opacity-0" : "opacity-100")} />
             </div>
@@ -279,16 +279,16 @@ const About = ({ className }) => {
 
           <div className="flex flex-col gap-6 text-center lg:text-left">
             <div className="reveal-item">
-              <h3 className="text-slate-800 font-medium text-[20px] lg:text-[22px]">
+              <h3 className="text-slate-800 font-medium text-[20px] lg:text-[22px] dark:text-slate-100">
                 {nameKR} | {nameEN}
               </h3>
             </div>
 
             <div className="grid grid-cols-1 gap-2 text-slate-600 text-[16px] font-light reveal-item">
               <div className="px-4 py-1 bg-violet-50 rounded-full inline-block self-center lg:self-start">{birthDate}</div>
-              <div className="px-4 py-1">{addressHere}</div>
+              <div className="px-4 py-1 dark:text-slate-200">{addressHere}</div>
               <div className="px-4 py-1 bg-violet-50 rounded-full inline-block self-center lg:self-start">{phoneNumber}</div>
-              <div className="px-4 py-1">{emailAddress}</div>
+              <div className="px-4 py-1 dark:text-slate-200">{emailAddress}</div>
             </div>
             <p className="flex flex-row leading-relaxed text-slate-600 text-[16px] font-light reveal-item">{renderHighlightedText()}</p>
           </div>
@@ -298,7 +298,7 @@ const About = ({ className }) => {
         <div className="about-resume-grid w-full grid grid-cols-1 lg:grid-cols-2 gap-32">
           {/* Education Column */}
           <div className="about-resume-col flex flex-col gap-10">
-            <div className="about-sub-header flex flex-col items-center bg-white/90 backdrop-blur-sm lg:backdrop-blur-none z-10">
+            <div className="about-sub-header flex flex-col items-center backdrop-blur-sm lg:backdrop-blur-none z-10">
               <div className="w-[70px] h-[70px] text-3xl lg:text-4xl">
                 <img src={GraduateIcon} alt="Graduate" />
               </div>
@@ -317,7 +317,7 @@ const About = ({ className }) => {
 
           {/* Experience Column */}
           <div className="about-resume-col flex flex-col gap-10">
-            <div className="about-sub-header flex flex-col items-center bg-white/90 backdrop-blur-sm lg:backdrop-blur-none z-10">
+            <div className="about-sub-header flex flex-col items-center backdrop-blur-sm lg:backdrop-blur-none z-10">
               <div className="w-[70px] h-[70px] text-3xl lg:text-4xl">
                 <img src={EarthIcon} alt="Earth" />
               </div>

@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect, useRef } from 'react'
+import { useState, useLayoutEffect, useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
@@ -14,7 +14,25 @@ import { PROJECTS } from './constants/projects'
 
 const App = () => {
   const [activeLink, setActiveLink] = useState("#home");
+  const [theme, setTheme] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) return savedTheme;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    return 'light';
+  });
   const loaderRef = useRef(null);
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    if (theme === 'dark') {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+    localStorage.setItem('theme', theme);
+  }, [theme]);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -35,11 +53,11 @@ const App = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white font-sans text-slate-900">
+    <div className="min-h-screen bg-white dark:bg-[#0c0c0c] font-sans text-slate-900 dark:text-slate-200 transition-colors duration-300">
       {/* Loading Overlay */}
       <div 
         ref={loaderRef}
-        className="fixed inset-0 z-[9999] flex items-center justify-center bg-white"
+        className="fixed inset-0 z-[9999] flex items-center justify-center bg-white dark:bg-[#0c0c0c]"
       >
         <svg className="animate-spin h-12 w-12 text-violet-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -47,7 +65,12 @@ const App = () => {
         </svg>
       </div>
 
-      <Nav activeLink={activeLink} onLinkClick={setActiveLink} />
+      <Nav 
+        theme={theme} 
+        setTheme={setTheme} 
+        activeLink={activeLink} 
+        onLinkClick={setActiveLink} 
+      />
 
       <main className="pt-0">
         {/* Hero Section */}

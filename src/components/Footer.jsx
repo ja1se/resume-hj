@@ -12,16 +12,16 @@ import { faPhone, faEnvelope, faBlog } from "@fortawesome/free-solid-svg-icons";
 gsap.registerPlugin(ScrollTrigger);
 
 const ContactItem = ({ label, value, icon, className }) => (
-  <div className={cn("footer-contact-item py-6 px-8 flex items-center justify-center md:justify-start gap-[18px] w-full bg-violet-50/50", className)}>
+  <div className={cn("footer-contact-item py-6 px-8 flex items-center justify-center md:justify-start gap-[18px] w-full bg-violet-50/50 dark:bg-violet-900/20 transition-colors duration-300", className)}>
     {/* 아이콘 영역 */}
-    <div className="contact-icon shrink-0 size-[44px] rounded-full bg-gradient-to-br from-violet-200 to-violet-500 shadow-sm flex items-center justify-center text-white">
+    <div className="contact-icon shrink-0 size-[44px] rounded-full bg-gradient-to-br from-violet-200 to-violet-500 dark:from-violet-500 dark:to-violet-800 shadow-sm flex items-center justify-center text-white">
       <FontAwesomeIcon icon={icon} className="text-lg" />
     </div>
     <div className="flex flex-col gap-0.5 min-w-0">
       <span className="text-[10px] uppercase tracking-[0.2em] text-violet-400 font-semibold">
         {label}
       </span>
-      <span className="text-slate-700 font-light text-[15px] leading-relaxed whitespace-nowrap overflow-hidden text-ellipsis">
+      <span className="text-slate-700 dark:text-slate-300 font-light text-[15px] leading-relaxed whitespace-nowrap overflow-hidden text-ellipsis">
         {value}
       </span>
     </div>
@@ -132,14 +132,14 @@ const Footer = ({ className }) => {
       id="contact"
       ref={footerRef}
       className={cn(
-        "relative pt-28 pb-10 px-6 bg-gradient-to-b from-white via-violet-50 to-violet-100",
+        "relative pt-28 pb-10 px-6 bg-gradient-to-b from-white via-violet-50 to-violet-100 dark:from-[#0c0c0c] dark:via-slate-900/50 dark:to-slate-950 transition-colors duration-300",
         className,
       )}
     >
       <div className="w-full max-w-[1200px] mx-auto flex flex-col gap-16 items-center">
         {/* Header Section */}
         <div className="footer-header text-center space-y-4">
-          <h2 className="text-[42px] lg:text-[56px] font-medium text-slate-800 font-display leading-tight">
+          <h2 className="text-[42px] lg:text-[56px] font-medium text-slate-800 dark:text-slate-100 font-display leading-tight">
             Let's <span className="text-violet-400 italic">Work</span> Together
           </h2>
           <div className="header-desc text-violet-400 font-light uppercase tracking-wider mt-2 text-[12px] lg:text-[14px] lg:leading-relaxed">
@@ -153,7 +153,7 @@ const Footer = ({ className }) => {
           <form
             ref={formRef}
             onSubmit={handleSubmit}
-            className="footer-form w-full flex flex-col gap-10 bg-white/80 p-8 lg:p-12 rounded-[32px] border border-white/60 backdrop-blur-sm shadow-sm"
+            className="footer-form w-full flex flex-col gap-10 bg-white/80 dark:bg-slate-900/60 p-8 lg:p-12 rounded-[32px] border border-white/60 dark:border-slate-800/60 backdrop-blur-sm shadow-sm transition-colors duration-300"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="flex flex-col gap-2">
@@ -165,7 +165,7 @@ const Footer = ({ className }) => {
                   name="user_name"
                   required
                   placeholder="성함을 입력하세요"
-                  className="w-full bg-transparent border-b border-slate-200 py-3 px-1 focus:border-violet-400 outline-none transition-all placeholder:text-slate-300 font-light"
+                  className="w-full bg-transparent border-b border-slate-200 dark:border-slate-800 py-3 px-1 text-slate-900 dark:text-slate-100 focus:border-violet-400 outline-none transition-all placeholder:text-slate-300 dark:placeholder:text-slate-600 font-light"
                 />
               </div>
               <div className="flex flex-col gap-2">
@@ -177,7 +177,7 @@ const Footer = ({ className }) => {
                   name="user_email"
                   required
                   placeholder="답장받을 이메일을 입력하세요"
-                  className="w-full bg-transparent border-b border-slate-200 py-3 px-1 focus:border-violet-400 outline-none transition-all placeholder:text-slate-300 font-light"
+                  className="w-full bg-transparent border-b border-slate-200 dark:border-slate-800 py-3 px-1 text-slate-900 dark:text-slate-100 focus:border-violet-400 outline-none transition-all placeholder:text-slate-300 dark:placeholder:text-slate-600 font-light"
                 />
               </div>
             </div>
@@ -189,7 +189,7 @@ const Footer = ({ className }) => {
                 name="message"
                 required
                 placeholder="전하고 싶은 메시지를 남겨주세요 ◡̎"
-                className="w-full bg-transparent border-b border-slate-200 px-1 focus:border-violet-400 outline-none transition-all placeholder:text-slate-300 font-light"
+                className="w-full bg-transparent border-b border-slate-200 dark:border-slate-800 px-1 text-slate-900 dark:text-slate-100 focus:border-violet-400 outline-none transition-all placeholder:text-slate-300 dark:placeholder:text-slate-600 font-light min-h-[100px]"
               />
             </div>
 
@@ -206,20 +206,20 @@ const Footer = ({ className }) => {
           </form>
 
           <div
-            className="footer-card w-full max-w-[900px] bg-white border border-slate-200 rounded-[24px] overflow-hidden shadow-xl shadow-violet-100/30 bg-[linear-gradient(168deg,_#ffffff_12%,_#f5f3ff_116%)]"
+            className="footer-card w-full max-w-[900px] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[24px] overflow-hidden shadow-xl shadow-violet-100/30 dark:shadow-none bg-[linear-gradient(168deg,_#ffffff_12%,_#f5f3ff_116%)] dark:bg-[linear-gradient(168deg,_#0f172a_12%,_#1e1b4b_116%)] transition-all duration-300"
           >
-            <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-100">
+            <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-100 dark:divide-slate-800">
               <ContactItem 
                 label="Phone" 
                 value={import.meta.env.VITE_CONTACT_PHONE} 
                 icon={faPhone} 
-                className="text-slate-900" 
+                className="text-slate-900 dark:text-slate-300" 
               />
               <ContactItem 
                 label="Email" 
                 value={import.meta.env.VITE_CONTACT_EMAIL} 
                 icon={faEnvelope} 
-                className="text-slate-900" 
+                className="text-slate-900 dark:text-slate-300" 
               />
               <ContactItem 
                 label="Socials" 
@@ -229,7 +229,7 @@ const Footer = ({ className }) => {
                     href={SITE_LINKS.common.blog}
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="block min-w-[200px] text-slate-900 hover:text-violet-500 transition-colors"
+                    className="block min-w-[200px] text-slate-900 dark:text-slate-300 hover:text-violet-500 dark:hover:text-violet-400 transition-colors"
                   >
                     Tistory Blog
                   </a>
@@ -239,8 +239,8 @@ const Footer = ({ className }) => {
           </div>
         </div>
 
-        <div className="footer-bottom w-full pt-12 border-t border-slate-100 text-center">
-          <p className="text-slate-400 text-xs font-light tracking-widest">
+        <div className="footer-bottom w-full pt-12 border-t border-slate-100 dark:border-slate-800 text-center transition-colors duration-300">
+          <p className="text-slate-400 dark:text-slate-600 text-xs font-light tracking-widest">
             © 2026 HEEJIN CHO PORTFOLIO. ALL RIGHTS RESERVED.
           </p>
         </div>

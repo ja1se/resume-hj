@@ -80,7 +80,7 @@ const SectionHeader = ({ title, description, className }) => {
     <div
       ref={containerRef}
       className={cn(
-        "w-full px-6 pt-20 lg:px-20 z-20 bg-white",
+        "w-full px-6 pt-20 lg:px-20 z-20 bg-white dark:bg-[#0c0c0c] transition-colors duration-300",
         "flex flex-col items-center text-center",
         className,
       )}

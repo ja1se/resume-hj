@@ -3,7 +3,6 @@ import { cn } from '../utils/cn';
 /**
  * ArchiveCard Component (based on ArcCon Figma design)
  * @param {string} title - 프로젝트 제목
- * @param {string} description - 프로젝트 설명
  * @param {string} image - 이미지 경로
  * @param {string} href - 링크
  * @param {string} className - 추가 클래스
@@ -11,10 +10,10 @@ import { cn } from '../utils/cn';
 const ArchiveCard = ({ title, image, href, className }) => {
   return (
     <div className={cn("flex flex-col items-start w-[350px]", className)}>
-      <div className="bg-white border border-slate-300 flex flex-col items-center overflow-hidden pt-5 px-px pb-px relative rounded-[15px] shrink-0 w-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+      <div className="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 flex flex-col items-center overflow-hidden pt-5 px-px pb-px relative rounded-[15px] shrink-0 w-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
         {/* Image Area (arc-img) */}
         <div className="w-[calc(100%-40px)] aspect-[369/358] relative rounded-[10px] overflow-hidden transition-all shrink-0">
-          <a href={href}>
+          <a href={href} target="_blank" rel="noopener noreferrer">
             {image ? (
               <img
                 src={image}
@@ -22,7 +21,7 @@ const ArchiveCard = ({ title, image, href, className }) => {
                 className="absolute inset-0 size-full object-cover transition-transform cursor-pointer group-hover:scale-105"
               />
             ) : (
-              <div className="absolute inset-0 flex items-center justify-center text-slate-300">
+              <div className="absolute inset-0 flex items-center justify-center text-slate-300 dark:text-slate-700">
                 No Image
               </div>
             )}
@@ -33,17 +32,17 @@ const ArchiveCard = ({ title, image, href, className }) => {
         <div className="w-full p-5 flex items-start justify-between gap-3">
           <div className="flex flex-col gap-1 flex-1">
             {/* arc-title */}
-            <h3 className="text-xl font-light text-slate-800 leading-relaxed whitespace-nowrap overflow-hidden text-ellipsis">
+            <h3 className="text-xl font-light text-slate-800 dark:text-slate-100 leading-relaxed whitespace-nowrap overflow-hidden text-ellipsis">
               {title}
             </h3>
           </div>
-          
+
           {/* arc-icon (Button) */}
           <a 
             href={href}
             target="_blank" 
             rel="noopener noreferrer"
-            className="shrink-0 size-[51.7px] rounded-full border border-slate-300 flex items-center justify-center transition-all duration-200 hover:border-violet-400 hover:text-violet-400"
+            className="shrink-0 size-[51.7px] rounded-full border border-slate-300 dark:border-slate-800 flex items-center justify-center transition-all duration-200 hover:border-violet-400 hover:text-violet-400 text-slate-700 dark:text-slate-400"
           >
             <svg 
               width="24" 
