@@ -18,6 +18,7 @@ import "swiper/css/pagination";
 import archiveRupa from "../assets/images/archive-rupa.png";
 import archiveDuzz from "../assets/images/archive-duzzonku.png";
 import archiveKuku from "../assets/images/archive-kuku.png";
+import archiveFract from "../assets/images/archive-fractal.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -33,21 +34,21 @@ const ArchiveSection = ({ id, className }) => {
     },
     {
       id: 2,
-      title: "두쫀쿠 Promotion Webpage",
-      image: archiveDuzz,
-      href: SITE_LINKS.archive.duzzonku?.link,
-    },
-    {
-      id: 3,
       title: "KUKU from WAKUWAKU",
       image: archiveKuku,
       href: SITE_LINKS.archive.kuku?.link,
     },
     {
+      id: 3,
+      title: "두쫀쿠 Promotion Webpage",
+      image: archiveDuzz,
+      href: SITE_LINKS.archive.duzzonku?.link,
+    },
+    {
       id: 4,
-      title: "Character",
-      image: archiveKuku,
-      href: SITE_LINKS.archive.kuku?.link,
+      title: "Fractal glass design",
+      image: archiveFract,
+      href: SITE_LINKS.archive.fractal?.link,
     },
   ];
 

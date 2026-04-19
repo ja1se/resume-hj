@@ -28,13 +28,16 @@ export const SITE_LINKS = {
   },
   archive: {
     rupa: {
-      link: "https://drive.google.com/file/d/1UdVPZ8cef2bVP4nB2vETZ03kkd1FOf2I/view?usp=sharing"
+      link: "https://drive.google.com/file/d/1y6TebVxthFFzZLhzlIjsnV9Wz5gVZrnV/view?usp=sharing"
     },
     duzzonku: {
       link: "https://duzzonku.vercel.app/"
     },
     kuku: {
-      link: "https://drive.google.com/file/d/1Zis53VVT-0kmVMItAJzkAxq_6pOo7bpb/view?usp=sharing"
+      link: "https://drive.google.com/file/d/1-pceKpDUhiTXReTHDzj8oOc1a_SqvwSs/view?usp=sharing"
+    },
+    fractal: {
+      link: "https://drive.google.com/file/d/1_WHjl-AuN1EDtZhq2i4Ux3k6GK912z71/view?usp=sharing"
     },
   },
 };
