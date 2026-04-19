@@ -6,8 +6,9 @@
 ### 1-1. 주요 기술 스택
 - **프론트엔드:** React 19 (Hooks, 함수형 컴포넌트)
 - **빌드 도구:** Vite 8
-- **스타일링:** Tailwind CSS 4 (커스텀 디자인 토큰, 모바일 우선)
+- **스타일링:** Tailwind CSS 4 (다크모드 지원, 커스텀 디자인 토큰, 모바일 우선)
 - **애니메이션:** GSAP 3 (ScrollTrigger, Timeline, 컨텍스트 관리)
+- **인터랙션:** Canvas API 기반 커스텀 마우스 커서 및 입자 시스템
 - **컴포넌트:** Swiper 12 (슬라이더), FontAwesome (아이콘)
 - **유틸리티:** `clsx` + `tailwind-merge` (`src/utils/cn.js` 사용)
 - **배포/도구:** ESLint, PostCSS, EmailJS (문의 폼)
@@ -45,6 +46,11 @@
 ### 3-4. 시맨틱 HTML
 웹 접근성(A11y)과 SEO를 보장하기 위해 의미 있는 태그(`<section>`, `<main>`, `<header>`, `<footer>`, `<article>`)를 사용하세요.
 
+### 3-5. 테마 및 인터랙션
+- **다크 모드:** Tailwind CSS 4의 `class` 전략을 기반으로 구현되었습니다. 사용자의 테마 설정은 `localStorage`에 저장되어 재방문 시에도 유지되며, `Nav.jsx`의 토글 버튼을 통해 수동으로 전환할 수 있습니다.
+- **커스텀 커서:** `CustomCursor.jsx`는 Canvas와 `requestAnimationFrame`을 활용하여 쫀득한 탄성(Spring) 효과와 몽환적인 입자 테일(Particle Trail)을 제공합니다. 고성능 렌더링을 위해 DOM이 아닌 캔버스 위에 그려지며, 모바일 환경에서는 성능 최적화를 위해 자동으로 비활성화됩니다.
+- **커스텀 스크롤바:** 브랜드 포인트 컬러인 `violet-400`과 `violet-500`을 사용하여 웹사이트의 시각적 일관성을 높였습니다. `src/index.css`에 정의되어 있으며, Webkit 기반 브라우저 및 Firefox와의 호환성을 지원합니다.
+
 ---
 
 ## 4. 📂 주요 디렉토리 구조
@@ -63,6 +69,7 @@ resume-hj/
 │   │   ├── ArchiveSection.jsx ← 아카이브 슬라이더 섹션
 │   │   ├── Button.jsx       ← 공통 버튼 컴포넌트
 │   │   ├── Card.jsx         ← 범용 카드 레이아웃
+│   │   ├── CustomCursor.jsx ← Canvas 기반 인터랙티브 마우스 커서
 │   │   ├── Footer.jsx       ← 하단 정보 및 연락처 섹션
 │   │   ├── Hero.jsx         ← 메인 히어로 섹션 (영상 포함)
 │   │   ├── Logo.jsx         ← 브랜드 로고 컴포넌트
