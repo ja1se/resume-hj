@@ -10,6 +10,7 @@ import ArchiveSection from './components/ArchiveSection'
 import ScrollToTop from './components/ScrollToTop'
 import ProjectSection from './components/ProjectSection'
 import ChatBot from './components/ChatBot'
+import CustomCursor from './components/CustomCursor'
 import { PROJECTS } from './constants/projects'
 
 const App = () => {
@@ -54,6 +55,7 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-white dark:bg-[#0c0c0c] font-sans text-slate-900 dark:text-slate-200 transition-colors duration-300">
+      <CustomCursor />
       {/* Loading Overlay */}
       <div 
         ref={loaderRef}

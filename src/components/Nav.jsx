@@ -137,7 +137,7 @@ const Nav = ({
             
             <button
               onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-              className="p-2 ml-1 lg:ml-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-300 group"
+              className="p-1 ml-1 lg:ml-2 rounded-full hover:cursor-pointer dark:hover:bg-slate-800 transition-colors duration-300 group"
               aria-label="Toggle theme"
             >
               <FontAwesomeIcon 
