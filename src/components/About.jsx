@@ -21,16 +21,9 @@ const About = ({ className }) => {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [currentCharIndex, setCurrentCharIndex] = useState(-1);
   const [lang, setLang] = useState("ko-KR");
-  const nameKR = import.meta.env.VITE_CONTACT_NAMEKR;
-  const nameEN = import.meta.env.VITE_CONTACT_NAMEEN;
-  const nameJP = import.meta.env.VITE_CONTACT_NAMEJP;
-  const birthDate = import.meta.env.VITE_CONTACT_BIRTH;
-  const addressHere = import.meta.env.VITE_CONTACT_ADDRESS;
-  const phoneNumber = import.meta.env.VITE_CONTACT_PHONE;
-  const emailAddress = import.meta.env.VITE_CONTACT_EMAIL;
   const bioTexts = {
-    "ko-KR": `안녕하세요! 유연한 분석가, ${nameKR}이라고 합니다.. 잘 부탁해요!`,
-    "ja-JP": `こんにちは！柔軟な分析家、${nameJP}と申します。よろしくお願いします！`,
+    "ko-KR": `안녕하세요! 유연한 분석가, 조희진이라고 합니다.. 잘 부탁해요!`,
+    "ja-JP": `こんにちは！柔軟な分析家、チョ・ヒジンと申します。よろしくお願いします！`,
   };
 
   const handleSpeak = (targetLang = "ko-KR") => {
@@ -280,17 +273,18 @@ const About = ({ className }) => {
           <div className="flex flex-col gap-6 text-center lg:text-left">
             <div className="reveal-item">
               <h3 className="text-slate-800 font-medium text-[20px] lg:text-[22px] dark:text-slate-100">
-                {nameKR} | {nameEN}
+                {import.meta.env.VITE_CONTACT_NAMEKR} | {import.meta.env.VITE_CONTACT_NAMEEN}
               </h3>
             </div>
 
             <div className="grid grid-cols-1 gap-2 text-slate-600 text-[16px] font-light reveal-item">
-              <div className="px-4 py-1 bg-violet-50 rounded-full inline-block self-center lg:self-start">{birthDate}</div>
-              <div className="px-4 py-1 dark:text-slate-200">{addressHere}</div>
-              <div className="px-4 py-1 bg-violet-50 rounded-full inline-block self-center lg:self-start">{phoneNumber}</div>
-              <div className="px-4 py-1 dark:text-slate-200">{emailAddress}</div>
+              <div className="px-4 py-1 bg-violet-50 rounded-full inline-block self-center lg:self-start">{import.meta.env.VITE_CONTACT_BIRTH}</div>
+              <div className="px-4 py-1 dark:text-slate-200">{import.meta.env.VITE_CONTACT_ADDRESS}</div>
+              <div className="px-4 py-1 bg-violet-50 rounded-full inline-block self-center lg:self-start">{import.meta.env.VITE_CONTACT_PHONE}</div>
+              <div className="px-4 py-1 dark:text-slate-200">{import.meta.env.VITE_CONTACT_EMAIL}</div>
             </div>
             <p className="flex flex-row leading-relaxed text-slate-600 text-[16px] font-light reveal-item">{renderHighlightedText()}</p>
+            <p className="flex flex-row leading-relaxed text-violet-600 text-[10px] font-light reveal-item">*Web Speech API의 TTS를 사용하였습니다.</p>
           </div>
         </div>
 
