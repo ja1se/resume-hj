@@ -33,14 +33,14 @@ const ProjectPopup = ({ isOpen, onClose, project, mousePos }) => {
         // 애니메이션: 배경 페이드인과 카드 확장
         .to(overlayRef.current, {
           opacity: 1,
-          duration: 0.4,
+          duration: 0.3,
           ease: "power2.out",
         })
         .to(
           cardRef.current,
           {
             clipPath: `circle(150% at ${localX}px ${localY}px)`,
-            duration: 0.6,
+            duration: 0.5,
             ease: "power2.out",
           },
           "-=0.25",
@@ -74,12 +74,12 @@ const ProjectPopup = ({ isOpen, onClose, project, mousePos }) => {
     tl.to(contentRef.current, {
       y: 10,
       opacity: 0,
-      duration: 0.2,
+      duration: 0.3,
       ease: "power2.in",
     })
       .to(cardRef.current, {
         clipPath: `circle(0% at ${localX}px ${localY}px)`,
-        duration: 0.4,
+        duration: 0.3,
         ease: "power2.inOut",
       })
       .to(
@@ -151,7 +151,7 @@ const ProjectPopup = ({ isOpen, onClose, project, mousePos }) => {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-8 p-8 bg-slate-50 rounded-[32px]">
+                <div className="grid grid-cols-2 gap-8 p-8 bg-violet-200/10 rounded-[32px]">
                   <div className="flex flex-col gap-2">
                     <span className="text-[10px] lg:text-xs uppercase tracking-[0.2em] text-slate-400 font-bold">
                       Duration
