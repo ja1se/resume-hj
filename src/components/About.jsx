@@ -282,6 +282,7 @@ const About = ({ className }) => {
               <div className="px-4 py-1 dark:text-slate-200">{import.meta.env.VITE_CONTACT_ADDRESS}</div>
               <div className="px-4 py-1 bg-violet-50 rounded-full inline-block self-center lg:self-start">{import.meta.env.VITE_CONTACT_PHONE}</div>
               <div className="px-4 py-1 dark:text-slate-200">{import.meta.env.VITE_CONTACT_EMAIL}</div>
+              <div className="px-4 py-1 bg-violet-50 rounded-full inline-block self-center lg:self-start">4.31 학점 졸업 성실함 입증🫡</div>
             </div>
             <p className="flex flex-row leading-relaxed text-slate-600 text-[16px] font-light reveal-item">{renderHighlightedText()}</p>
             <p className="flex flex-row leading-relaxed text-violet-600 text-[10px] font-light reveal-item">*Web Speech API의 TTS를 사용하였습니다.</p>
@@ -304,7 +305,7 @@ const About = ({ className }) => {
                 <ResumeCard date="2025.10 - 2026 Present" title={"챗GPT 생성형 AI를 활용한 반응형 웹콘텐츠\n(영상제작&코딩) 개발기획자 양성과정"} items={["MBC아카데미컴퓨터학원", "기획, 디자인, 개발 과정에서 디자인, 영상, 코딩 관련 툴 활용 및 숙달", "GTQ 포토샵 보유, GTQ i 일러스트 자격증 취득"]} />
               </div>
               <div className="resume-card-wrapper">
-                <ResumeCard date="2012.03 - 2016.06" title="한양 여자 대학교 일본어통번역학과 졸업" items={["2012.06~07 도쿄 올림픽 기념 청소년센터 일본어학연수과정 수료", "2016 우등상 수상"]} />
+                <ResumeCard date="2012.03 - 2016.06" title="한양 여자 대학교 일본어통번역학과 졸업" items={["2012.06~07 도쿄 올림픽 기념 청소년센터 일본어학연수과정 수료", "2016 학점 4.31 졸업 우등상 수상"]} />
               </div>
             </div>
           </div>
