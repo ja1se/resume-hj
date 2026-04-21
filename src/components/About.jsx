@@ -23,7 +23,7 @@ const About = ({ className }) => {
   const [lang, setLang] = useState("ko-KR");
   const bioTexts = {
     "ko-KR": `안녕하세요! 유연한 분석가, 조희진이라고 합니다.. 잘 부탁해요!`,
-    "ja-JP": `こんにちは！柔軟な分析家、チョ・ヒジンと申します。よろしくお願いします！`,
+    "ja-JP": `こんにちは！状況に合わせて柔軟に分析・対応するのが強みの、チョ・ヒジンです。`,
   };
 
   const handleSpeak = (targetLang = "ko-KR") => {
@@ -301,7 +301,7 @@ const About = ({ className }) => {
 
             <div className="about-resume-list flex flex-col gap-6">
               <div className="resume-card-wrapper">
-                <ResumeCard date="2025.10 - 2026 Present" title={"챗GPT 생성형 AI를 활용한 반응형 웹콘텐츠\n(영상제작&코딩) 개발기획자 양성과정"} items={["MBC아카데미컴퓨터학원", "기획, 디자인, 개발 과정에서 디자인, 영상, 코딩 툴 숙달"]} />
+                <ResumeCard date="2025.10 - 2026 Present" title={"챗GPT 생성형 AI를 활용한 반응형 웹콘텐츠\n(영상제작&코딩) 개발기획자 양성과정"} items={["MBC아카데미컴퓨터학원", "기획, 디자인, 개발 과정에서 디자인, 영상, 코딩 관련 툴 활용 및 숙달", "GTQ 포토샵 보유, GTQ i 일러스트 자격증 취득"]} />
               </div>
               <div className="resume-card-wrapper">
                 <ResumeCard date="2012.03 - 2016.06" title="한양 여자 대학교 일본어통번역학과 졸업" items={["2012.06~07 도쿄 올림픽 기념 청소년센터 일본어학연수과정 수료", "2016 우등상 수상"]} />

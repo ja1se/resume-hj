@@ -71,7 +71,7 @@ const ProjectPopup = ({ isOpen, onClose, project, mousePos }) => {
       {/* Close Button */}
       <button
         onClick={handleClose}
-        className="fixed top-8 right-8 lg:top-12 lg:right-12 z-[110] p-4 hover:rotate-90 transition-transform duration-300 group"
+        className="fixed cursor-pointer top-16 right-8 lg:top-20 lg:right-12 z-[110] p-4 hover:rotate-90 transition-transform duration-300 group"
       >
         <div className="relative w-8 h-8">
           <span className="absolute top-1/2 left-0 w-full h-0.5 bg-slate-900 rotate-45 group-hover:bg-violet-600" />
