@@ -77,7 +77,7 @@ const ProjectSection = ({ project, reverse = false, className }) => {
   };
 
   // 1. 공통 조건 변수화
-  const isRightAlign = title === "와쿠와쿠" || title === "소울블렌드";
+  const isRightAlign = title === "무인양품" || title === "소울블렌드";
 
   return (
     <section
@@ -88,15 +88,15 @@ const ProjectSection = ({ project, reverse = false, className }) => {
         className,
       )}
     >
-      <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-6">
+      <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-18">
         {/* Text Area */}
         <div
           className={cn(
-            "project-text-content w-full lg:w-[400px] flex flex-col justify-center gap-6 lg:gap-10",
+            "project-text-content w-full ml-20 lg:w-[400px] flex flex-col justify-center gap-6 lg:gap-10",
             "z-20 relative",
             isRightAlign
-              ? "lg:items-end lg:text-right"
-              : "lg:items-start lg:text-left",
+              ? "mr-40 items-end text-right"
+              : "items-start text-left",
             reverse ? "lg:order-2" : "lg:order-1",
           )}
         >

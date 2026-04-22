@@ -1,4 +1,4 @@
-import { useRef, forwardRef } from "react";
+import { useRef, forwardRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { cn } from "../utils/cn";
 
@@ -8,8 +8,8 @@ const SIZE_STYLES = {
 };
 
 const VARIANT_STYLES = {
-  primary: "border border-slate-500 text-slate-500 hover:border-violet-500 hover:text-violet-500 hover:bg-violet-50",
-  outline: "border border-slate-200 text-slate-600 hover:border-violet-500 hover:text-violet-500 hover:bg-violet-50",
+  primary: "border border-violet-500/50 text-slate-600 hover:border-violet-600 hover:text-violet-500 hover:bg-violet-50",
+  outline: "border border-violet-500/50 text-slate-600 hover:border-violet-600 hover:text-violet-500 hover:bg-violet-50",
   ghost: "text-slate-600 hover:bg-slate-100",
 };
 
@@ -26,6 +26,24 @@ const Button = forwardRef(({
 }, ref) => {
   const internalRef = useRef(null);
   const buttonRef = ref || internalRef;
+  const sweepRef = useRef(null);
+
+  useEffect(() => {
+    if (disabled || !sweepRef.current) return;
+
+    const ctx = gsap.context(() => {
+      // Sleek diagonal light beam sweep
+      gsap.to(sweepRef.current, {
+        x: "300%",
+        duration: 3,
+        repeat: -1,
+        repeatDelay: 0,
+        ease: "none",
+      });
+    });
+
+    return () => ctx.revert();
+  }, [disabled]);
 
   const spawnRipple = (e, { color, scale, duration }) => {
     const el = buttonRef.current;
@@ -85,6 +103,13 @@ const Button = forwardRef(({
     ...props,
   };
 
+  const sweepEffect = !disabled && (
+    <span 
+      ref={sweepRef}
+      className="absolute top-0 bottom-0 left-0 w-[120%] -skew-x-25 bg-gradient-to-r from-transparent via-violet-200/30 to-transparent -translate-x-[150%] pointer-events-none select-none -z-10"
+    />
+  );
+
   if (href) {
     return (
       <a
@@ -93,6 +118,7 @@ const Button = forwardRef(({
         rel={target === "_blank" ? "noopener noreferrer" : undefined}
         {...commonProps}
       >
+        {sweepEffect}
         <span className="relative z-10 flex items-center justify-center gap-[inherit]">{children}</span>
       </a>
     );
@@ -100,6 +126,7 @@ const Button = forwardRef(({
 
   return (
     <button disabled={disabled} {...commonProps}>
+      {sweepEffect}
       <span className="relative z-10 flex items-center justify-center gap-[inherit]">{children}</span>
     </button>
   );

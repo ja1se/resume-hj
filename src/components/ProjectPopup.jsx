@@ -144,6 +144,12 @@ const ProjectPopup = ({ isOpen, onClose, project, mousePos }) => {
               <div className="flex flex-col gap-12">
                 <div className="flex flex-col gap-6">
                   <h3 className="text-2xl font-bold text-slate-900 font-display">
+                    Overview
+                  </h3>
+                  <p className="text-slate-600 leading-relaxed font-light text-lg whitespace-pre-wrap pb-6 lg:text-xl">
+                    {project.overView}
+                  </p>
+                  <h3 className="text-2xl font-bold text-slate-900 font-display">
                     Trouble Shooting
                   </h3>
                   <p className="text-slate-600 leading-relaxed font-light text-lg whitespace-pre-wrap lg:text-xl">
