@@ -57,7 +57,7 @@ export const PROJECTS = [
     media: "desktop, mobile",
     duration: "1주",
     contribution: "100%",
-    troubleShooting: "Stitch를 활용해 유연한 설계의 바이브 코딩 구조 위에, 하드코딩의 정밀함을 더해 완성한 프로젝트. 디자인과 개발이 하나의 언어로 소통할 수 있도록 디자인 시스템의 구성 요소들이 프론트엔드에 그대로 녹아들 수 있게 세밀한 마크다운 문서를 작성하였습니다.",
+    troubleShooting: "Stitch를 활용해 유연한 설계의 바이브 코딩 구조 위에, 하드코딩의 정밀함을 더해 완성한 프로젝트입니다.\ncontainer, box 등 디자인 레이어 명칭 불일치 문제가 있어 div 같은 HTML/CSS 표준 용어로 명칭을 통일하기 위해 플러그인 자동화 툴 활용 및 세밀한 마크다운 작성을 통해 해결하였으며,\n허깅페이스 연동 오류로 500 에러 및 타임아웃 발생한 문제에 대해서는 가볍고 빠른 최신 멀티태스크 모델(ko-sroberta)로 교체하여 끊김 없는 사용 환경을 구축하였습니다.",
     image: imgWaku,
     detailImage: detailWaku,
     imageHeight: "200%",

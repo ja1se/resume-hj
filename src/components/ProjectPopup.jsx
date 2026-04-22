@@ -146,7 +146,7 @@ const ProjectPopup = ({ isOpen, onClose, project, mousePos }) => {
                   <h3 className="text-2xl font-bold text-slate-900 font-display">
                     Trouble Shooting
                   </h3>
-                  <p className="text-slate-600 leading-relaxed font-light text-lg lg:text-xl">
+                  <p className="text-slate-600 leading-relaxed font-light text-lg whitespace-pre-wrap lg:text-xl">
                     {project.troubleShooting}
                   </p>
                 </div>
