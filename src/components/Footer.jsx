@@ -7,7 +7,7 @@ import Button from "./Button";
 import { SITE_LINKS } from '../constants/links';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPhone, faEnvelope, faBlog } from "@fortawesome/free-solid-svg-icons";
+import { faPhone, faEnvelope, faBlog, faStarOfLife } from "@fortawesome/free-solid-svg-icons";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -47,6 +47,25 @@ const Footer = ({ className }) => {
           start: "top 85%",
         }
       });
+
+      // Sparkle Animation
+      gsap.fromTo(
+        ".footer-sparkle",
+        { opacity: 0, rotate: 0, scale: 0.5 },
+        {
+          opacity: 1,
+          rotate: 360,
+          scale: 1,
+          duration: 1.8,
+          ease: "expo.inOut",
+          delay: 1,
+          scrollTrigger: {
+            trigger: ".footer-header",
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        },
+      );
 
       // 2. Contact Form
       gsap.from(".footer-form", {
@@ -132,16 +151,25 @@ const Footer = ({ className }) => {
       id="contact"
       ref={footerRef}
       className={cn(
-        "relative pt-28 pb-10 px-6 bg-gradient-to-b from-white via-violet-50 to-violet-100 dark:from-[#0c0c0c] dark:via-slate-900/50 dark:to-slate-950 transition-colors duration-300",
+        "relative pt-20 pb-10 px-6 bg-gradient-to-b from-white via-violet-50 to-violet-100 dark:from-[#0c0c0c] dark:via-slate-900/50 dark:to-slate-950 transition-colors duration-300",
         className,
       )}
     >
       <div className="w-full max-w-[1200px] mx-auto flex flex-col gap-16 items-center">
         {/* Header Section */}
         <div className="footer-header text-center space-y-4">
-          <h2 className="text-[42px] lg:text-[56px] font-medium text-slate-800 dark:text-slate-100 font-display leading-tight">
-            Let's <span className="text-violet-400 italic">Work</span> Together
-          </h2>
+          <div className="relative inline-block">
+            {/* Sparkle Icon */}
+            <div className="footer-sparkle absolute -left-10 -top-1 lg:-left-14 lg:-top-1 text-violet-400 opacity-0 pointer-events-none">
+              <FontAwesomeIcon
+                icon={faStarOfLife}
+                className="text-xl lg:text-2xl"
+              />
+            </div>
+            <h2 className="text-[42px] lg:text-[56px] font-medium text-slate-800 dark:text-slate-100 font-display leading-tight">
+              Let's <span className="text-violet-400 italic">Work</span> Together
+            </h2>
+          </div>
           <div className="header-desc text-violet-400 font-light uppercase tracking-wider mt-2 text-[12px] lg:text-[14px] lg:leading-relaxed">
             <p>사소한 디테일이 모여 큰 감동을 만든다고 믿습니다.</p>
             <p>컨택은 다음 채널을 통해 노크해 주세요. :D</p>

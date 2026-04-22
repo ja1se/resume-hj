@@ -15,6 +15,53 @@ import { PROJECTS } from './constants/projects'
 
 const App = () => {
   const [activeLink, setActiveLink] = useState("#home");
+
+  // Smooth Scroll Handler
+  const handleLinkClick = (href) => {
+    setActiveLink(href);
+    const targetId = href.replace("#", "");
+    const element = document.getElementById(targetId);
+    if (element) {
+      const navHeight = 38; // Nav height
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  // Intersection Observer for Active Link
+  useEffect(() => {
+    const sectionIds = ["home", "about", "projects", "archive", "contact"];
+    const observers = [];
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "-20% 0px -70% 0px", // Adjust to trigger when section is in upper-middle
+      threshold: 0,
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveLink(`#${entry.target.id}`);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    sectionIds.forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   const [theme, setTheme] = useState(() => {
     if (typeof window !== 'undefined') {
       const savedTheme = localStorage.getItem('theme');
@@ -71,7 +118,7 @@ const App = () => {
         theme={theme} 
         setTheme={setTheme} 
         activeLink={activeLink} 
-        onLinkClick={setActiveLink} 
+        onLinkClick={handleLinkClick} 
       />
 
       <main className="pt-0">
